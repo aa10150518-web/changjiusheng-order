@@ -1,1 +1,592 @@
-file:///C:/Users/user/Desktop/index.html
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>昌久貹｜課程報名 & 下單系統</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper:#FAF6EE; --paper2:#F0E8D5; --paper3:#FFFDF7;
+  --gold:#C9A84C; --gold2:#E2C06A; --gold3:#8B6B1A;
+  --ink:#2A1F0E; --ink2:#5A4830; --ink3:#8A7460;
+  --red:#9B2B1A; --white:#FFFDF5;
+  --pink:#F2728A; --pink-dark:#E05A72;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'Noto Sans TC',sans-serif;min-height:100vh;}
+.top-bar{height:5px;background:linear-gradient(90deg,transparent,var(--gold3),var(--gold2),var(--gold),var(--gold2),var(--gold3),transparent);}
+/* HEADER */
+.header{background:var(--white);border-bottom:1px solid var(--gold3);padding:13px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(139,107,26,0.08);}
+.brand{font-family:'Noto Serif TC',serif;font-size:22px;font-weight:900;color:var(--gold3);letter-spacing:6px;line-height:1;}
+.brand-sub{font-size:9px;letter-spacing:3px;color:var(--ink3);margin-top:3px;}
+.cart-btn{background:transparent;border:1px solid var(--gold3);color:var(--gold3);padding:7px 13px;border-radius:3px;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:inherit;letter-spacing:1px;}
+.cart-btn:hover{background:var(--gold3);color:var(--white);}
+.cart-count{background:var(--red);color:#fff;border-radius:50%;width:16px;height:16px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;}
+/* TABS */
+.tabs{background:var(--paper2);border-bottom:1px solid rgba(139,107,26,0.25);display:flex;overflow-x:auto;padding:0 10px;}
+.tab{padding:11px 14px;font-size:12px;color:var(--ink3);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;letter-spacing:1px;transition:all .2s;}
+.tab.active{color:var(--gold3);border-bottom-color:var(--gold);font-weight:500;}
+/* HERO */
+.hero{position:relative;padding:28px 22px 26px;text-align:center;background:linear-gradient(160deg,#FFFDF7 0%,#FDF7EC 60%,#FAF0DC 100%);border-bottom:1px solid rgba(201,168,76,0.18);overflow:hidden;}
+.hero-orn{font-size:10px;letter-spacing:6px;color:var(--gold3);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.hero-orn span{color:var(--gold);}
+.hero h1{font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:var(--ink);letter-spacing:3px;line-height:1.5;margin-bottom:10px;}
+.hero-line{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:6px;font-size:11px;color:var(--ink3);letter-spacing:2px;}
+.hero-line::before,.hero-line::after{content:'';width:36px;height:1px;}
+.hero-line::before{background:linear-gradient(90deg,transparent,var(--gold));}
+.hero-line::after{background:linear-gradient(90deg,var(--gold),transparent);}
+.hero-sub{font-size:10px;color:var(--ink3);letter-spacing:2px;}
+/* MAIN */
+.main{padding:16px 14px 60px;max-width:560px;margin:0 auto;}
+.sec-label{font-size:10px;letter-spacing:4px;color:var(--gold3);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.sec-label::before{content:'◆';font-size:8px;color:var(--gold);}
+.sec-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,0.4),transparent);}
+/* CARD */
+.card{background:var(--white);border:1px solid rgba(201,168,76,0.28);border-radius:8px;margin-bottom:14px;position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s;}
+.card:hover{box-shadow:0 4px 18px rgba(139,107,26,0.13);transform:translateY(-1px);}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold2),var(--gold3));}
+.card-body{display:flex;gap:12px;padding:14px 14px 10px 18px;align-items:flex-start;}
+.card-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--paper2),var(--paper));border:1px solid rgba(201,168,76,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.card-tag{font-size:9px;letter-spacing:2px;color:var(--gold3);background:linear-gradient(90deg,rgba(201,168,76,0.12),transparent);padding:2px 10px 2px 6px;border-left:2px solid var(--gold);display:inline-block;margin-bottom:5px;}
+.card-title{font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:1px;line-height:1.3;}
+.card-desc{font-size:11px;color:var(--ink3);line-height:1.7;}
+.card-note{font-size:10px;color:var(--gold);margin-top:4px;}
+.pills{display:flex;flex-wrap:wrap;gap:5px;padding:0 14px 10px 18px;}
+.pill{font-size:10px;color:var(--ink3);background:var(--paper);border:1px solid rgba(201,168,76,0.25);padding:2px 9px;border-radius:2px;letter-spacing:.5px;}
+.card-footer{padding:10px 14px 12px 18px;background:linear-gradient(90deg,rgba(245,237,216,.6),rgba(250,245,233,.3));border-top:1px solid rgba(201,168,76,0.18);display:flex;align-items:center;justify-content:space-between;}
+.price{font-family:'Noto Serif TC',serif;font-size:20px;font-weight:700;color:var(--red);letter-spacing:1px;}
+.price-unit{font-size:11px;color:var(--ink3);margin-left:2px;}
+/* BUTTONS */
+.add-btn{background:transparent;color:var(--pink-dark);border:1.5px solid var(--pink);padding:7px 18px;border-radius:20px;font-family:inherit;font-size:11px;cursor:pointer;letter-spacing:2px;transition:all .25s;white-space:nowrap;}
+.add-btn:hover{background:#FFF0F3;border-color:var(--pink-dark);}
+.add-btn.added{background:var(--pink);color:#fff;border-color:var(--pink-dark);}
+/* SESSION PICKER */
+.overlay{display:none;position:fixed;inset:0;background:rgba(42,31,14,.6);z-index:200;}
+.overlay.open{display:flex;align-items:flex-end;}
+.bottom-sheet{background:var(--white);border-radius:16px 16px 0 0;border-top:3px solid var(--gold);padding:20px 18px 32px;width:100%;max-width:520px;margin:0 auto;max-height:80vh;overflow-y:auto;transform:translateY(100%);transition:transform .3s ease;}
+.overlay.open .bottom-sheet{transform:translateY(0);}
+.sheet-handle{width:36px;height:3px;background:var(--paper2);border-radius:2px;margin:0 auto 16px;}
+.sheet-title{font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:var(--ink);letter-spacing:2px;margin-bottom:4px;}
+.sheet-sub{font-size:11px;color:var(--ink3);letter-spacing:1px;margin-bottom:16px;}
+.session-opt{border:1.5px solid rgba(201,168,76,.3);border-radius:8px;padding:12px 14px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:12px;background:var(--paper3);transition:all .2s;}
+.session-opt:hover{border-color:var(--gold);background:#FFFBF0;}
+.session-opt.selected{border-color:var(--pink);background:#FFF5F7;}
+.radio{width:18px;height:18px;border-radius:50%;border:2px solid rgba(201,168,76,.4);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.session-opt.selected .radio{border-color:var(--pink);background:var(--pink);}
+.radio-dot{width:6px;height:6px;border-radius:50%;background:#fff;display:none;}
+.session-opt.selected .radio-dot{display:block;}
+.s-loc{font-size:14px;font-weight:600;color:var(--ink);}
+.s-date{font-size:12px;color:var(--ink3);margin-top:2px;}
+.s-teacher{font-size:11px;color:var(--gold3);margin-top:2px;}
+.confirm-btn{width:100%;background:linear-gradient(135deg,var(--gold3),var(--gold));color:var(--ink);border:none;padding:14px;border-radius:6px;font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:3px;margin-top:4px;}
+/* CART */
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px dashed rgba(201,168,76,.3);}
+.ci-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px;}
+.ci-price{font-size:12px;color:var(--ink3);}
+.rm-btn{background:none;border:none;color:var(--ink3);font-size:16px;cursor:pointer;padding:4px;}
+.cart-total{display:flex;justify-content:space-between;align-items:center;padding:14px 0 4px;font-family:'Noto Serif TC',serif;font-size:17px;font-weight:700;}
+.total-amt{color:var(--red);}
+.empty-cart{text-align:center;padding:28px;color:var(--ink3);font-size:13px;}
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(42,31,14,.65);z-index:300;padding:20px;overflow-y:auto;}
+.modal-overlay.open{display:flex;align-items:flex-start;}
+.modal{background:var(--white);border-radius:8px;border-top:3px solid var(--gold);width:100%;max-width:500px;margin:auto;overflow:hidden;}
+.modal-head{background:linear-gradient(135deg,var(--paper2),var(--paper));border-bottom:1px solid rgba(201,168,76,.3);padding:18px 20px;display:flex;justify-content:space-between;align-items:center;}
+.modal-head h2{font-family:'Noto Serif TC',serif;color:var(--ink);font-size:17px;letter-spacing:2px;}
+.close-btn{background:none;border:none;color:var(--ink3);font-size:22px;cursor:pointer;}
+.modal-body{padding:20px 18px;}
+.order-summary{background:var(--paper);border:1px solid rgba(201,168,76,.25);border-radius:4px;padding:12px 14px;margin-bottom:18px;}
+.os-title{font-size:9px;letter-spacing:3px;color:var(--gold3);margin-bottom:8px;}
+.sr{display:flex;justify-content:space-between;font-size:12px;color:var(--ink2);padding:3px 0;}
+.st{display:flex;justify-content:space-between;font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;color:var(--ink);border-top:1px dashed rgba(201,168,76,.3);margin-top:8px;padding-top:8px;}
+.fg{margin-bottom:14px;}
+label{display:block;font-size:10px;letter-spacing:2px;color:var(--gold3);margin-bottom:5px;}
+.req{color:var(--red);}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid rgba(201,168,76,.3);border-radius:3px;font-family:inherit;font-size:13px;color:var(--ink);background:var(--paper3);outline:none;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);background:var(--white);}
+textarea{resize:vertical;height:70px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.pay-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.pay-opt{border:1px solid rgba(201,168,76,.3);border-radius:4px;padding:10px;cursor:pointer;text-align:center;font-size:11px;color:var(--ink3);background:var(--paper3);transition:all .2s;}
+.pay-opt.selected{border-color:var(--gold);background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(245,237,216,.8));color:var(--ink);font-weight:500;}
+.pay-icon{font-size:18px;display:block;margin-bottom:4px;}
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--gold3),var(--gold));color:var(--ink);border:none;padding:14px;border-radius:4px;font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:3px;}
+/* SUCCESS */
+.success-screen{display:none;text-align:center;padding:36px 20px;}
+.success-screen.show{display:block;}
+.modal-body.hide{display:none;}
+.order-no{background:var(--paper);border:1px dashed var(--gold);border-radius:4px;padding:12px;margin:16px 0 20px;}
+.on-label{font-size:9px;letter-spacing:3px;color:var(--gold3);}
+.on-val{font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-top:4px;}
+.done-btn{background:var(--ink);color:var(--gold2);border:1px solid var(--gold3);padding:12px 36px;border-radius:3px;font-family:'Noto Serif TC',serif;font-size:13px;cursor:pointer;letter-spacing:2px;}
+/* TOAST */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--pink);color:#fff;padding:10px 22px;border-radius:20px;font-size:13px;z-index:999;letter-spacing:1px;box-shadow:0 4px 12px rgba(242,114,138,.4);white-space:nowrap;display:none;}
+.toast.show{display:block;}
+/* SVG flower deco on cards */
+.card-deco{position:absolute;right:-4px;top:-4px;pointer-events:none;opacity:.08;}
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <div class="brand">昌久貹</div>
+    <div class="brand-sub">CHANGJIUSHENG · 紙藝文創</div>
+  </div>
+  <button class="cart-btn" onclick="openCart()">
+    🛒 購物車
+    <span class="cart-count" id="cartCount" style="display:none">0</span>
+  </button>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(this,'courses')">📚 課程報名</div>
+  <div class="tab" onclick="switchTab(this,'products')">🌸 商品下單</div>
+  <div class="tab" onclick="switchTab(this,'cert')">📜 JYCP認證</div>
+  <div class="tab" onclick="switchTab(this,'comp')">🏆 競賽報名</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <svg style="position:absolute;top:0;right:0;width:110px;height:110px;opacity:.10;pointer-events:none" viewBox="0 0 110 110" fill="none">
+    <path d="M85 10 C80 20,70 18,75 30 C80 42,95 38,90 25" stroke="#8B6B1A" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M75 30 C65 35,60 48,70 52" stroke="#8B6B1A" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="85" cy="10" r="3" stroke="#C9A84C" stroke-width="1"/>
+    <path d="M95 5 C92 8,95 12,98 10 C101 8,100 4,97 4" stroke="#C9A84C" stroke-width="0.9"/>
+    <path d="M100 18 C98 15,105 12,106 18 C107 22,102 24,100 20" stroke="#C9A84C" stroke-width="0.9"/>
+    <circle cx="90" cy="25" r="2.5" stroke="#C9A84C" stroke-width="1"/>
+  </svg>
+  <svg style="position:absolute;bottom:0;left:0;width:100px;height:90px;opacity:.09;pointer-events:none" viewBox="0 0 100 90" fill="none">
+    <path d="M10 80 C15 65,8 50,20 45 C32 40,35 55,25 60 C18 64,22 75,30 72" stroke="#8B6B1A" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M20 45 C18 32,28 25,30 35" stroke="#8B6B1A" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="30" cy="35" r="3" stroke="#C9A84C" stroke-width="1"/>
+    <path d="M5 55 C2 50,8 45,10 50 C12 55,8 60,5 57" stroke="#C9A84C" stroke-width="0.9"/>
+  </svg>
+  <div class="hero-orn"><span>✦</span>昌久貹 × 紙藝文創<span>✦</span></div>
+  <h1>傳承金紙之美<br>守護文化溫度</h1>
+  <div class="hero-line">課程 · 商品 · 認證 · 競賽</div>
+  <div class="hero-sub">JYCP 國際認證 · 中華奧林匹克紙藝協會</div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- 課程 -->
+  <div id="tab-courses">
+    <div class="sec-label">課程報名</div>
+
+    <div class="card">
+      <svg class="card-deco" width="70" height="70" viewBox="0 0 70 70" fill="none"><path d="M55 5 C50 15,40 12,45 24 C50 36,65 30,58 18" stroke="#8B6B1A" stroke-width="1.3" stroke-linecap="round"/><path d="M45 24 C36 28,33 40,42 44" stroke="#8B6B1A" stroke-width="1" stroke-linecap="round"/><circle cx="55" cy="5" r="3" stroke="#C9A84C" stroke-width="1"/><path d="M62 10 C59 7,63 3,66 6 C68 9,65 13,62 11" stroke="#C9A84C" stroke-width="0.9"/></svg>
+      <div class="card-body">
+        <div class="card-icon">💐</div>
+        <div>
+          <div class="card-tag">手作 · 入門體驗</div>
+          <div class="card-title">小花束金紙花束班</div>
+          <div class="card-desc">親手折出第一束金紙花，感受紙藝溫度，帶回屬於自己的作品。</div>
+        </div>
+      </div>
+      <div class="pills">
+        <div class="pill">📍 台中 5/19</div>
+        <div class="pill">📍 高雄 5/24</div>
+        <div class="pill">👩‍🏫 林韵媃</div>
+      </div>
+      <div class="card-footer">
+        <div><span class="price">$5,500</span><span class="price-unit">/ 人</span></div>
+        <button class="add-btn" onclick="openPicker('小花束金紙花束班',5500,[{loc:'台中',date:'5月19日'},{loc:'高雄',date:'5月24日'}])">選擇場次</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <svg class="card-deco" width="65" height="65" viewBox="0 0 65 65" fill="none"><path d="M50 8 C42 14,38 26,48 30 C56 33,60 20,52 14" stroke="#8B6B1A" stroke-width="1.3" stroke-linecap="round"/><path d="M48 30 C40 36,42 50,50 48" stroke="#8B6B1A" stroke-width="1" stroke-linecap="round"/><circle cx="50" cy="8" r="2.5" stroke="#C9A84C" stroke-width="1"/><path d="M58 14 C55 10,60 7,62 12 C64 16,60 19,58 16" stroke="#C9A84C" stroke-width="0.9"/></svg>
+      <div class="card-body">
+        <div class="card-icon">✨</div>
+        <div>
+          <div class="card-tag">入門 · AI行銷</div>
+          <div class="card-title">AI 行銷入門班</div>
+          <div class="card-desc">學會用 AI 工具打造個人品牌、社群內容，讓作品被更多人看見。</div>
+          <div class="card-note">※ 兩位老師各自獨立開班，課程內容不同</div>
+        </div>
+      </div>
+      <div class="pills">
+        <div class="pill">📍 台中 / 高雄</div>
+        <div class="pill">👩‍🏫 陳美璇 / 林韵媃</div>
+      </div>
+      <div class="card-footer">
+        <div><span class="price">$3,780</span><span class="price-unit">/ 人</span></div>
+        <button class="add-btn" onclick="openPicker('AI 行銷入門班',3780,[{loc:'台中',date:'待公告',teacher:'陳美璇老師'},{loc:'高雄',date:'待公告',teacher:'陳美璇老師'},{loc:'台中',date:'待公告',teacher:'林韵媃老師'},{loc:'高雄',date:'待公告',teacher:'林韵媃老師'}])">選擇場次</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <svg class="card-deco" width="68" height="68" viewBox="0 0 68 68" fill="none"><path d="M52 6 C44 18,50 28,58 22 C64 18,60 8,54 8" stroke="#8B6B1A" stroke-width="1.3" stroke-linecap="round"/><path d="M52 6 C48 20,40 30,44 42" stroke="#8B6B1A" stroke-width="1" stroke-linecap="round"/><circle cx="44" cy="42" r="2.5" stroke="#C9A84C" stroke-width="1"/><path d="M60 10 C58 6,64 5,65 10 C66 14,61 16,60 12" stroke="#C9A84C" stroke-width="0.9"/></svg>
+      <div class="card-body">
+        <div class="card-icon">🌸</div>
+        <div>
+          <div class="card-tag">紙藝 · 供花製作</div>
+          <div class="card-title">好神花 / 永思花入門班</div>
+          <div class="card-desc">學習製作好神花與永思花，可自用也可接單，亦可安排到府教學。</div>
+        </div>
+      </div>
+      <div class="pills">
+        <div class="pill">📍 台中</div>
+        <div class="pill">📍 高雄</div>
+        <div class="pill">🏠 到府教學</div>
+      </div>
+      <div class="card-footer">
+        <div><span class="price">$32,800</span><span class="price-unit">/ 人</span></div>
+        <button class="add-btn" onclick="openPicker('好神花/永思花入門班',32800,[{loc:'台中',date:'洽詢排班'},{loc:'高雄',date:'洽詢排班'},{loc:'到府教學',date:'洽詢時間'}])">選擇場次</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 商品 -->
+  <div id="tab-products" style="display:none">
+    <div class="sec-label">商品下單</div>
+    <div class="card">
+      <div class="card-body">
+        <div class="card-icon">🌸</div>
+        <div>
+          <div class="card-tag">手作 · 全紙製</div>
+          <div class="card-title">好神花｜神明供花</div>
+          <div class="card-desc">純紙製手工供花，適合各類祭祀場合，可化燒，多色可選。</div>
+        </div>
+      </div>
+      <div class="pills"><div class="pill">🎨 多色</div><div class="pill">📦 宅配/自取</div></div>
+      <div class="card-footer">
+        <div><span class="price">洽詢</span></div>
+        <button class="add-btn" onclick="addDirect('好神花｜神明供花（洽詢）',0,this)">加入詢問</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="card-icon">💐</div>
+        <div>
+          <div class="card-tag">清明 · 思親</div>
+          <div class="card-title">永思花｜祭祖紀念花</div>
+          <div class="card-desc">清明掃墓專屬紙藝花，寄託思念，傳遞對先祖的敬意。</div>
+        </div>
+      </div>
+      <div class="pills"><div class="pill">📦 宅配</div><div class="pill">🎁 精美包裝</div></div>
+      <div class="card-footer">
+        <div><span class="price">洽詢</span></div>
+        <button class="add-btn" onclick="addDirect('永思花｜祭祖紀念花（洽詢）',0,this)">加入詢問</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 認證 -->
+  <div id="tab-cert" style="display:none">
+    <div class="sec-label">初級紙藝師認證</div>
+    <div class="card">
+      <div class="card-body">
+        <div class="card-icon">📜</div>
+        <div>
+          <div class="card-tag">正式認證</div>
+          <div class="card-title">初級紙藝師認證考核</div>
+          <div class="card-desc">通過考核，正式取得昌久貹 JYCP 初級紙藝師認證資格。</div>
+        </div>
+      </div>
+      <div class="pills"><div class="pill">📍 各地考場</div><div class="pill">📅 滾動報名</div></div>
+      <div class="card-footer">
+        <div><span class="price">$2,500</span><span class="price-unit">/ 人</span></div>
+        <button class="add-btn" onclick="addDirect('初級紙藝師認證考核',2500,this)">立即報名</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="card-icon">📝</div>
+        <div>
+          <div class="card-tag">模擬練習</div>
+          <div class="card-title">認證模擬考</div>
+          <div class="card-desc">正式考前模擬練習，掌握考試節奏，提升通過率。</div>
+        </div>
+      </div>
+      <div class="pills"><div class="pill">📍 各地</div><div class="pill">📅 滾動排班</div></div>
+      <div class="card-footer">
+        <div><span class="price">$3,000</span><span class="price-unit">/ 人</span></div>
+        <button class="add-btn" onclick="addDirect('認證模擬考',3000,this)">立即報名</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="card-icon">📚</div>
+        <div>
+          <div class="card-tag">備考資源</div>
+          <div class="card-title">認證題庫</div>
+          <div class="card-desc">精選考題與解析，自主備考，隨時隨地練習。</div>
+        </div>
+      </div>
+      <div class="pills"><div class="pill">📲 電子版</div><div class="pill">⬇️ 即時取得</div></div>
+      <div class="card-footer">
+        <div><span class="price">$250</span><span class="price-unit">/ 份</span></div>
+        <button class="add-btn" onclick="addDirect('認證題庫',250,this)">加入購買</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 競賽 -->
+  <div id="tab-comp" style="display:none">
+    <div class="sec-label">競賽報名</div>
+    <div class="card">
+      <svg class="card-deco" width="70" height="70" viewBox="0 0 70 70" fill="none"><path d="M55 5 C50 15,40 12,45 24 C50 36,65 30,58 18" stroke="#8B6B1A" stroke-width="1.3" stroke-linecap="round"/><path d="M45 24 C36 28,33 40,42 44" stroke="#8B6B1A" stroke-width="1" stroke-linecap="round"/><circle cx="55" cy="5" r="3" stroke="#C9A84C" stroke-width="1"/></svg>
+      <div class="card-body">
+        <div class="card-icon">🏆</div>
+        <div>
+          <div class="card-tag">2025 · 國際競賽</div>
+          <div class="card-title">中華奧林匹克國際紙藝大賽</div>
+          <div class="card-desc">慈鳳媽、六房媽神聖加持，全台最具代表性的紙藝國際競技舞台。</div>
+        </div>
+      </div>
+      <div class="pills"><div class="pill">📅 2025年5月</div><div class="pill">🌟 國際賽事</div><div class="pill">🎖 獎金豐厚</div></div>
+      <div class="card-footer">
+        <div><span class="price">$2,500</span><span class="price-unit">/ 組</span></div>
+        <button class="add-btn" onclick="addDirect('國際紙藝大賽報名費',2500,this)">報名參賽</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- SESSION PICKER -->
+<div class="overlay" id="pickerOverlay" onclick="handleOverlayClick(event,'pickerOverlay')">
+  <div class="bottom-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title" id="pickerTitle">選擇場次</div>
+    <div class="sheet-sub">請選擇您要報名的地點與日期</div>
+    <div id="pickerOptions"></div>
+    <button class="confirm-btn" onclick="confirmSession()">確認場次 · 加入報名 →</button>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="overlay" id="cartOverlay" onclick="handleOverlayClick(event,'cartOverlay')">
+  <div class="bottom-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title" style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+      報名 / 購物清單
+      <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.4),transparent)"></div>
+    </div>
+    <div id="cartItems"></div>
+    <div class="cart-total" id="cartTotalRow" style="display:none">
+      <span>合計</span><span class="total-amt" id="cartTotal"></span>
+    </div>
+    <button class="confirm-btn" id="checkoutBtn" style="display:none" onclick="openCheckout()">
+      填寫資料 · 確認送出 →
+    </button>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event,'modalOverlay')">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>填寫訂單資料</h2>
+      <button class="close-btn" onclick="closeOverlay('modalOverlay')">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <div class="order-summary">
+        <div class="os-title">訂單明細</div>
+        <div id="summaryItems"></div>
+        <div class="st"><span>總計</span><span id="summaryTotal"></span></div>
+      </div>
+      <div class="fg"><label>姓名 <span class="req">*</span></label><input type="text" id="f-name" placeholder="請輸入真實姓名"></div>
+      <div class="form-row" style="margin-bottom:14px">
+        <div><label>電話 <span class="req">*</span></label><input type="tel" id="f-phone" placeholder="0912-345-678"></div>
+        <div><label>LINE ID</label><input type="text" id="f-line" placeholder="選填"></div>
+      </div>
+      <div class="fg"><label>Email <span class="req">*</span></label><input type="email" id="f-email" placeholder="example@email.com"></div>
+      <div class="fg">
+        <label>縣市</label>
+        <select id="f-city"><option value="">請選擇縣市</option><option>高雄市</option><option>台中市</option><option>屏東縣</option><option>台北市</option><option>其他</option></select>
+      </div>
+      <div class="fg"><label>備註 / 特殊需求</label><textarea id="f-note" placeholder="客製要求、想詢問的事項..."></textarea></div>
+      <label style="margin-bottom:10px;display:block">付款方式 <span class="req">*</span></label>
+      <div class="pay-opts">
+        <div class="pay-opt selected" onclick="selPay(this)"><span class="pay-icon">🏦</span>匯款轉帳</div>
+        <div class="pay-opt" onclick="selPay(this)"><span class="pay-icon">💚</span>LINE Pay</div>
+        <div class="pay-opt" onclick="selPay(this)"><span class="pay-icon">💵</span>現場繳費</div>
+        <div class="pay-opt" onclick="selPay(this)"><span class="pay-icon">📦</span>貨到付款</div>
+      </div>
+      <button class="submit-btn" onclick="submitOrder()">確認送出訂單</button>
+    </div>
+    <div class="success-screen" id="successScreen">
+      <div style="font-size:56px;margin-bottom:14px">🎉</div>
+      <div style="font-family:'Noto Serif TC',serif;font-size:20px;color:var(--ink);letter-spacing:2px;margin-bottom:8px">訂單送出成功</div>
+      <div style="font-size:12px;color:var(--ink3);line-height:1.9;margin-bottom:20px">感謝您選擇昌久貹<br>我們將在 24 小時內透過電話或 LINE 與您確認<br>敬請留意來電</div>
+      <div class="order-no">
+        <div class="on-label">訂單編號</div>
+        <div class="on-val" id="orderNo"></div>
+      </div>
+      <button class="done-btn" onclick="resetAll()">返回繼續選購</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ 已加入報名清單</div>
+
+<script>
+let cart = [];
+let pickerItem = null;
+let selectedSession = null;
+
+function switchTab(el, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  ['courses','products','cert','comp'].forEach(k => {
+    document.getElementById('tab-'+k).style.display = k===id ? 'block' : 'none';
+  });
+}
+
+// 場次選擇器
+function openPicker(name, price, sessions) {
+  pickerItem = {name, price, sessions};
+  selectedSession = null;
+  document.getElementById('pickerTitle').textContent = name + '｜選擇場次';
+  document.getElementById('pickerOptions').innerHTML = sessions.map((s,i) => `
+    <div class="session-opt" onclick="selectSess(this,${i})">
+      <div class="radio"><div class="radio-dot"></div></div>
+      <div>
+        <div class="s-loc">📍 ${s.loc}</div>
+        <div class="s-date">📅 ${s.date}</div>
+        ${s.teacher ? `<div class="s-teacher">👩‍🏫 ${s.teacher}</div>` : ''}
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('pickerOverlay').classList.add('open');
+}
+
+function selectSess(el, i) {
+  document.querySelectorAll('.session-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedSession = i;
+}
+
+function confirmSession() {
+  if (selectedSession === null) { alert('請選擇場次'); return; }
+  const s = pickerItem.sessions[selectedSession];
+  const label = s.teacher
+    ? `${pickerItem.name}（${s.loc} ${s.date} · ${s.teacher}）`
+    : `${pickerItem.name}（${s.loc} ${s.date}）`;
+  addToCartRaw(label, pickerItem.price);
+  closeOverlay('pickerOverlay');
+  showToast();
+}
+
+function addDirect(name, price, btn) {
+  addToCartRaw(name, price);
+  btn.classList.add('added');
+  btn.textContent = '✓ 已加入';
+  setTimeout(() => { btn.classList.remove('added'); btn.textContent = btn.dataset.orig || getOrigLabel(btn); }, 2000);
+  showToast();
+}
+
+function getOrigLabel(btn) {
+  const t = btn.textContent;
+  return t;
+}
+
+function addToCartRaw(name, price) {
+  const ex = cart.find(i => i.name === name);
+  if (ex) ex.qty++;
+  else cart.push({name, price, qty:1});
+  updateCount();
+}
+
+function updateCount() {
+  const n = cart.reduce((s,i)=>s+i.qty,0);
+  const el = document.getElementById('cartCount');
+  el.textContent = n;
+  el.style.display = n > 0 ? 'flex' : 'none';
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg || '✓ 已加入報名清單';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function openCart() {
+  renderCart();
+  document.getElementById('cartOverlay').classList.add('open');
+}
+
+function renderCart() {
+  const el = document.getElementById('cartItems');
+  if (!cart.length) {
+    el.innerHTML = '<div class="empty-cart"><div style="font-size:36px;margin-bottom:8px">🛒</div>尚未加入任何項目</div>';
+    document.getElementById('cartTotalRow').style.display = 'none';
+    document.getElementById('checkoutBtn').style.display = 'none';
+    return;
+  }
+  el.innerHTML = cart.map((item,i) => `
+    <div class="cart-item">
+      <div>
+        <div class="ci-name">${item.name}</div>
+        <div class="ci-price">${item.price > 0 ? 'NT$ '+item.price.toLocaleString()+' × '+item.qty : '洽詢報價'}</div>
+      </div>
+      <button class="rm-btn" onclick="removeItem(${i})">✕</button>
+    </div>
+  `).join('');
+  const total = cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);
+  document.getElementById('cartTotal').textContent = total > 0 ? 'NT$ '+total.toLocaleString() : '含洽詢項目';
+  document.getElementById('cartTotalRow').style.display = 'flex';
+  document.getElementById('checkoutBtn').style.display = 'block';
+}
+
+function removeItem(i) {
+  cart.splice(i,1);
+  updateCount();
+  renderCart();
+}
+
+function openCheckout() {
+  closeOverlay('cartOverlay');
+  document.getElementById('summaryItems').innerHTML = cart.map(i=>`
+    <div class="sr"><span>${i.name}</span><span>${i.price>0?'NT$ '+(i.price*i.qty).toLocaleString():'洽詢'}</span></div>
+  `).join('');
+  const total = cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);
+  document.getElementById('summaryTotal').textContent = total>0 ? 'NT$ '+total.toLocaleString() : '含洽詢項目';
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function selPay(el) {
+  document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function submitOrder() {
+  const n = document.getElementById('f-name').value.trim();
+  const p = document.getElementById('f-phone').value.trim();
+  const e = document.getElementById('f-email').value.trim();
+  if (!n||!p||!e) { alert('請填寫姓名、電話及 Email'); return; }
+  document.getElementById('orderNo').textContent = 'CJS-'+Date.now().toString().slice(-8);
+  document.getElementById('modalBody').classList.add('hide');
+  document.getElementById('successScreen').classList.add('show');
+}
+
+function handleOverlayClick(e, id) {
+  if (e.target === document.getElementById(id)) closeOverlay(id);
+}
+
+function closeOverlay(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+function resetAll() {
+  cart = []; updateCount();
+  closeOverlay('modalOverlay');
+  document.getElementById('modalBody').classList.remove('hide');
+  document.getElementById('successScreen').classList.remove('show');
+  ['f-name','f-phone','f-line','f-email','f-note'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('f-city').value='';
+}
+</script>
+</body>
+</html>
