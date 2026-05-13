@@ -561,12 +561,55 @@ function selPay(el) {
   el.classList.add('selected');
 }
 
-function submitOrder() {
+async function submitOrder() {
   const n = document.getElementById('f-name').value.trim();
   const p = document.getElementById('f-phone').value.trim();
   const e = document.getElementById('f-email').value.trim();
+  const city = document.getElementById('f-city').value;
+  const line = document.getElementById('f-line').value.trim();
+  const note = document.getElementById('f-note').value.trim();
+  const pay = document.querySelector('.pay-opt.selected')?.textContent?.trim() || '未選擇';
   if (!n||!p||!e) { alert('請填寫姓名、電話及 Email'); return; }
-  document.getElementById('orderNo').textContent = 'CJS-'+Date.now().toString().slice(-8);
+
+  const orderNo = 'CJS-'+Date.now().toString().slice(-8);
+  const total = cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);
+  const items = cart.map(i=>`• ${i.name}${i.price>0?' NT$'+i.price.toLocaleString():' (洽詢)'}`).join('\n');
+
+  const msg = `🛒 昌久貹｜新訂單通知\n`
+    + `━━━━━━━━━━━━\n`
+    + `📋 訂單編號：${orderNo}\n`
+    + `👤 姓名：${n}\n`
+    + `📞 電話：${p}\n`
+    + `📧 Email：${e}\n`
+    + `${line ? '💬 LINE：'+line+'\n' : ''}`
+    + `📍 縣市：${city||'未填'}\n`
+    + `━━━━━━━━━━━━\n`
+    + `📦 報名項目：\n${items}\n`
+    + `━━━━━━━━━━━━\n`
+    + `💰 合計：${total>0?'NT$ '+total.toLocaleString():'含洽詢項目'}\n`
+    + `💳 付款方式：${pay}\n`
+    + `${note ? '📝 備註：'+note+'\n' : ''}`
+    + `━━━━━━━━━━━━\n`
+    + `⏰ 時間：${new Date().toLocaleString('zh-TW')}`;
+
+  // 送LINE通知
+  try {
+    await fetch('https://api.line.me/v2/bot/message/push', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer 525WHjvCHdVBXp2r94+9S7+JF2r9lhZtHmpvb9BV5Ye/FkS5KI8Q46dUbMyriXngARqXpxoeeDasgKMyzD4MTvACAWAOrJ/71lE0t/PeNRBY5q5wE4BB1CjmLXoDBQkDpljgUNI3bvnj4a+y6n/rEgdB04t89/1O/w1cDnyilFU='
+      },
+      body: JSON.stringify({
+        to: 'U6446c2a760bc8577c20d82be95f988fa',
+        messages: [{ type: 'text', text: msg }]
+      })
+    });
+  } catch(err) {
+    console.log('LINE通知發送失敗', err);
+  }
+
+  document.getElementById('orderNo').textContent = orderNo;
   document.getElementById('modalBody').classList.add('hide');
   document.getElementById('successScreen').classList.add('show');
 }
@@ -590,3 +633,4 @@ function resetAll() {
 </script>
 </body>
 </html>
+
