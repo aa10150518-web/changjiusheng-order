@@ -592,18 +592,12 @@ async function submitOrder() {
     + `━━━━━━━━━━━━\n`
     + `⏰ 時間：${new Date().toLocaleString('zh-TW')}`;
 
-  // 送LINE通知
+  // 送LINE通知（透過後端）
   try {
-    await fetch('https://api.line.me/v2/bot/message/push', {
+    await fetch('/api/notify', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer 525WHjvCHdVBXp2r94+9S7+JF2r9lhZtHmpvb9BV5Ye/FkS5KI8Q46dUbMyriXngARqXpxoeeDasgKMyzD4MTvACAWAOrJ/71lE0t/PeNRBY5q5wE4BB1CjmLXoDBQkDpljgUNI3bvnj4a+y6n/rEgdB04t89/1O/w1cDnyilFU='
-      },
-      body: JSON.stringify({
-        to: 'U6446c2a760bc8577c20d82be95f988fa',
-        messages: [{ type: 'text', text: msg }]
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg })
     });
   } catch(err) {
     console.log('LINE通知發送失敗', err);
@@ -633,4 +627,3 @@ function resetAll() {
 </script>
 </body>
 </html>
-
