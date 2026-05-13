@@ -206,11 +206,11 @@ textarea{resize:vertical;height:70px;}
     </div>
     <div class="sessions">
       <div class="session-row"><span class="s-pill">📍 高雄 5/31</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 AI行銷 林韵媃</span></div>
-      <div class="session-row"><span class="s-pill">📍 台中 5/23</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 平台流量 陳美璇</span></div>
+      <div class="session-row"><span class="s-pill">📍 台中 5/22</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 平台流量 陳美璇</span></div>
     </div>
     <div class="card-footer">
       <div><span class="price">$3,780</span><span class="price-unit">/ 人</span></div>
-      <button class="add-btn" onclick="openPicker('AI 行銷入門班',3780,[{loc:'高雄',date:'5月31日',teacher:'AI行銷 林韵媃'},{loc:'台中',date:'5月23日',teacher:'平台流量 陳美璇'}])">選擇場次</button>
+      <button class="add-btn" onclick="openPicker('AI 行銷入門班',3780,[{loc:'高雄',date:'5月31日',teacher:'AI行銷 林韵媃'},{loc:'台中',date:'5月22日',teacher:'平台流量 陳美璇'}])">選擇場次</button>
     </div>
   </div>
 
@@ -400,12 +400,22 @@ textarea{resize:vertical;height:70px;}
       </div>
       <div class="fg"><label>Email（選填）</label><input type="email" id="f-email" placeholder="example@email.com"></div>
       <div class="fg"><label>縣市</label><select id="f-city"><option value="">請選擇縣市</option><option>高雄市</option><option>台中市</option><option>屏東縣</option><option>台北市</option><option>其他</option></select></div>
-      <div class="fg"><label>備註 / 特殊需求</label><textarea id="f-note" placeholder="客製要求、想詢問的事項..."></textarea></div>
+      <div class="fg"><label>備註 / 特殊需求</label><textarea id="f-note" placeholder="若選擇匯款，請在此填寫匯款後五碼，方便我們核對，謝謝！"></textarea></div>
       <label style="margin-bottom:10px;display:block">付款方式 <span class="req">*</span></label>
       <div class="pay-opts">
         <div class="pay-opt selected" onclick="selPay(this)"><span class="pay-icon">🏦</span>匯款轉帳</div>
         <div class="pay-opt" onclick="selPay(this)"><span class="pay-icon">💚</span>LINE Pay</div>
         <div class="pay-opt" onclick="selPay(this)"><span class="pay-icon">💵</span>現場繳費</div>
+      </div>
+      <!-- 匯款帳號（選匯款時顯示） -->
+      <div id="bankInfoForm" style="background:var(--paper);border:1px solid rgba(201,168,76,0.35);border-radius:6px;padding:12px 14px;margin-bottom:14px;">
+        <div style="font-size:9px;letter-spacing:3px;color:var(--gold3);margin-bottom:8px;">🏦 匯款帳號</div>
+        <div style="font-size:12px;color:var(--ink2);line-height:2.2;">
+          <div style="display:flex;justify-content:space-between;"><span style="color:var(--ink3)">銀行</span><span style="font-weight:500">中國信託（822）</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="color:var(--ink3)">帳號</span><span style="font-weight:700;letter-spacing:1px;color:var(--ink)">104540167516</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="color:var(--ink3)">戶名</span><span style="font-weight:500">林韵媃</span></div>
+        </div>
+        <div style="margin-top:8px;font-size:10px;color:var(--red);font-weight:500;">⚠️ 匯款完成才算報名成功，請於備註填寫匯款後五碼</div>
       </div>
       <button class="submit-btn" onclick="submitOrder()">確認送出訂單</button>
     </div>
@@ -459,7 +469,7 @@ function openCart(){renderCart();document.getElementById('cartOverlay').classLis
 function renderCart(){const el=document.getElementById('cartItems');if(!cart.length){el.innerHTML='<div class="empty-cart"><div style="font-size:36px;margin-bottom:8px">🛒</div>尚未加入任何項目</div>';document.getElementById('cartTotalRow').style.display='none';document.getElementById('checkoutBtn').style.display='none';return;}el.innerHTML=cart.map((item,i)=>`<div class="cart-item"><div><div class="ci-name">${item.name}</div><div class="ci-price">${item.price>0?'NT$ '+item.price.toLocaleString()+' × '+item.qty:'洽詢報價'}</div></div><button class="rm-btn" onclick="removeItem(${i})">✕</button></div>`).join('');const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);document.getElementById('cartTotal').textContent=total>0?'NT$ '+total.toLocaleString():'含洽詢項目';document.getElementById('cartTotalRow').style.display='flex';document.getElementById('checkoutBtn').style.display='block';}
 function removeItem(i){cart.splice(i,1);updateCount();renderCart();}
 function openCheckout(){closeOverlay('cartOverlay');document.getElementById('summaryItems').innerHTML=cart.map(i=>`<div class="sr"><span>${i.name}</span><span>${i.price>0?'NT$ '+(i.price*i.qty).toLocaleString():'洽詢'}</span></div>`).join('');const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);document.getElementById('summaryTotal').textContent=total>0?'NT$ '+total.toLocaleString():'含洽詢項目';document.getElementById('modalOverlay').classList.add('open');}
-function selPay(el){document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');}
+function selPay(el){document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');const isBank=el.textContent.includes('匯款');document.getElementById('bankInfoForm').style.display=isBank?'block':'none';}
 async function submitOrder(){const n=document.getElementById('f-name').value.trim();const p=document.getElementById('f-phone').value.trim();const l=document.getElementById('f-line').value.trim();const e=document.getElementById('f-email').value.trim();const city=document.getElementById('f-city').value;const note=document.getElementById('f-note').value.trim();const pay=document.querySelector('.pay-opt.selected')?.textContent?.trim()||'未選擇';if(!n||!p||!l){alert('請填寫姓名、電話及 LINE ID');return;}const orderNo='CJS-'+Date.now().toString().slice(-8);const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);const items=cart.map(i=>`• ${i.name}${i.price>0?' NT$'+i.price.toLocaleString():' (洽詢)'}`).join('\n');const msg=`🛒 昌久貹｜新訂單通知\n━━━━━━━━━━━━\n📋 訂單編號：${orderNo}\n👤 姓名：${n}\n📞 電話：${p}\n💬 LINE：${l}\n${e?'📧 Email：'+e+'\n':''}📍 縣市：${city||'未填'}\n━━━━━━━━━━━━\n📦 項目：\n${items}\n━━━━━━━━━━━━\n💰 合計：${total>0?'NT$ '+total.toLocaleString():'含洽詢項目'}\n💳 付款：${pay}\n${note?'📝 備註：'+note+'\n':''}⏰ ${new Date().toLocaleString('zh-TW')}`;try{await fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});}catch(err){console.log('通知失敗',err);}document.getElementById('orderNo').textContent=orderNo;document.getElementById('bankInfo').style.display=pay.includes('匯款')?'block':'none';document.getElementById('modalBody').classList.add('hide');document.getElementById('successScreen').classList.add('show');}
 function handleOverlayClick(e,id){if(e.target===document.getElementById(id))closeOverlay(id);}
 function closeOverlay(id){document.getElementById(id).classList.remove('open');}
