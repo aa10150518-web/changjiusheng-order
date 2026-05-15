@@ -171,12 +171,12 @@ textarea{resize:vertical;height:70px;}
       <div class="card-desc">🌸 從零開始也能完成作品<br>🌸 適合想接觸紙藝的新手<br>🌸 學會花型、結構與包裝技巧</div>
     </div>
     <div class="sessions">
-      <div class="session-row"><span class="s-pill">📍 台中 5/19</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃</span></div>
-      <div class="session-row"><span class="s-pill">📍 高雄 5/24</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃</span></div>
+      <div class="session-row"><span class="s-pill">📍 台中 5/19(二)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃</span></div>
+      <div class="session-row"><span class="s-pill">📍 高雄 5/24(日)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃</span></div>
     </div>
     <div class="card-footer">
       <div class="price-wrap"><div><span class="price">$5,500</span><span class="price-unit">/ 人</span></div><div class="price-note">含材料與課後複習</div></div>
-      <button class="add-btn" onclick="openPicker('小花束金紙花束班',5500,[{loc:'台中',date:'5月19日',teacher:'林韵媃'},{loc:'高雄',date:'5月24日',teacher:'林韵媃'}])">選擇場次</button>
+      <button class="add-btn" onclick="openPicker('小花束金紙花束班',5500,[{loc:'台中',date:'5月19日(二)',teacher:'林韵媃'},{loc:'高雄',date:'5月24日(日)',teacher:'林韵媃'}])">選擇場次</button>
     </div>
   </div>
 
@@ -186,15 +186,20 @@ textarea{resize:vertical;height:70px;}
       <div class="card-title">AI 行銷入門班</div>
       <div class="card-subtitle">讓 AI 不再只是冷冰冰工具</div>
       <div class="card-desc">✨ 不再只會套模板<br>✨ 學會有風格的 AI 製圖<br>✨ 讓文案不再冷冰冰</div>
-      <div class="card-note">※ 兩位老師各自獨立開班，課程內容不同</div>
+      <div class="card-note">※ 兩位老師各自獨立開班，課程內容不同<br>※ 每堂滿 6 人開課</div>
+    </div>
+    <div class="pills">
+      <div class="pill">📍 台中 6月</div>
+      <div class="pill">📍 高雄 5/31</div>
     </div>
     <div class="sessions">
-      <div class="session-row"><span class="s-pill">📍 高雄 5/31</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 AI行銷 林韵媃</span></div>
-      <div class="session-row"><span class="s-pill">📍 台中 5/22</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 平台流量 陳美璇</span></div>
+      <div class="session-row"><span class="s-pill">📍 高雄 5/31(日)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 AI行銷 林韵媃</span></div>
+      <div class="session-row"><span class="s-pill">📍 台中 5/22(五)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 平台流量 陳美璇</span></div>
+      <div class="session-row"><span class="s-pill">📍 台中 6/10(三)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 AI行銷 林韵媃</span></div>
     </div>
     <div class="card-footer">
       <div><span class="price">$3,780</span><span class="price-unit">/ 人</span></div>
-      <button class="add-btn" onclick="openPicker('AI 行銷入門班',3780,[{loc:'高雄',date:'5月31日',teacher:'AI行銷 林韵媃'},{loc:'台中',date:'5月22日',teacher:'平台流量 陳美璇'}])">選擇場次</button>
+      <button class="add-btn" onclick="openPicker('AI 行銷入門班',3780,[{loc:'高雄',date:'5月31日(日)',teacher:'AI行銷 林韵媃'},{loc:'台中',date:'5月22日(五)',teacher:'平台流量 陳美璇'},{loc:'台中',date:'6月10日(三)',teacher:'AI行銷 林韵媃'}])">選擇場次</button>
     </div>
   </div>
 
@@ -209,8 +214,8 @@ textarea{resize:vertical;height:70px;}
       <div class="card-note">※ 需完成林韵媃＋陳美璇兩堂入門班後方可報名</div>
     </div>
     <div class="sessions">
-      <div class="session-row"><span class="s-pill">📅 6月10日</span><span class="s-dot">·</span><span class="s-teacher">🌟 早鳥價 $5,800</span></div>
-      <div class="session-row"><span class="s-pill">📅 6月24日</span><span class="s-dot">·</span><span class="s-teacher">💰 $6,600</span></div>
+      <div class="session-row"><span class="s-pill">📅 6月6日(六)</span><span class="s-dot">·</span><span class="s-teacher">🌟 早鳥價 $5,800</span></div>
+      <div class="session-row"><span class="s-pill">📅 6月24日(三)</span><span class="s-dot">·</span><span class="s-teacher">💰 $6,600</span></div>
     </div>
     <div class="card-footer">
       <div class="price-wrap">
@@ -498,8 +503,8 @@ function openPicker(name,price,sessions){pickerItem={name,price,sessions};select
 function selectSess(el,i){document.querySelectorAll('.session-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');selectedSession=i;}
 function openPickerCustom(){
   pickerItem={name:'AI 品牌實戰進階班',price:0,sessions:[
-    {loc:'線上/實體',date:'6月10日',teacher:'早鳥價 $5,800',price:5800},
-    {loc:'線上/實體',date:'6月24日',teacher:'一般價 $6,600',price:6600}
+    {loc:'線上/實體',date:'6月6日(六)',teacher:'早鳥價 $5,800',price:5800},
+    {loc:'線上/實體',date:'6月24日(三)',teacher:'一般價 $6,600',price:6600}
   ]};
   selectedSession=null;
   document.getElementById('pickerTitle').textContent='AI 品牌實戰進階班｜選擇場次';
