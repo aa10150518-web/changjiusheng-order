@@ -215,6 +215,29 @@ textarea{resize:vertical;height:70px;}
   </div>
 
   <div class="card">
+    <div class="card-img" style="height:auto;padding:0;">
+      <img src="S__25124884.jpg" alt="AI品牌實戰進階班" style="width:100%;display:block;border-radius:0;">
+    </div>
+    <div class="card-body">
+      <div class="card-title">AI 品牌實戰進階班</div>
+      <div class="card-subtitle">限有上過兩位老師入門班的學員</div>
+      <div class="card-desc">🔥 滿 6 人開班<br>🔥 品牌定位・內容策略・實戰操作<br>🔥 從學員升級成品牌主理人</div>
+      <div class="card-note">※ 需完成林韵媃＋陳美璇兩堂入門班後方可報名</div>
+    </div>
+    <div class="sessions">
+      <div class="session-row"><span class="s-pill">📅 6月10日</span><span class="s-dot">·</span><span class="s-teacher">🌟 早鳥價 $5,800</span></div>
+      <div class="session-row"><span class="s-pill">📅 6月24日</span><span class="s-dot">·</span><span class="s-teacher">💰 $6,600</span></div>
+    </div>
+    <div class="card-footer">
+      <div class="price-wrap">
+        <div><span class="price">$5,800</span><span class="price-unit">起</span></div>
+        <div class="price-note">滿 6 人開班</div>
+      </div>
+      <button class="add-btn" onclick="openPickerCustom()">選擇場次</button>
+    </div>
+  </div>
+
+  <div class="card">
     <div class="card-body">
       <div class="card-tag">紙藝 · 供花製作</div>
       <div class="card-title">好神花紙藝課</div>
@@ -460,7 +483,35 @@ let cart=[],pickerItem=null,selectedSession=null;
 function switchTab(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');['courses','products','cert','comp'].forEach(k=>{document.getElementById('tab-'+k).style.display=k===id?'block':'none';});}
 function openPicker(name,price,sessions){pickerItem={name,price,sessions};selectedSession=null;document.getElementById('pickerTitle').textContent=name+'｜選擇場次';document.getElementById('pickerOptions').innerHTML=sessions.map((s,i)=>`<div class="session-opt" onclick="selectSess(this,${i})"><div class="radio"><div class="radio-dot"></div></div><div><div class="s-loc">📍 ${s.loc}</div><div class="s-date">📅 ${s.date}</div>${s.teacher?`<div class="s-teacher-d">👩‍🏫 ${s.teacher}</div>`:''}</div></div>`).join('');document.getElementById('pickerOverlay').classList.add('open');}
 function selectSess(el,i){document.querySelectorAll('.session-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');selectedSession=i;}
-function confirmSession(){if(selectedSession===null){alert('請選擇場次');return;}const s=pickerItem.sessions[selectedSession];const label=s.teacher?`${pickerItem.name}（${s.loc} ${s.date} · ${s.teacher}）`:`${pickerItem.name}（${s.loc} ${s.date}）`;addToCartRaw(label,pickerItem.price);closeOverlay('pickerOverlay');showToast('✓ 已加入報名清單');}
+function openPickerCustom(){
+  pickerItem={name:'AI 品牌實戰進階班',price:0,sessions:[
+    {loc:'線上/實體',date:'6月10日',teacher:'早鳥價 $5,800',price:5800},
+    {loc:'線上/實體',date:'6月24日',teacher:'一般價 $6,600',price:6600}
+  ]};
+  selectedSession=null;
+  document.getElementById('pickerTitle').textContent='AI 品牌實戰進階班｜選擇場次';
+  document.getElementById('pickerOptions').innerHTML=pickerItem.sessions.map((s,i)=>`
+    <div class="session-opt" onclick="selectSess(this,${i})">
+      <div class="radio"><div class="radio-dot"></div></div>
+      <div>
+        <div class="s-loc">📅 ${s.date}</div>
+        <div class="s-teacher-d">🌟 ${s.teacher}</div>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('pickerOverlay').classList.add('open');
+}
+function confirmSession(){
+  if(selectedSession===null){alert('請選擇場次');return;}
+  const s=pickerItem.sessions[selectedSession];
+  const price=s.price||pickerItem.price;
+  const label=s.teacher
+    ?`${pickerItem.name}（${s.loc} ${s.date} · ${s.teacher}）`
+    :`${pickerItem.name}（${s.loc} ${s.date}）`;
+  addToCartRaw(label,price);
+  closeOverlay('pickerOverlay');
+  showToast('✓ 已加入報名清單');
+}
 function addDirect(name,price,btn,origLabel){addToCartRaw(name,price);if(btn){btn.classList.add('added');btn.textContent='✓ 已加入';setTimeout(()=>{btn.classList.remove('added');btn.textContent=origLabel;},2000);}showToast('✓ 已加入清單');}
 function addToCartRaw(name,price){const ex=cart.find(i=>i.name===name);if(ex)ex.qty++;else cart.push({name,price,qty:1});updateCount();}
 function updateCount(){const n=cart.reduce((s,i)=>s+i.qty,0);const el=document.getElementById('cartCount');el.textContent=n;el.style.display=n>0?'flex':'none';}
