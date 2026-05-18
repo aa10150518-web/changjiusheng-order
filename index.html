@@ -16,59 +16,59 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Sans TC',sans-se
 .header{background:var(--white);border-bottom:1px solid var(--gold3);padding:13px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(139,107,26,0.08);}
 .brand{font-family:'Noto Serif TC',serif;font-size:22px;font-weight:900;color:var(--gold3);letter-spacing:6px;line-height:1;}
 .brand-sub{font-size:9px;letter-spacing:3px;color:var(--ink3);margin-top:3px;}
-.cart-btn{background:transparent;border:1px solid var(--gold3);color:var(--gold3);padding:7px 13px;border-radius:3px;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:inherit;letter-spacing:1px;}
+.cart-btn{background:transparent;border:1px solid var(--gold3);color:var(--gold3);padding:7px 13px;border-radius:3px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:inherit;letter-spacing:1px;}
 .cart-btn:hover{background:var(--gold3);color:var(--white);}
 .cart-count{background:var(--red);color:#fff;border-radius:50%;width:16px;height:16px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;}
 .tabs{background:var(--paper2);border-bottom:1px solid rgba(139,107,26,0.25);display:flex;overflow-x:auto;padding:0 10px;}
-.tab{padding:11px 14px;font-size:12px;color:var(--ink3);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;letter-spacing:1px;transition:all .2s;}
+.tab{padding:11px 14px;font-size:13px;color:var(--ink3);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;letter-spacing:1px;transition:all .2s;}
 .tab.active{color:var(--gold3);border-bottom-color:var(--gold);font-weight:500;}
 .hero{position:relative;padding:28px 22px 26px;text-align:center;background:linear-gradient(160deg,#FFFDF7 0%,#FDF7EC 60%,#FAF0DC 100%);border-bottom:1px solid rgba(201,168,76,0.18);overflow:hidden;}
-.hero-orn{font-size:10px;letter-spacing:6px;color:var(--gold3);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.hero-orn{font-size:11px;letter-spacing:6px;color:var(--gold3);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:10px;}
 .hero-orn span{color:var(--gold);}
-.hero h1{font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:var(--ink);letter-spacing:3px;line-height:1.5;margin-bottom:10px;}
-.hero-line{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:6px;font-size:11px;color:var(--ink3);letter-spacing:2px;}
+.hero h1{font-family:'Noto Serif TC',serif;font-size:26px;font-weight:900;color:var(--ink);letter-spacing:3px;line-height:1.5;margin-bottom:10px;}
+.hero-line{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:6px;font-size:13px;color:var(--ink3);letter-spacing:2px;}
 .hero-line::before,.hero-line::after{content:'';width:36px;height:1px;}
 .hero-line::before{background:linear-gradient(90deg,transparent,var(--gold));}
 .hero-line::after{background:linear-gradient(90deg,var(--gold),transparent);}
-.hero-quote{font-size:11px;color:var(--ink2);letter-spacing:1px;line-height:1.8;margin-top:8px;}
+.hero-quote{font-size:13px;color:var(--ink2);letter-spacing:1px;line-height:1.9;margin-top:8px;}
 .main{padding:16px 14px 60px;max-width:560px;margin:0 auto;}
-.sec-label{font-size:10px;letter-spacing:4px;color:var(--gold3);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
-.sec-label::before{content:'◆';font-size:8px;color:var(--gold);}
+.sec-label{font-size:13px;letter-spacing:3px;color:var(--gold3);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.sec-label::before{content:'◆';font-size:9px;color:var(--gold);}
 .sec-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,0.4),transparent);}
 .card{background:var(--white);border:1px solid rgba(201,168,76,0.28);border-radius:8px;margin-bottom:14px;position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s;}
 .card:hover{box-shadow:0 4px 18px rgba(139,107,26,0.13);transform:translateY(-1px);}
 .card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold2),var(--gold3));}
 .card-img{width:100%;height:110px;background:linear-gradient(160deg,#FDF7EC,#FAF0DC);display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(201,168,76,0.15);}
-.card-body{padding:12px 14px 8px 18px;}
-.card-tag{font-size:9px;letter-spacing:2px;color:var(--gold3);background:linear-gradient(90deg,rgba(201,168,76,0.12),transparent);padding:2px 10px 2px 6px;border-left:2px solid var(--gold);display:inline-block;margin-bottom:5px;}
-.card-title{font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:1px;line-height:1.3;}
-.card-subtitle{font-size:11px;color:var(--gold);margin-bottom:5px;line-height:1.6;}
-.card-desc{font-size:11px;color:var(--ink3);line-height:1.8;}
-.card-note{font-size:10px;color:var(--gold);margin-top:4px;}
-.pills{display:flex;flex-wrap:wrap;gap:5px;padding:5px 14px 10px 18px;}
-.pill{font-size:10px;color:var(--ink3);background:var(--paper);border:1px solid rgba(201,168,76,0.25);padding:2px 9px;border-radius:2px;letter-spacing:.5px;}
-.sessions{padding:5px 14px 10px 18px;display:flex;flex-direction:column;gap:5px;}
+.card-body{padding:14px 14px 10px 18px;}
+.card-tag{font-size:10px;letter-spacing:2px;color:var(--gold3);background:linear-gradient(90deg,rgba(201,168,76,0.12),transparent);padding:2px 10px 2px 6px;border-left:2px solid var(--gold);display:inline-block;margin-bottom:6px;}
+.card-title{font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:1px;line-height:1.4;}
+.card-subtitle{font-size:13px;color:var(--gold);margin-bottom:6px;line-height:1.7;}
+.card-desc{font-size:14px;color:var(--ink3);line-height:2;}
+.card-note{font-size:12px;color:var(--gold);margin-top:5px;}
+.pills{display:flex;flex-wrap:wrap;gap:5px;padding:6px 14px 12px 18px;}
+.pill{font-size:12px;color:var(--ink3);background:var(--paper);border:1px solid rgba(201,168,76,0.25);padding:3px 10px;border-radius:2px;letter-spacing:.5px;}
+.sessions{padding:5px 14px 12px 18px;display:flex;flex-direction:column;gap:6px;}
 .session-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
-.s-pill{font-size:10px;color:var(--ink2);background:var(--paper);border:1px solid rgba(201,168,76,0.25);padding:3px 10px;border-radius:2px;}
-.s-dot{font-size:10px;color:var(--ink3);}
-.s-teacher{font-size:10px;color:var(--gold3);}
-.card-footer{padding:10px 14px 12px 18px;background:linear-gradient(90deg,rgba(245,237,216,.6),rgba(250,245,233,.3));border-top:1px solid rgba(201,168,76,0.18);display:flex;align-items:center;justify-content:space-between;}
+.s-pill{font-size:12px;color:var(--ink2);background:var(--paper);border:1px solid rgba(201,168,76,0.25);padding:4px 10px;border-radius:2px;}
+.s-dot{font-size:12px;color:var(--ink3);}
+.s-teacher{font-size:12px;color:var(--gold3);}
+.card-footer{padding:12px 14px 14px 18px;background:linear-gradient(90deg,rgba(245,237,216,.6),rgba(250,245,233,.3));border-top:1px solid rgba(201,168,76,0.18);display:flex;align-items:center;justify-content:space-between;}
 .price-wrap{display:flex;flex-direction:column;}
-.price{font-family:'Noto Serif TC',serif;font-size:20px;font-weight:700;color:var(--red);letter-spacing:1px;}
-.price-unit{font-size:11px;color:var(--ink3);margin-left:2px;}
-.price-note{font-size:10px;color:var(--ink3);margin-top:2px;}
-.add-btn{background:transparent;color:var(--pink-dark);border:1.5px solid var(--pink);padding:7px 18px;border-radius:20px;font-family:inherit;font-size:11px;cursor:pointer;letter-spacing:2px;transition:all .25s;white-space:nowrap;}
+.price{font-family:'Noto Serif TC',serif;font-size:22px;font-weight:700;color:var(--red);letter-spacing:1px;}
+.price-unit{font-size:13px;color:var(--ink3);margin-left:2px;}
+.price-note{font-size:12px;color:var(--ink3);margin-top:2px;}
+.add-btn{background:transparent;color:var(--pink-dark);border:1.5px solid var(--pink);padding:8px 20px;border-radius:20px;font-family:inherit;font-size:13px;cursor:pointer;letter-spacing:1px;transition:all .25s;white-space:nowrap;}
 .add-btn:hover{background:#FFF0F3;border-color:var(--pink-dark);}
 .add-btn.added{background:var(--pink);color:#fff;border-color:var(--pink-dark);}
-.series-title{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:1px;margin:16px 0 10px;display:flex;align-items:center;gap:6px;}
+.series-title{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:1px;margin:16px 0 10px;display:flex;align-items:center;gap:6px;}
 .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
 .mini-card{background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:12px 10px;text-align:center;position:relative;overflow:hidden;cursor:pointer;}
 .mini-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold2),var(--gold3));}
 .mini-card:hover{background:#FFFBF0;}
-.mini-icon{font-size:22px;margin-bottom:5px;}
-.mini-title{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:3px;}
-.mini-desc{font-size:10px;color:var(--ink3);line-height:1.5;}
-.mini-full{background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:12px 14px;position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;margin-bottom:8px;cursor:pointer;}
+.mini-icon{font-size:24px;margin-bottom:6px;}
+.mini-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.mini-desc{font-size:12px;color:var(--ink3);line-height:1.6;}
+.mini-full{background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:14px;position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;margin-bottom:8px;cursor:pointer;}
 .mini-full::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold2),var(--gold3));}
 .mini-full:hover{background:#FFFBF0;}
 .overlay{display:none;position:fixed;inset:0;background:rgba(42,31,14,.6);z-index:200;}
@@ -85,7 +85,7 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Sans TC',sans-se
 .session-opt.selected .radio{border-color:var(--pink);background:var(--pink);}
 .radio-dot{width:6px;height:6px;border-radius:50%;background:#fff;display:none;}
 .session-opt.selected .radio-dot{display:block;}
-.s-loc{font-size:14px;font-weight:600;color:var(--ink);}
+.s-loc{font-size:14px;font-weight:500;color:var(--ink);}
 .s-date{font-size:12px;color:var(--ink3);margin-top:2px;}
 .s-teacher-d{font-size:11px;color:var(--gold3);margin-top:2px;}
 .confirm-btn{width:100%;background:linear-gradient(135deg,var(--gold3),var(--gold));color:var(--ink);border:none;padding:14px;border-radius:6px;font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:3px;margin-top:4px;}
@@ -511,32 +511,101 @@ textarea{resize:vertical;height:70px;}
 <div style="background:linear-gradient(160deg,#FFF0F4 0%,#FFE4EC 50%,#FFF0F4 100%);padding:28px 18px;">
   <div style="text-align:center;margin-bottom:20px;">
     <div style="font-size:9px;letter-spacing:4px;color:var(--gold3);margin-bottom:6px;">STUDENT REVIEWS</div>
-    <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:2px;">學員真實心得</div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:4px;margin-top:6px;">
-      <span style="color:#F5A623;font-size:16px;">★★★★★</span>
-      <span style="font-size:12px;color:var(--ink3);margin-left:4px;">Google 五星好評</span>
+    <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:2px;">學員課後心得反饋</div>
+    <div style="margin-top:6px;color:#F5A623;font-size:16px;">★★★★★</div>
+  </div>
+
+  <div style="height:560px;overflow-y:auto;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(201,168,76,0.4) transparent;">
+
+    <!-- LINE群心得1 -->
+    <div style="background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:10px;padding:16px;margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div style="font-size:13px;color:var(--gold3);font-weight:500;">學員「冰棒」</div>
+        <div style="font-size:12px;color:#06C755;font-weight:500;display:flex;align-items:center;gap:4px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#06C755"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+          LINE 群
+        </div>
+      </div>
+      <div style="font-size:15px;color:var(--ink2);line-height:2;font-weight:400;">
+        以前發文，腦袋空空，不知道從哪裡開口。想做一張圖，改了又改，還是哪裡不對勁。很多念頭還沒開始，就這樣消失了。<br><br>
+        上過課才知道，問題不在 AI，在我不會說清楚自己要什麼。<br><br>
+        <span style="color:var(--gold3);font-weight:500;">最大的改變，是那些原本會放棄的事，現在願意試了。因為卡住的那一步，它可以幫你跨過去。</span>
+      </div>
     </div>
+
+    <!-- LINE群心得2 -->
+    <div style="background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:10px;padding:16px;margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div style="font-size:13px;color:var(--gold3);font-weight:500;">學員「燈泡」</div>
+        <div style="font-size:12px;color:#06C755;font-weight:500;display:flex;align-items:center;gap:4px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#06C755"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+          LINE 群
+        </div>
+      </div>
+      <div style="font-size:15px;color:var(--ink2);line-height:2;font-weight:400;">
+        學了 AI 之後，我才發現自己卡在哪裡。以前發一篇貼文要過兩關——寫文字，想半天不知從何說起。做圖，調了又調還是覺得哪裡不對。兩關都卡，人累了，貼文還沒發出去。😅<br><br>
+        上了昌久貹韵媃老師的課程後才知道，原來不是我不會，是我缺一個幫我整理思路的夥伴。<br><br>
+        <span style="color:var(--gold3);font-weight:500;">文案有方向了，圖也知道怎麼配色排版了，最重要的是——空出來的時間，我拿去多折了幾束花。✂️🌸</span>
+      </div>
+    </div>
+
+    <!-- Google評價1 -->
+    <div style="background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:10px;padding:16px;margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div style="font-size:13px;color:#F5A623;font-weight:500;">★★★★★</div>
+        <div style="font-size:12px;color:#4285F4;font-weight:500;">Google 評論</div>
+      </div>
+      <div style="font-size:15px;color:var(--ink2);line-height:2;font-weight:400;">
+        不是只有把作品教會，而是從「技術、細節、販售、行銷」一路陪著學生成長。✨<br><br>
+        兩位老師認真教學、手把手帶領，課後不放生！亦師亦友的學習氛圍，讓每位同學都能安心進步。<br><br>
+        <span style="color:var(--gold3);font-weight:500;">教學・評鑑比賽・國際認證課程，第一選擇——「昌久貹」✨</span>
+      </div>
+    </div>
+
+    <!-- Google評價2 -->
+    <div style="background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:10px;padding:16px;margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div style="font-size:13px;color:#F5A623;font-weight:500;">★★★★★</div>
+        <div style="font-size:12px;color:#4285F4;font-weight:500;">Google 評論</div>
+      </div>
+      <div style="font-size:15px;color:var(--ink2);line-height:2;font-weight:400;">
+        從紙藝小白到參賽屢獲佳績，這絕非僥倖，而是背後有人從基礎架構、行銷思維，到不斷督促我勇於嘗試各種「不可能」——正是昌久貹的韵嫈老師與又鈞老師。<br><br>
+        每當我猶豫、退縮，他們總是第一個推我一把。不是給你壓力，而是讓你相信自己其實可以。<br><br>
+        <span style="color:var(--gold3);font-weight:500;">遇到對的老師，真的會不一樣。</span>
+      </div>
+    </div>
+
+    <!-- Google評價3 -->
+    <div style="background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:10px;padding:16px;margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div style="font-size:13px;color:#F5A623;font-weight:500;">★★★★★</div>
+        <div style="font-size:12px;color:#4285F4;font-weight:500;">Google 評論</div>
+      </div>
+      <div style="font-size:15px;color:var(--ink2);line-height:2;font-weight:400;">
+        很喜歡這裡的學習氛圍，不只是學作品而已，而是真正讓人願意一直進步。<br><br>
+        老師對紙藝的堅持、專業與細節要求，讓我看到什麼叫做真正用心在做一件事。<br><br>
+        <span style="color:var(--gold3);font-weight:500;">很值得推薦給想學紙藝的人。</span>
+      </div>
+    </div>
+
+    <!-- IG心得 -->
+    <div style="background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:10px;padding:16px;margin-bottom:4px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div style="font-size:13px;color:#E1306C;font-weight:500;">學員分享</div>
+        <div style="font-size:12px;color:#E1306C;font-weight:500;display:flex;align-items:center;gap:4px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#E1306C"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </div>
+      </div>
+      <div style="font-size:15px;color:var(--ink2);line-height:2;font-weight:400;">
+        我不太會用 AI，摸不懂 AI，我連 AI 是什麼都不確定。每次看到別人用 AI 做出漂亮的圖，心裡只有一種感覺——那不是我的世界。<br><br>
+        然後我決定給自己一次機會，去上了老師的課。不管對不對先動手再說，一次不懂就問，問完再試，試完再改。<br><br>
+        <span style="color:var(--gold3);font-weight:500;">不是你學不會，是你還沒開始。</span>
+      </div>
+    </div>
+
   </div>
-  <div style="background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:10px;padding:16px;margin-bottom:12px;position:relative;">
-    <div style="position:absolute;top:14px;right:14px;color:#F5A623;font-size:13px;">★★★★★</div>
-    <div style="font-size:11px;color:var(--gold3);margin-bottom:8px;letter-spacing:1px;">Google 評論 · 3天前</div>
-    <div style="font-size:12px;color:var(--ink2);line-height:1.9;">不是只有把作品教會，而是從「技術、細節、販售、行銷」一路陪著學生成長。✨<br><br>兩位老師認真教學、手把手帶領，課後不放生！師生之間彼此探討問題、互助互益，亦師亦友的學習氛圍，讓每位同學都能安心進步。<br><br><span style="color:var(--gold3);font-weight:500;">教學・評鑑比賽・國際認證課程，第一選擇——「昌久貹」✨</span></div>
-  </div>
-  <div style="background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:10px;padding:16px;margin-bottom:12px;position:relative;">
-    <div style="position:absolute;top:14px;right:14px;color:#F5A623;font-size:13px;">★★★★★</div>
-    <div style="font-size:11px;color:var(--gold3);margin-bottom:8px;letter-spacing:1px;">Google 評論 · 2天前</div>
-    <div style="font-size:12px;color:var(--ink2);line-height:1.9;">從紙藝小白到參賽屢獲佳績，這絕非僥倖，而是背後有人從基礎架構、行銷思維，到不斷督促我勇於嘗試各種「不可能」——正是昌久貹的韵嫈老師與又鈞老師。<br><br>更難得的是，每當我猶豫、退縮，覺得「這我做不到」的時候，他們總是第一個推我一把。不是給你壓力，而是讓你相信自己其實可以。<br><br><span style="color:var(--gold3);font-weight:500;">遇到對的老師，真的會不一樣。</span></div>
-  </div>
-  <div style="background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:10px;padding:16px;margin-bottom:12px;position:relative;">
-    <div style="position:absolute;top:14px;right:14px;color:#F5A623;font-size:13px;">★★★★★</div>
-    <div style="font-size:11px;color:var(--gold3);margin-bottom:8px;letter-spacing:1px;">Google 評論 · 2天前</div>
-    <div style="font-size:12px;color:var(--ink2);line-height:1.9;">很喜歡這裡的學習氛圍，不只是學作品而已，而是真正讓人願意一直進步。<br><br>老師對紙藝的堅持、專業與細節要求，也讓我看到什麼叫做真正用心在做一件事。<br><br>能遇到這樣願意教、願意帶著學生成長的老師，真的很幸運。<br><br><span style="color:var(--gold3);font-weight:500;">也很值得推薦給想學紙藝的人。</span></div>
-  </div>
-  <div style="background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:10px;padding:16px;position:relative;">
-    <div style="position:absolute;top:14px;right:14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#E1306C"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
-    <div style="font-size:11px;color:#E1306C;margin-bottom:8px;letter-spacing:1px;">Instagram 學員分享 · 17小時前</div>
-    <div style="font-size:12px;color:var(--ink2);line-height:1.9;">我不太會用 AI，摸不懂 AI，我連 AI 是什麼都不確定。每次看到別人用 AI 做出漂亮的圖，我心裡只有一種感覺——那不是我的世界。<br><br>然後我決定在給自己一次機會，去上了老師的課。不管對不對先動手再說，一次不懂就問，問完再試，試完再改。<br><br>現在的我，已經可以自己製圖了。不是完美但是我自己做的。<br><br><span style="color:var(--gold3);font-weight:500;">不是你學不會，是你還沒開始。</span></div>
-  </div>
+  <div style="text-align:center;font-size:11px;color:var(--ink3);margin-top:10px;letter-spacing:1px;">↕ 上下滑動查看更多</div>
 </div>
 
 <!-- 企業合作區塊 -->
