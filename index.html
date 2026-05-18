@@ -450,31 +450,56 @@ textarea{resize:vertical;height:70px;}
         <div class="pay-opt" onclick="selPay(this)"><span class="pay-icon">💵</span>現場繳費</div>
       </div>
       <div id="bankInfoForm" style="background:var(--paper);border:1px solid rgba(201,168,76,0.35);border-radius:6px;padding:12px 14px;margin-bottom:14px;">
-        <div style="font-size:9px;letter-spacing:3px;color:var(--gold3);margin-bottom:8px;">🏦 匯款帳號</div>
-        <div style="font-size:12px;color:var(--ink2);line-height:2.2;">
+        <div style="font-size:15px;letter-spacing:2px;color:var(--gold3);margin-bottom:10px;font-weight:700;font-family:'Noto Serif TC',serif;">🏦 匯款帳號</div>
+        <div style="font-size:14px;color:var(--ink2);line-height:2.4;">
           <div style="display:flex;justify-content:space-between;"><span style="color:var(--ink3)">銀行</span><span style="font-weight:500">中國信託（822）</span></div>
           <div style="display:flex;justify-content:space-between;"><span style="color:var(--ink3)">帳號</span><span style="font-weight:700;letter-spacing:1px;color:var(--ink)">104540167516</span></div>
           <div style="display:flex;justify-content:space-between;"><span style="color:var(--ink3)">戶名</span><span style="font-weight:500">林韵媃</span></div>
         </div>
-        <div style="margin-top:8px;font-size:10px;color:var(--red);font-weight:500;">⚠️ 匯款完成才算報名成功，請於備註填寫匯款後五碼</div>
+        <div style="margin-top:10px;font-size:13px;color:var(--red);font-weight:700;">⚠️ 匯款完成才算報名成功，請於備註填寫匯款後五碼</div>
       </div>
       <button class="submit-btn" onclick="submitOrder()">確認送出訂單</button>
+
+      <!-- 注意事項 -->
+      <div style="margin-top:16px;background:linear-gradient(160deg,#FFF5F5,#FFE8E8,#FFF5F5);border:1px solid rgba(180,30,30,0.2);border-radius:6px;padding:16px;">
+        <div style="font-size:18px;letter-spacing:3px;color:#9B2B1A;margin-bottom:12px;font-weight:900;font-family:'Noto Serif TC',serif;">📋 報名注意事項</div>
+        <div style="font-size:13px;color:var(--ink2);line-height:2.2;">
+          <div style="font-weight:700;color:#9B2B1A;margin-bottom:4px;">付款相關</div>
+          <div>・匯款完成後，請於備註填寫後五碼，方可確認報名成功</div>
+          <div>・保護雙方權益，課程一旦付費，無法退費，保留課程半年</div>
+          <div style="font-weight:700;color:#9B2B1A;margin:10px 0 4px;">課程相關</div>
+          <div>・課程無法取消，如需調整場次請提前 3 天聯繫老師</div>
+          <div>・如遇颱風警報（陸域警報發布）或政府宣布停班停課，課程將延後舉行，另行通知補課時間</div>
+          <div>・課程含材料費，請準時出席</div>
+          <div style="font-weight:700;color:#9B2B1A;margin:10px 0 4px;">認證相關</div>
+          <div>・報名認證之考生，僅限於考試月份應考，無法延期</div>
+          <div style="font-weight:700;color:#9B2B1A;margin:10px 0 4px;">競賽相關</div>
+          <div>・報名競賽選手，一旦繳費無法退款，敬請見諒</div>
+          <div style="font-weight:700;color:#9B2B1A;margin:10px 0 4px;">其他</div>
+          <div>・報名即視為同意以上所有條款</div>
+          <div>・如有任何疑問，請 <a href="https://line.me/ti/p/~lovebaby15" target="_blank" style="color:var(--pink-dark);font-weight:700;text-decoration:none;">點此加入 LINE 洽詢 →</a></div>
+        </div>
+      </div>
     </div>
     <div class="success-screen" id="successScreen">
       <div style="font-size:56px;margin-bottom:14px">🎉</div>
       <div style="font-family:'Noto Serif TC',serif;font-size:20px;color:var(--ink);letter-spacing:2px;margin-bottom:8px">訂單送出成功</div>
-      <div style="font-size:12px;color:var(--ink3);line-height:1.9;margin-bottom:16px">感謝您選擇昌久貹<br>我們將在 24 小時內透過 LINE 與您確認<br>敬請留意訊息通知</div>
-      <div class="order-no"><div class="on-label">訂單編號</div><div class="on-val" id="orderNo"></div></div>
-      <div id="bankInfo" style="display:none;background:var(--paper);border:1px solid rgba(201,168,76,0.35);border-radius:6px;padding:14px;margin-bottom:16px;text-align:left;">
-        <div style="font-size:9px;letter-spacing:3px;color:var(--gold3);margin-bottom:10px;">🏦 匯款帳號資訊</div>
-        <div style="font-size:12px;color:var(--ink2);line-height:2;">
-          <div style="display:flex;justify-content:space-between;border-bottom:1px dashed rgba(201,168,76,0.2);padding-bottom:6px;margin-bottom:6px;"><span style="color:var(--ink3)">銀行</span><span style="font-weight:500">中國信託銀行（822）</span></div>
-          <div style="display:flex;justify-content:space-between;border-bottom:1px dashed rgba(201,168,76,0.2);padding-bottom:6px;margin-bottom:6px;"><span style="color:var(--ink3)">帳號</span><span style="font-weight:700;font-size:14px;color:var(--ink);letter-spacing:1px;">104540167516</span></div>
-          <div style="display:flex;justify-content:space-between;border-bottom:1px dashed rgba(201,168,76,0.2);padding-bottom:6px;margin-bottom:6px;"><span style="color:var(--ink3)">戶名</span><span style="font-weight:500">林韵媃</span></div>
-          <div style="display:flex;justify-content:space-between;"><span style="color:var(--ink3)">分行</span><span style="font-weight:500">中台南分行</span></div>
+      <div style="font-size:12px;color:var(--ink3);line-height:1.9;margin-bottom:16px">感謝您選擇昌久貹<br>我們將在課程前一天透過 LINE 提醒您準備上課<br>敬請留意訊息通知</div>
+      <div class="order-no"><div class="on-label" style="font-size:13px;letter-spacing:3px;font-weight:700;">訂單編號</div><div class="on-val" id="orderNo"></div></div>
+      <div style="background:linear-gradient(160deg,#FFF5F5,#FFE8E8,#FFF5F5);border:1px solid rgba(180,30,30,0.2);border-radius:6px;padding:14px;margin-bottom:16px;text-align:left;">
+        <div style="font-size:12px;letter-spacing:2px;color:#9B2B1A;font-weight:700;margin-bottom:10px;">📋 溫馨提醒</div>
+        <div style="font-size:13px;color:var(--ink2);line-height:2.2;">
+          <div>・課程一旦付費，無法退費，保留課程半年</div>
+          <div>・認證考生僅限考試月份應考，無法延期</div>
+          <div>・競賽報名一旦繳費，無法退款</div>
+          <div>・如遇颱風或停班停課，另行通知補課</div>
+          <div style="margin-top:6px;">・有疑問請 <a href="https://line.me/ti/p/~lovebaby15" target="_blank" style="color:var(--pink-dark);font-weight:700;text-decoration:none;">加入 LINE 洽詢 →</a></div>
         </div>
-        <div style="margin-top:10px;font-size:10px;color:var(--gold3);letter-spacing:0.5px;">✔ 匯款完成後請截圖傳給我們確認，謝謝！</div>
-        <a href="https://line.me/R/ti/p/@929rrwer" target="_blank" style="display:block;margin-top:12px;background:#06C755;color:#fff;text-align:center;padding:11px;border-radius:6px;font-size:13px;font-weight:700;letter-spacing:1px;text-decoration:none;">💬 點我加入 LINE 官方帳號</a>
+      </div>
+      <div id="bankInfo" style="display:none;margin-bottom:12px;">
+        <a href="https://line.me/ti/p/~lovebaby15" target="_blank" style="display:block;background:linear-gradient(135deg,#C9A84C,#8B6B1A);color:#fff;padding:13px;border-radius:6px;font-family:'Noto Serif TC',serif;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:2px;text-align:center;margin-bottom:8px;">💰 點此通知我已匯款 →</a>
+        <div style="font-size:11px;color:var(--ink3);text-align:center;margin-bottom:10px;">點擊後將跳至 LINE，請傳送匯款截圖與訂單編號</div>
+        <a href="https://line.me/R/ti/p/@929rrwer" target="_blank" style="display:block;background:#06C755;color:#fff;text-align:center;padding:11px;border-radius:6px;font-size:13px;font-weight:700;letter-spacing:1px;text-decoration:none;">💬 點我加入 LINE 官方帳號</a>
       </div>
       <button class="done-btn" onclick="resetAll()">返回繼續選購</button>
     </div>
