@@ -131,10 +131,7 @@ textarea{resize:vertical;height:70px;}
 <div class="top-bar"></div>
 <div class="header">
   <div><div class="brand">昌久貹</div><div class="brand-sub">CHANGJIUSHENG · 紙藝文創</div></div>
-  <div style="display:flex;align-items:center;gap:8px;">
-    <a href="about.html" style="background:transparent;border:1px solid var(--gold3);color:var(--gold3);padding:6px 10px;border-radius:3px;font-size:11px;text-decoration:none;letter-spacing:1px;">關於我們</a>
-    <button class="cart-btn" onclick="openCart()">🛒 購物車<span class="cart-count" id="cartCount" style="display:none">0</span></button>
-  </div>
+  <button class="cart-btn" onclick="openCart()">🛒 購物車<span class="cart-count" id="cartCount" style="display:none">0</span></button>
 </div>
 <div class="tabs">
   <div class="tab active" onclick="switchTab(this,'courses')">📚 紙藝課程</div>
@@ -149,7 +146,7 @@ textarea{resize:vertical;height:70px;}
   <h1>傳承金紙之美<br>守護文化溫度</h1>
   <div class="hero-line">課程 · 商品 · 認證 · 競賽</div>
   <div class="hero-quote">真正被留下來的，從來不只是作品<br>而是作品背後的心意</div>
-  <a href="#tab-courses-anchor" onclick="document.getElementById('tab-courses').scrollIntoView({behavior:'smooth'});return false;" style="display:inline-block;margin-top:18px;background:linear-gradient(135deg,var(--pink-dark),var(--pink));color:#fff;padding:13px 32px;border-radius:30px;font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:3px;box-shadow:0 4px 16px rgba(242,114,138,0.4);">🌸 立即報名 →</a>
+  <a href="#tab-courses-anchor" onclick="document.getElementById('tab-courses').scrollIntoView({behavior:'smooth'});return false;" style="display:inline-block;margin-top:18px;background:linear-gradient(135deg,var(--pink-dark),var(--pink));color:#fff;padding:13px 32px;border-radius:30px;font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:3px;box-shadow:0 4px 16px rgba(242,114,138,0.4);">立即報名 →</a>
 </div>
 <div class="main">
 
@@ -585,11 +582,15 @@ textarea{resize:vertical;height:70px;}
 
 <div class="toast" id="toast">✓ 已加入清單</div>
 
-<!-- 固定聯絡按鈕 -->
-<a href="https://line.me/ti/p/~lovebaby15" target="_blank" style="position:fixed;bottom:20px;right:16px;background:#06C755;color:#fff;padding:12px 18px;border-radius:30px;font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 4px 16px rgba(6,199,85,0.4);z-index:150;display:flex;align-items:center;gap:8px;letter-spacing:1px;">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-  聯絡我們
-</a>
+<!-- 固定右下角按鈕群 -->
+<div style="position:fixed;bottom:20px;right:16px;display:flex;flex-direction:column;gap:10px;z-index:150;">
+  <a href="about.html" style="background:linear-gradient(135deg,var(--gold3),var(--gold));color:var(--ink);padding:11px 16px;border-radius:30px;font-size:12px;font-weight:700;text-decoration:none;box-shadow:0 4px 14px rgba(139,107,26,0.35);display:flex;align-items:center;gap:6px;letter-spacing:1px;">
+    👑 關於主理人
+  </a>
+  <a href="https://line.me/ti/p/~lovebaby15" target="_blank" style="background:#06C755;color:#fff;padding:11px 16px;border-radius:30px;font-size:12px;font-weight:700;text-decoration:none;box-shadow:0 4px 14px rgba(6,199,85,0.35);display:flex;align-items:center;gap:6px;letter-spacing:1px;">
+    💬 聯絡我們
+  </a>
+</div>
 
 <script>
 let cart=[],pickerItem=null,selectedSession=null;
