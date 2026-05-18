@@ -31,7 +31,7 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Sans TC',sans-se
 .hero-tag{font-size:10px;letter-spacing:4px;color:var(--gold3);margin-bottom:16px;}
 
 /* PHOTO */
-.photo-wrap{width:140px;height:175px;margin:0 auto 18px;border-radius:8px;overflow:hidden;border:2px solid rgba(201,168,76,0.4);box-shadow:0 4px 20px rgba(139,107,26,0.15);}
+.photo-wrap{width:100%;max-width:340px;height:420px;margin:0 auto 18px;border-radius:8px;overflow:hidden;border:2px solid rgba(201,168,76,0.4);box-shadow:0 4px 20px rgba(139,107,26,0.15);}
 .photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;}
 
 .name{font-family:'Noto Serif TC',serif;font-size:26px;font-weight:900;color:var(--ink);letter-spacing:4px;margin-bottom:4px;}
@@ -41,24 +41,24 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Sans TC',sans-se
 
 /* MAIN */
 .main{padding:24px 18px 40px;max-width:560px;margin:0 auto;}
-.sec-label{font-size:10px;letter-spacing:4px;color:var(--gold3);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
-.sec-label::before{content:'◆';font-size:8px;color:var(--gold);}
+.sec-label{font-size:20px;letter-spacing:2px;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:10px;font-weight:900;font-family:'Noto Serif TC',serif;}
+.sec-label::before{content:'◆';font-size:10px;color:var(--gold);}
 .sec-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,0.4),transparent);}
 
 /* BIO */
 .bio-card{background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:18px;margin-bottom:20px;position:relative;overflow:hidden;}
 .bio-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold2),var(--gold3));}
-.bio-text{font-size:13px;color:var(--ink2);line-height:2;padding-left:4px;}
+.bio-text{font-size:14px;color:var(--ink2);line-height:2;padding-left:4px;}
 
 .quote-block{border-left:3px solid var(--gold);padding:10px 14px;margin:16px 0;background:linear-gradient(90deg,rgba(201,168,76,0.08),transparent);border-radius:0 4px 4px 0;}
-.quote-block p{font-family:'Noto Serif TC',serif;font-size:13px;color:var(--gold3);line-height:1.9;letter-spacing:1px;}
+.quote-block p{font-family:'Noto Serif TC',serif;font-size:14px;color:var(--gold3);line-height:1.9;letter-spacing:1px;}
 
 /* AWARDS */
 .year-block{margin-bottom:20px;}
-.year-tag{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:3px;color:var(--gold3);background:linear-gradient(90deg,rgba(201,168,76,0.12),transparent);padding:4px 14px 4px 8px;border-left:3px solid var(--gold);margin-bottom:10px;}
+.year-tag{display:inline-flex;align-items:center;gap:6px;font-size:13px;letter-spacing:2px;color:var(--gold3);background:linear-gradient(90deg,rgba(201,168,76,0.12),transparent);padding:4px 14px 4px 8px;border-left:3px solid var(--gold);margin-bottom:10px;}
 .award-item{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px dashed rgba(201,168,76,0.2);}
 .award-dot{color:var(--gold);font-size:10px;margin-top:3px;flex-shrink:0;}
-.award-text{font-size:12px;color:var(--ink2);line-height:1.6;}
+.award-text{font-size:13px;color:var(--ink2);line-height:1.6;}
 .award-item.highlight-item{background:linear-gradient(90deg,rgba(201,168,76,0.08),transparent);border-radius:4px;padding:8px 10px;border-bottom:none;margin-top:4px;}
 .award-item.highlight-item .award-text{color:var(--gold3);font-weight:500;}
 
@@ -142,10 +142,53 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Sans TC',sans-se
     <div class="award-item highlight-item"><div class="award-dot">🌟</div><div class="award-text">全球頂尖國際認證商會 國際事務執行長</div></div>
   </div>
 
+  <!-- 學員心得 -->
+  <div class="sec-label" style="margin-top:8px;">學員真實心得</div>
+
+  <div style="background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:18px;margin-bottom:12px;">
+    <div style="color:#F5A623;font-size:13px;margin-bottom:6px;">★★★★★</div>
+    <div style="font-size:11px;color:var(--gold3);margin-bottom:8px;letter-spacing:1px;">Google 評論 · 3天前</div>
+    <div style="font-size:13px;color:var(--ink2);line-height:1.9;">
+      不是只有把作品教會，而是從「技術、細節、販售、行銷」一路陪著學生成長。✨<br><br>
+      兩位老師認真教學、手把手帶領，課後不放生！亦師亦友的學習氛圍，讓每位同學都能安心進步。<br><br>
+      <span style="color:var(--gold3);font-weight:500;">教學・評鑑比賽・國際認證課程，第一選擇——「昌久貹」✨</span>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:18px;margin-bottom:12px;">
+    <div style="color:#F5A623;font-size:13px;margin-bottom:6px;">★★★★★</div>
+    <div style="font-size:11px;color:var(--gold3);margin-bottom:8px;letter-spacing:1px;">Google 評論 · 2天前</div>
+    <div style="font-size:13px;color:var(--ink2);line-height:1.9;">
+      從紙藝小白到參賽屢獲佳績，這絕非僥倖，而是背後有人從基礎架構、行銷思維，到不斷督促我勇於嘗試各種「不可能」。<br><br>
+      每當我猶豫、退縮，覺得「這我做不到」的時候，他們總是第一個推我一把。不是給你壓力，而是讓你相信自己其實可以。<br><br>
+      <span style="color:var(--gold3);font-weight:500;">遇到對的老師，真的會不一樣。</span>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:18px;margin-bottom:12px;">
+    <div style="color:#F5A623;font-size:13px;margin-bottom:6px;">★★★★★</div>
+    <div style="font-size:11px;color:var(--gold3);margin-bottom:8px;letter-spacing:1px;">Google 評論 · 2天前</div>
+    <div style="font-size:13px;color:var(--ink2);line-height:1.9;">
+      很喜歡這裡的學習氛圍，不只是學作品而已，而是真正讓人願意一直進步。<br><br>
+      老師對紙藝的堅持、專業與細節要求，讓我看到什麼叫做真正用心在做一件事。<br><br>
+      <span style="color:var(--gold3);font-weight:500;">很值得推薦給想學紙藝的人。</span>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border:1px solid rgba(225,48,108,0.2);border-radius:8px;padding:18px;margin-bottom:20px;">
+    <div style="font-size:11px;color:#E1306C;margin-bottom:8px;letter-spacing:1px;">📸 Instagram 學員分享 · 17小時前</div>
+    <div style="font-size:13px;color:var(--ink2);line-height:1.9;">
+      我不太會用 AI，摸不懂 AI，我連 AI 是什麼都不確定。每次看到別人用 AI 做出漂亮的圖，心裡只有一種感覺——那不是我的世界。<br><br>
+      然後我決定給自己一次機會，去上了老師的課。不管對不對先動手再說，一次不懂就問，問完再試，試完再改。<br><br>
+      現在的我，已經可以自己製圖了。不是完美但是我自己做的。<br><br>
+      <span style="color:var(--gold3);font-weight:500;">不是你學不會，是你還沒開始。</span>
+    </div>
+  </div>
+
   <!-- CTA -->
   <div class="cta">
-    <div class="cta-text">想跟林韵媃老師學習紙藝、行銷或認證？<br>立即前往報名頁面，選擇你的課程！</div>
-    <a href="index.html" class="cta-btn">🌸 前往報名 →</a>
+    <div class="cta-text">想跟林韵媃老師學習紙藝、行銷、認證或競賽？<br>立即前往報名頁面，選擇你的課程！</div>
+    <a href="index.html" class="cta-btn">前往報名 →</a>
   </div>
 
 </div>
