@@ -458,8 +458,6 @@ textarea{resize:vertical;height:70px;}
         </div>
         <div style="margin-top:10px;font-size:13px;color:var(--red);font-weight:700;">⚠️ 匯款完成才算報名成功，請於備註填寫匯款後五碼</div>
       </div>
-      <button class="submit-btn" onclick="submitOrder()">確認送出訂單</button>
-
       <!-- 注意事項 -->
       <div style="margin-top:16px;background:linear-gradient(160deg,#FFF5F5,#FFE8E8,#FFF5F5);border:1px solid rgba(180,30,30,0.2);border-radius:6px;padding:16px;">
         <div style="font-size:18px;letter-spacing:3px;color:#9B2B1A;margin-bottom:12px;font-weight:900;font-family:'Noto Serif TC',serif;">📋 報名注意事項</div>
@@ -477,9 +475,12 @@ textarea{resize:vertical;height:70px;}
           <div>・報名競賽選手，一旦繳費無法退款，敬請見諒</div>
           <div style="font-weight:700;color:#9B2B1A;margin:10px 0 4px;">其他</div>
           <div>・報名即視為同意以上所有條款</div>
+          <div>・若送單無匯款，我們將不做處理</div>
+          <div>・送單前，請先匯款完成再送單</div>
           <div>・如有任何疑問，請 <a href="https://line.me/ti/p/~lovebaby15" target="_blank" style="color:var(--pink-dark);font-weight:700;text-decoration:none;">點此加入 LINE 洽詢 →</a></div>
         </div>
       </div>
+      <button class="submit-btn" style="margin-top:16px;" onclick="submitOrder()">確認送出訂單</button>
     </div>
     <div class="success-screen" id="successScreen">
       <div style="font-size:56px;margin-bottom:14px">🎉</div>
