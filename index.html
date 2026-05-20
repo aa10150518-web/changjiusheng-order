@@ -57,9 +57,9 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Sans TC',sans-se
 .price{font-family:'Noto Serif TC',serif;font-size:22px;font-weight:700;color:var(--red);letter-spacing:1px;}
 .price-unit{font-size:13px;color:var(--ink3);margin-left:2px;}
 .price-note{font-size:12px;color:var(--ink3);margin-top:2px;}
-.add-btn{background:transparent;color:var(--pink-dark);border:1.5px solid var(--pink);padding:8px 20px;border-radius:20px;font-family:inherit;font-size:13px;cursor:pointer;letter-spacing:1px;transition:all .25s;white-space:nowrap;}
-.add-btn:hover{background:#FFF0F3;border-color:var(--pink-dark);}
-.add-btn.added{background:var(--pink);color:#fff;border-color:var(--pink-dark);}
+.add-btn{background:var(--red);color:#fff;border:1.5px solid var(--red);padding:8px 20px;border-radius:20px;font-family:inherit;font-size:13px;cursor:pointer;letter-spacing:1px;transition:all .25s;white-space:nowrap;}
+.add-btn:hover{background:#7A1F0E;border-color:#7A1F0E;}
+.add-btn.added{background:#7A1F0E;color:#fff;border-color:#7A1F0E;}
 .series-title{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:1px;margin:16px 0 10px;display:flex;align-items:center;gap:6px;}
 .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
 .mini-card{background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:12px 10px;text-align:center;position:relative;overflow:hidden;cursor:pointer;}
@@ -100,24 +100,24 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Sans TC',sans-se
 .modal-overlay.open{display:flex;align-items:flex-start;}
 .modal{background:var(--white);border-radius:8px;border-top:3px solid var(--gold);width:100%;max-width:500px;margin:auto;overflow:hidden;}
 .modal-head{background:linear-gradient(135deg,var(--paper2),var(--paper));border-bottom:1px solid rgba(201,168,76,.3);padding:18px 20px;display:flex;justify-content:space-between;align-items:center;}
-.modal-head h2{font-family:'Noto Serif TC',serif;color:var(--ink);font-size:17px;letter-spacing:2px;}
+.modal-head h2{font-family:'Noto Serif TC',serif;color:var(--ink);font-size:20px;letter-spacing:2px;}
 .close-btn{background:none;border:none;color:var(--ink3);font-size:22px;cursor:pointer;}
 .modal-body{padding:20px 18px;}
 .order-summary{background:var(--paper);border:1px solid rgba(201,168,76,.25);border-radius:4px;padding:12px 14px;margin-bottom:18px;}
-.os-title{font-size:9px;letter-spacing:3px;color:var(--gold3);margin-bottom:8px;}
-.sr{display:flex;justify-content:space-between;font-size:12px;color:var(--ink2);padding:3px 0;}
-.st{display:flex;justify-content:space-between;font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;color:var(--ink);border-top:1px dashed rgba(201,168,76,.3);margin-top:8px;padding-top:8px;}
+.os-title{font-size:12px;letter-spacing:3px;color:var(--gold3);margin-bottom:8px;}
+.sr{display:flex;justify-content:space-between;font-size:14px;color:var(--ink2);padding:4px 0;}
+.st{display:flex;justify-content:space-between;font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:var(--ink);border-top:1px dashed rgba(201,168,76,.3);margin-top:8px;padding-top:8px;}
 .fg{margin-bottom:14px;}
-label{display:block;font-size:10px;letter-spacing:2px;color:var(--gold3);margin-bottom:5px;}
+label{display:block;font-size:13px;letter-spacing:1px;color:var(--gold3);margin-bottom:6px;}
 .req{color:var(--red);}
-input,select,textarea{width:100%;padding:10px 12px;border:1px solid rgba(201,168,76,.3);border-radius:3px;font-family:inherit;font-size:13px;color:var(--ink);background:var(--paper3);outline:none;transition:border-color .2s;}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid rgba(201,168,76,.3);border-radius:3px;font-family:inherit;font-size:15px;color:var(--ink);background:var(--paper3);outline:none;transition:border-color .2s;}
 input:focus,select:focus,textarea:focus{border-color:var(--gold);background:var(--white);}
 textarea{resize:vertical;height:70px;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .pay-opts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
-.pay-opt{border:1px solid rgba(201,168,76,.3);border-radius:4px;padding:10px;cursor:pointer;text-align:center;font-size:11px;color:var(--ink3);background:var(--paper3);transition:all .2s;}
+.pay-opt{border:1px solid rgba(201,168,76,.3);border-radius:4px;padding:10px;cursor:pointer;text-align:center;font-size:13px;color:var(--ink3);background:var(--paper3);transition:all .2s;}
 .pay-opt.selected{border-color:var(--gold);background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(245,237,216,.8));color:var(--ink);font-weight:500;}
-.pay-icon{font-size:18px;display:block;margin-bottom:4px;}
+.pay-icon{font-size:20px;display:block;margin-bottom:4px;}
 .submit-btn{width:100%;background:linear-gradient(135deg,var(--gold3),var(--gold));color:var(--ink);border:none;padding:14px;border-radius:4px;font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:3px;}
 .success-screen{display:none;text-align:center;padding:36px 20px;}
 .success-screen.show{display:block;}
@@ -137,7 +137,7 @@ textarea{resize:vertical;height:70px;}
   <button class="cart-btn" onclick="openCart()">🛒 購物車<span class="cart-count" id="cartCount" style="display:none">0</span></button>
 </div>
 <div class="tabs">
-  <div class="tab active" onclick="switchTab(this,'courses')">📚 紙藝課程</div>
+  <div class="tab active" onclick="switchTab(this,'courses')">📚 課程專區</div>
   <div class="tab" onclick="switchTab(this,'products')">🌸 作品訂製</div>
   <div class="tab" onclick="switchTab(this,'cert')">📜 國際認證</div>
   <div class="tab" onclick="switchTab(this,'comp')">🏆 國際競賽</div>
@@ -149,84 +149,79 @@ textarea{resize:vertical;height:70px;}
   <h1>傳承金紙之美<br>守護文化溫度</h1>
   <div class="hero-line">課程 · 商品 · 認證 · 競賽</div>
   <div class="hero-quote">真正被留下來的，從來不只是作品<br>而是作品背後的心意</div>
-  <a href="#tab-courses-anchor" onclick="document.getElementById('tab-courses').scrollIntoView({behavior:'smooth'});return false;" style="display:inline-block;margin-top:18px;background:linear-gradient(135deg,var(--pink-dark),var(--pink));color:#fff;padding:13px 32px;border-radius:30px;font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:3px;box-shadow:0 4px 16px rgba(242,114,138,0.4);">立即報名 →</a>
+
 </div>
 <div class="main">
 
 <!-- 紙藝課程 -->
 <div id="tab-courses">
-  <div class="sec-label">紙藝課程</div>
+  <!-- 分類快捷按鈕 -->
+  <div style="display:flex;gap:10px;margin-bottom:18px;">
+    <a href="#sec-paper" style="flex:1;text-align:center;background:linear-gradient(135deg,#C9A84C,#E2A82A);color:#fff;padding:12px;border-radius:6px;font-family:'Noto Serif TC',serif;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:1px;">紙藝課程</a>
+    <a href="#sec-marketing" style="flex:1;text-align:center;background:linear-gradient(135deg,#8B6BB5,#A988D0);color:#fff;padding:12px;border-radius:6px;font-family:'Noto Serif TC',serif;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:1px;">行銷課程</a>
+  </div>
+
+  <!-- 紙藝課程 -->
+  <div id="sec-paper">
+    <div class="sec-label">紙藝課程</div>
+  <!-- 小花束班 -->
   <div class="card">
     <div class="card-img" style="height:auto;padding:0;overflow:hidden;">
-      <img src="S__25124901.jpg" alt="小花束金紙花束班｜台中金紙手作體驗入門課程" style="width:100%;display:block;max-height:200px;object-fit:cover;">
+      <img src="S__25124901.jpg" alt="小花束金紙花束班" style="width:100%;display:block;max-height:200px;object-fit:cover;">
     </div>
     <div class="card-body">
-      <div class="card-tag">手作 · 入門體驗</div>
+      <div class="card-tag">手作 · 入門｜進階｜職能認證</div>
       <div class="card-title">小花束金紙花束班</div>
-        <path d="M100 95 C100 75,95 58,92 43" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/>
-        <path d="M100 95 C100 75,105 58,108 43" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/>
-        <path d="M100 95 C98 77,82 63,75 48" stroke="#8B6B1A" stroke-width="0.9" stroke-linecap="round"/>
-        <path d="M100 95 C102 77,118 63,125 48" stroke="#8B6B1A" stroke-width="0.9" stroke-linecap="round"/>
-        <path d="M85 70 C79 65,73 67,75 73 C77 79,85 75,85 70Z" fill="none" stroke="#8B6B1A" stroke-width="0.8"/>
-        <path d="M115 70 C121 65,127 67,125 73 C123 79,115 75,115 70Z" fill="none" stroke="#8B6B1A" stroke-width="0.8"/>
-        <circle cx="92" cy="36" r="9" fill="none" stroke="#C9A84C" stroke-width="1.1"/>
-        <circle cx="92" cy="36" r="3.5" fill="#E2C06A" opacity="0.7"/>
-      <div class="card-subtitle">適合新手入門｜從零開始學習</div>
-      <div class="card-desc">🌸 從零開始也能完成作品<br>🌸 適合想接觸紙藝的新手<br>🌸 學會花型、結構與包裝技巧</div>
-    </div>
-    <div class="sessions">
-      <div class="session-row"><span class="s-pill">📍 台中 5/19(二)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃</span></div>
-      <div class="session-row"><span class="s-pill">📍 高雄 5/24(日)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃</span></div>
-    </div>
-    <div class="card-footer">
-      <div class="price-wrap"><div><span class="price">$5,500</span><span class="price-unit">/ 人</span></div><div class="price-note">含材料與課後複習</div></div>
-      <button class="add-btn" onclick="openPicker('小花束金紙花束班',5500,[{loc:'台中',date:'5月19日(二)',teacher:'林韵媃'},{loc:'高雄',date:'5月24日(日)',teacher:'林韵媃'}])">選擇場次</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-body">
-      <div class="card-tag">入門 · AI行銷</div>
-      <div class="card-title">AI 行銷入門班</div>
-      <div class="card-subtitle">讓 AI 不再只是冷冰冰工具</div>
-      <div class="card-desc">✨ 不再只會套模板<br>✨ 學會有風格的 AI 製圖<br>✨ 讓文案不再冷冰冰</div>
-      <div class="card-note">※ 兩位老師各自獨立開班，課程內容不同<br>※ 每堂滿 6 人開課</div>
+      <div class="card-subtitle">從入門到認證，一次選好你的班別</div>
+      <div class="card-desc">🌸 新手可學，循序漸進<br>🌸 含材料與課後複習</div>
     </div>
     <div class="pills">
-      <div class="pill">📍 台中 6月</div>
-      <div class="pill">📍 高雄 5/31</div>
+      <div class="pill" style="background:#FFE8EF;border-color:#F2728A;color:#C04060;">📍 5月開課日</div>
+      <div class="pill" style="background:#E8F5E9;border-color:#6DBF8A;color:#2E7D52;">📍 6月開課日</div>
     </div>
-    <div class="sessions">
-      <div class="session-row"><span class="s-pill">📍 高雄 5/31(日)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 AI行銷 林韵媃</span></div>
-      <div class="session-row"><span class="s-pill">📍 台中 5/22(五)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 平台流量 陳美璇</span></div>
-      <div class="session-row"><span class="s-pill">📍 台中 6/10(三)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 AI行銷 林韵媃</span></div>
-    </div>
-    <div class="card-footer">
-      <div><span class="price">$3,780</span><span class="price-unit">/ 人</span></div>
-      <button class="add-btn" onclick="openPicker('AI 行銷入門班',3780,[{loc:'高雄',date:'5月31日(日)',teacher:'AI行銷 林韵媃'},{loc:'台中',date:'5月22日(五)',teacher:'平台流量 陳美璇'},{loc:'台中',date:'6月10日(三)',teacher:'AI行銷 林韵媃'}])">選擇場次</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-img" style="height:auto;padding:0;">
-      <img src="S__25124884.jpg" alt="AI品牌實戰進階班｜昌久貹品牌行銷課程" style="width:100%;display:block;border-radius:0;">
-    </div>
-    <div class="card-body">
-      <div class="card-title">AI 品牌實戰進階班</div>
-      <div class="card-subtitle">限有上過兩位老師入門班的學員</div>
-      <div class="card-desc">🔥 滿 6 人開班<br>🔥 品牌定位・內容策略・實戰操作<br>🔥 從學員升級成品牌主理人</div>
-      <div class="card-note">※ 需完成林韵媃＋陳美璇兩堂入門班後方可報名</div>
-    </div>
-    <div class="sessions">
-      <div class="session-row"><span class="s-pill">📅 6月6日(六)</span><span class="s-dot">·</span><span class="s-teacher">🌟 早鳥價 $5,800</span></div>
-      <div class="session-row"><span class="s-pill">📅 6月24日(三)</span><span class="s-dot">·</span><span class="s-teacher">💰 $6,600</span></div>
-    </div>
-    <div class="card-footer">
-      <div class="price-wrap">
-        <div><span class="price">$5,800</span><span class="price-unit">起</span></div>
-        <div class="price-note">滿 6 人開班</div>
+    <div style="padding:8px 14px 10px 18px;">
+      <div style="font-size:12px;color:var(--gold3);margin-bottom:8px;letter-spacing:1px;">選擇班別</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;background:#EFF6FF;border:1.5px solid #6A9FD8;border-radius:6px;padding:10px 12px;">
+          <div>
+            <div style="font-size:14px;font-weight:500;color:var(--ink);">入門班</div>
+            <div style="font-size:12px;color:var(--ink3);">從零開始學習花型與包裝</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:var(--red);">$5,500</div>
+            <button class="add-btn" style="margin-top:4px;font-size:11px;padding:5px 12px;" onclick="openPicker('小花束金紙花束班｜入門班',5500,[{loc:'台中',date:'5月19日(二)',teacher:'林韵媃・潘怡婷'},{loc:'高雄',date:'5月24日(日)',teacher:'林韵媃・潘怡婷'},{loc:'台中',date:'6月16日(二)',teacher:'林韵媃・潘怡婷'},{loc:'高雄',date:'6月27日(六)',teacher:'林韵媃・潘怡婷'}])">選場次</button>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:#FFF5EE;border:1.5px solid #E8954A;border-radius:6px;padding:10px 12px;">
+          <div>
+            <div style="font-size:14px;font-weight:500;color:var(--ink);">進階班</div>
+            <div style="font-size:12px;color:var(--ink3);">深化技法，提升作品質感</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:var(--red);">$9,000</div>
+            <button class="add-btn" style="margin-top:4px;font-size:11px;padding:5px 12px;" onclick="openPicker('小花束金紙花束班｜進階班',9000,[{loc:'台中',date:'6月16日(二)',teacher:'林韵媃・潘怡婷'},{loc:'高雄',date:'6月27日(六)',teacher:'林韵媃・潘怡婷'}])">選場次</button>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:#FFFBEC;border:1.5px solid #C9A84C;border-radius:6px;padding:10px 12px;">
+          <div>
+            <div style="font-size:14px;font-weight:500;color:var(--ink);">職能認證班</div>
+            <div style="font-size:12px;color:var(--ink3);">含課程培訓＋職能認證證書</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:var(--red);">$13,500</div>
+            <button class="add-btn" style="margin-top:4px;font-size:11px;padding:5px 12px;" onclick="openPicker('小花束金紙花束班｜職能認證班',13500,[{loc:'台中',date:'6月16日(二)',teacher:'林韵媃・潘怡婷'},{loc:'高雄',date:'6月27日(六)',teacher:'林韵媃・潘怡婷'}])">選場次</button>
+          </div>
+        </div>
       </div>
-      <button class="add-btn" onclick="openPickerCustom()">選擇場次</button>
+    </div>
+    <div style="padding:8px 14px 12px 18px;">
+      <div style="font-size:12px;color:var(--gold3);margin-bottom:6px;letter-spacing:1px;">開課日期</div>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div class="session-row"><span class="s-pill" style="background:#FFE8EF;border-color:#F2728A;">📍 台中 5/19(二)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃・潘怡婷</span></div>
+        <div class="session-row"><span class="s-pill" style="background:#FFE8EF;border-color:#F2728A;">📍 高雄 5/24(日)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃・潘怡婷</span></div>
+        <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📍 台中 6/16(二)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃・潘怡婷</span></div>
+        <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📍 高雄 6/27(六)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃・潘怡婷</span></div>
+      </div>
     </div>
   </div>
 
@@ -240,7 +235,7 @@ textarea{resize:vertical;height:70px;}
       <div class="card-subtitle">把敬意、思念與文化，<br>做成一束有溫度的作品</div>
       <div class="card-desc">🌸 新手可學　🌸 可延伸接單　🌸 課後可複習</div>
     </div>
-    <div class="pills"><div class="pill">📍 台中教室</div><div class="pill">🏠 到府教學</div></div>
+    <div class="pills"><div class="pill" style="background:#FFFBEC;border-color:#C9A84C;color:#8B6B1A;">📍 台中教室</div><div class="pill" style="background:#F5F0FF;border-color:#9B6BB5;color:#6B3B9B;">🏠 到府教學</div></div>
     <div class="card-footer">
       <div class="price-wrap"><div><span class="price">$32,800</span><span class="price-unit">/ 人</span></div><div class="price-note">含材料與課後複習</div></div>
       <button class="add-btn" onclick="openPicker('好神花紙藝課',32800,[{loc:'台中教室',date:'洽詢排班'},{loc:'到府教學',date:'洽詢時間'}])">選擇場次</button>
@@ -257,12 +252,92 @@ textarea{resize:vertical;height:70px;}
       <div class="card-subtitle">是思念與追思，<br>做成一束有溫度的作品</div>
       <div class="card-desc">🌸 新手可學　🌸 可延伸接單　🌸 課後可複習</div>
     </div>
-    <div class="pills"><div class="pill">📍 台中教室</div><div class="pill">🏠 到府教學</div></div>
+    <div class="pills"><div class="pill" style="background:#FFFBEC;border-color:#C9A84C;color:#8B6B1A;">📍 台中教室</div><div class="pill" style="background:#F5F0FF;border-color:#9B6BB5;color:#6B3B9B;">🏠 到府教學</div></div>
     <div class="card-footer">
       <div class="price-wrap"><div><span class="price">$32,800</span><span class="price-unit">/ 人</span></div><div class="price-note">含材料與課後複習</div></div>
       <button class="add-btn" onclick="openPicker('永思花紙藝課',32800,[{loc:'台中教室',date:'洽詢排班'},{loc:'到府教學',date:'洽詢時間'}])">選擇場次</button>
     </div>
   </div>
+  </div><!-- end sec-paper -->
+
+  <!-- 行銷課程 -->
+  <div id="sec-marketing" style="margin-top:8px;">
+    <div class="sec-label">行銷課程</div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="card-tag">入門 · AI行銷</div>
+      <div class="card-title">AI 行銷入門班</div>
+      <div class="card-subtitle">讓 AI 不再只是冷冰冰工具</div>
+      <div class="card-desc">✨ 不再只會套模板<br>✨ 學會有風格的 AI 製圖<br>✨ 讓文案不再冷冰冰</div>
+      <div class="card-note">※ 兩位老師各自獨立開班，課程內容不同<br>※ 每堂滿 6 人開課</div>
+    </div>
+    <div class="pills">
+      <div class="pill" style="background:#FFE8EF;border-color:#F2728A;color:#C04060;">📍 5月開課日</div>
+      <div class="pill" style="background:#E8F5E9;border-color:#6DBF8A;color:#2E7D52;">📍 6月開課日</div>
+    </div>
+    <div class="sessions">
+      <div class="session-row"><span class="s-pill" style="background:#FFE8EF;border-color:#F2728A;">📍 高雄 5/31(日)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 AI行銷 林韵媃</span></div>
+      <div class="session-row"><span class="s-pill" style="background:#FFE8EF;border-color:#F2728A;">📍 台中 5/22(五)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 平台流量 陳美璇</span></div>
+      <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📍 台中 6/10(三)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 AI行銷 林韵媃</span></div>
+    </div>
+    <div class="card-footer">
+      <div><span class="price">$3,780</span><span class="price-unit">/ 人</span></div>
+      <button class="add-btn" onclick="openPicker('AI 行銷入門班',3780,[{loc:'高雄',date:'5月31日(日)',teacher:'AI行銷 林韵媃'},{loc:'台中',date:'5月22日(五)',teacher:'平台流量 陳美璇'},{loc:'台中',date:'6月10日(三)',teacher:'AI行銷 林韵媃'}])">選擇場次</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-img" style="height:auto;padding:0;">
+      <img src="S__25124884.jpg" alt="AI品牌實戰進階班｜昌久貹品牌行銷課程" style="width:100%;display:block;border-radius:0;">
+    </div>
+    <div class="card-body">
+      <div class="card-tag">進階 · 品牌實戰</div>
+      <div class="card-title">AI 品牌實戰進階班</div>
+      <div class="card-subtitle">限有上過兩位老師入門班的學員</div>
+      <div class="card-desc">🔥 滿 6 人開班<br>🔥 品牌定位・內容策略・實戰操作<br>🔥 從學員升級成品牌主理人</div>
+      <div class="card-note">※ 需完成林韵媃＋陳美璇兩堂入門班後方可報名</div>
+    </div>
+    <div class="pills"><div class="pill" style="background:#E8F5E9;border-color:#6DBF8A;color:#2E7D52;">📍 6月開課日</div></div>
+    <div class="sessions">
+      <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📅 6月6日(六)</span><span class="s-dot">·</span><span class="s-teacher">🌟 早鳥優惠</span></div>
+      <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📅 6月24日(三)</span></div>
+    </div>
+    <div class="card-footer">
+      <div class="price-wrap">
+        <div><span class="price">$5,800</span><span class="price-unit">起</span></div>
+        <div class="price-note">滿 6 人開班</div>
+      </div>
+      <button class="add-btn" onclick="openPickerCustom()">選擇場次</button>
+    </div>
+  </div>
+  <!-- 零基礎官網架設班 -->
+  <div class="card">
+    <div class="card-body">
+      <div class="card-tag">架站 · 零基礎</div>
+      <div class="card-title">零基礎官網架設班</div>
+      <div class="card-subtitle">不用花大錢，初次創業・小本經營・個人工作室，都能輕鬆擁有自己的官網！</div>
+      <div class="card-desc">🌐 零基礎也能學會<br>🌐 各行各業皆適用<br>🌐 課後專屬群組輔導</div>
+      <div class="card-note">※ 限上過林韵媃老師 AI 行銷入門班的學員方可報名</div>
+    </div>
+    <div class="pills"><div class="pill" style="background:#E8F5E9;border-color:#6DBF8A;color:#2E7D52;">📍 6月開課日</div></div>
+    <div class="sessions">
+      <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📍 台中 6/8(二)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃</span></div>
+      <div style="font-size:11px;color:var(--gold3);padding:2px 0 0 2px;">※ 滿 4 人開課</div>
+    </div>
+    <div class="card-footer">
+      <div class="price-wrap">
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <span class="price">$5,888</span>
+          <span style="font-size:12px;color:var(--ink3);text-decoration:line-through;">原價 $7,500</span>
+        </div>
+        <div class="price-note">限時優惠價 · 含課後群組輔導</div>
+      </div>
+      <button class="add-btn" onclick="openPicker('零基礎官網架設班',5888,[{loc:'台中',date:'6月8日(二)',teacher:'林韵媃'}])">立即報名</button>
+    </div>
+  </div>
+
+  </div><!-- end sec-marketing -->
 </div>
 
 <!-- 作品訂製 -->
@@ -441,7 +516,36 @@ textarea{resize:vertical;height:70px;}
         <div><label>LINE ID <span class="req">*</span></label><input type="text" id="f-line" placeholder="請輸入 LINE ID"></div>
       </div>
       <div class="fg"><label>Email（選填）</label><input type="email" id="f-email" placeholder="example@email.com"></div>
-      <div class="fg"><label>縣市</label><select id="f-city"><option value="">請選擇縣市</option><option>高雄市</option><option>台中市</option><option>屏東縣</option><option>台北市</option><option>其他</option></select></div>
+      <div class="form-row" style="margin-bottom:14px;">
+        <div>
+          <label>居住縣市</label>
+          <select id="f-city">
+            <option value="">請選擇</option>
+            <option>臺北市</option><option>新北市</option><option>桃園市</option>
+            <option>臺中市</option><option>臺南市</option><option>高雄市</option>
+            <option>基隆市</option><option>新竹市</option><option>嘉義市</option>
+            <option>宜蘭縣</option><option>新竹縣</option><option>苗栗縣</option>
+            <option>彰化縣</option><option>南投縣</option><option>雲林縣</option>
+            <option>嘉義縣</option><option>屏東縣</option><option>花蓮縣</option>
+            <option>臺東縣</option><option>澎湖縣</option><option>金門縣</option>
+            <option>連江縣</option>
+          </select>
+        </div>
+        <div>
+          <label>上課縣市</label>
+          <select id="f-class-city">
+            <option value="">請選擇</option>
+            <option>臺北市</option><option>新北市</option><option>桃園市</option>
+            <option>臺中市</option><option>臺南市</option><option>高雄市</option>
+            <option>基隆市</option><option>新竹市</option><option>嘉義市</option>
+            <option>宜蘭縣</option><option>新竹縣</option><option>苗栗縣</option>
+            <option>彰化縣</option><option>南投縣</option><option>雲林縣</option>
+            <option>嘉義縣</option><option>屏東縣</option><option>花蓮縣</option>
+            <option>臺東縣</option><option>澎湖縣</option><option>金門縣</option>
+            <option>連江縣</option>
+          </select>
+        </div>
+      </div>
       <div class="fg"><label>備註 / 特殊需求</label><textarea id="f-note" placeholder="若選擇匯款，請在此填寫匯款後五碼，方便我們核對，謝謝！"></textarea></div>
       <label style="margin-bottom:10px;display:block">付款方式 <span class="req">*</span></label>
       <div class="pay-opts">
@@ -662,7 +766,7 @@ function renderCart(){const el=document.getElementById('cartItems');if(!cart.len
 function removeItem(i){cart.splice(i,1);updateCount();renderCart();}
 function openCheckout(){closeOverlay('cartOverlay');document.getElementById('summaryItems').innerHTML=cart.map(i=>`<div class="sr"><span>${i.name}</span><span>${i.price>0?'NT$ '+(i.price*i.qty).toLocaleString():'洽詢'}</span></div>`).join('');const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);document.getElementById('summaryTotal').textContent=total>0?'NT$ '+total.toLocaleString():'含洽詢項目';document.getElementById('modalOverlay').classList.add('open');}
 function selPay(el){document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');const isBank=el.textContent.includes('匯款');document.getElementById('bankInfoForm').style.display=isBank?'block':'none';}
-async function submitOrder(){const n=document.getElementById('f-name').value.trim();const p=document.getElementById('f-phone').value.trim();const l=document.getElementById('f-line').value.trim();const e=document.getElementById('f-email').value.trim();const city=document.getElementById('f-city').value;const note=document.getElementById('f-note').value.trim();const pay=document.querySelector('.pay-opt.selected')?.textContent?.trim()||'未選擇';if(!n||!p||!l){alert('請填寫姓名、電話及 LINE ID');return;}const orderNo='CJS-'+Date.now().toString().slice(-8);const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);const items=cart.map(i=>`• ${i.name}${i.price>0?' NT$'+i.price.toLocaleString():' (洽詢)'}`).join('\n');const msg=`🛒 昌久貹｜新訂單通知\n━━━━━━━━━━━━\n📋 訂單編號：${orderNo}\n👤 姓名：${n}\n📞 電話：${p}\n💬 LINE：${l}\n${e?'📧 Email：'+e+'\n':''}📍 縣市：${city||'未填'}\n━━━━━━━━━━━━\n📦 項目：\n${items}\n━━━━━━━━━━━━\n💰 合計：${total>0?'NT$ '+total.toLocaleString():'含洽詢項目'}\n💳 付款：${pay}\n${note?'📝 備註：'+note+'\n':''}⏰ ${new Date().toLocaleString('zh-TW')}`;try{await fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});}catch(err){console.log('通知失敗',err);}document.getElementById('orderNo').textContent=orderNo;document.getElementById('bankInfo').style.display=pay.includes('匯款')?'block':'none';document.getElementById('modalBody').classList.add('hide');document.getElementById('successScreen').classList.add('show');}
+async function submitOrder(){const n=document.getElementById('f-name').value.trim();const p=document.getElementById('f-phone').value.trim();const l=document.getElementById('f-line').value.trim();const e=document.getElementById('f-email').value.trim();const city=document.getElementById('f-city').value;const classCity=document.getElementById('f-class-city').value;const note=document.getElementById('f-note').value.trim();const pay=document.querySelector('.pay-opt.selected')?.textContent?.trim()||'未選擇';if(!n||!p||!l){alert('請填寫姓名、電話及 LINE ID');return;}const orderNo='CJS-'+Date.now().toString().slice(-8);const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);const items=cart.map(i=>`• ${i.name}${i.price>0?' NT$'+i.price.toLocaleString():' (洽詢)'}`).join('\n');const msg=`🛒 昌久貹｜新訂單通知\n━━━━━━━━━━━━\n📋 訂單編號：${orderNo}\n👤 姓名：${n}\n📞 電話：${p}\n💬 LINE：${l}\n${e?'📧 Email：'+e+'\n':''}📍 居住縣市：${city||'未填'}\n📍 上課縣市：${classCity||'未填'}\n━━━━━━━━━━━━\n📦 項目：\n${items}\n━━━━━━━━━━━━\n💰 合計：${total>0?'NT$ '+total.toLocaleString():'含洽詢項目'}\n💳 付款：${pay}\n${note?'📝 備註：'+note+'\n':''}⏰ ${new Date().toLocaleString('zh-TW')}`;try{await fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});}catch(err){console.log('通知失敗',err);}document.getElementById('orderNo').textContent=orderNo;document.getElementById('bankInfo').style.display=pay.includes('匯款')?'block':'none';document.getElementById('modalBody').classList.add('hide');document.getElementById('successScreen').classList.add('show');}
 function handleOverlayClick(e,id){if(e.target===document.getElementById(id))closeOverlay(id);}
 function closeOverlay(id){document.getElementById(id).classList.remove('open');}
 function resetAll(){cart=[];updateCount();closeOverlay('modalOverlay');document.getElementById('modalBody').classList.remove('hide');document.getElementById('successScreen').classList.remove('show');['f-name','f-phone','f-line','f-email','f-note'].forEach(id=>document.getElementById(id).value='');document.getElementById('f-city').value='';}
