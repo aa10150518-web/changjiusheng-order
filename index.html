@@ -148,12 +148,27 @@ body.is-tab-view .official-links{margin-top:0;}
 .card-img.competition-photo{height:auto;background:#f7efe1;display:block;}
 .card-img.competition-photo img{width:100%;height:auto;display:block;object-fit:contain;}
 @media (max-width:760px){.card-img.cert-photo-duo{height:230px}}
-.cert-motion-title{position:relative;margin-bottom:14px;padding:30px 24px;text-align:center;overflow:hidden;border:1px solid rgba(201,168,76,.32);background:linear-gradient(145deg,rgba(255,253,248,.96),rgba(246,231,207,.84));box-shadow:0 14px 34px rgba(139,107,26,.08);}
-.cert-motion-title::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 18%,rgba(226,192,106,.22),transparent 42%);opacity:.9;}
-.cert-motion-title .intro-kicker,.cert-motion-title h2,.cert-motion-title p{position:relative;z-index:1;}
-.cert-motion-title h2{font-family:'Noto Serif TC',serif;font-size:28px;line-height:1.55;letter-spacing:4px;color:var(--ink);animation:certTitleIn 2.4s cubic-bezier(.2,.8,.2,1) both;}
-.cert-motion-title p{font-size:13px;line-height:2;color:var(--ink3);letter-spacing:1px;margin-top:10px;animation:heroSoftIn 1.2s ease .28s both;}
+.cert-motion-title{position:relative;min-height:360px;margin-bottom:14px;padding:30px 24px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;border:1px solid rgba(201,168,76,.32);background:#2c2116;box-shadow:0 14px 34px rgba(139,107,26,.08);}
+.cert-motion-title::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(24,14,8,.72),rgba(24,14,8,.36),rgba(255,248,232,.2));}
+.cert-scene-gallery{position:absolute;inset:0;z-index:0;}
+.cert-scene-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;opacity:0;transform:scale(1.08);animation:certSceneCycle 72s infinite;}
+.cert-scene-gallery img:nth-child(2){animation-delay:6s;}
+.cert-scene-gallery img:nth-child(3){animation-delay:12s;}
+.cert-scene-gallery img:nth-child(4){animation-delay:18s;}
+.cert-scene-gallery img:nth-child(5){animation-delay:24s;}
+.cert-scene-gallery img:nth-child(6){animation-delay:30s;}
+.cert-scene-gallery img:nth-child(7){animation-delay:36s;}
+.cert-scene-gallery img:nth-child(8){animation-delay:42s;}
+.cert-scene-gallery img:nth-child(9){animation-delay:48s;}
+.cert-scene-gallery img:nth-child(10){animation-delay:54s;}
+.cert-scene-gallery img:nth-child(11){animation-delay:60s;}
+.cert-scene-gallery img:nth-child(12){animation-delay:66s;}
+.cert-motion-copy{position:relative;z-index:2;max-width:560px;color:#fff;}
+.cert-motion-title .intro-kicker{color:#f0cf76;text-shadow:0 2px 12px rgba(0,0,0,.38);}
+.cert-motion-title h2{font-family:'Noto Serif TC',serif;font-size:30px;line-height:1.55;letter-spacing:4px;color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.46);animation:certTitleIn 3.4s cubic-bezier(.2,.8,.2,1) both;}
+@keyframes certSceneCycle{0%{opacity:0;transform:scale(1.08);}4%{opacity:1;}12%{opacity:1;}16%{opacity:0;transform:scale(1.02);}100%{opacity:0;transform:scale(1.08);}}
 @keyframes certTitleIn{0%{opacity:0;transform:scale(.86);filter:blur(4px);}68%{opacity:1;transform:scale(1.035);filter:blur(0);}100%{opacity:1;transform:scale(1);filter:blur(0);}}
+@media (max-width:760px){.cert-motion-title{min-height:315px;padding:26px 16px}.cert-motion-title h2{font-size:25px;letter-spacing:3px}.cert-motion-title::before{background:linear-gradient(90deg,rgba(24,14,8,.76),rgba(24,14,8,.42),rgba(255,248,232,.18));}}
 
 
 .card-body{padding:14px 14px 9px 18px;}
@@ -600,9 +615,24 @@ textarea{resize:vertical;height:70px;}
 <div id="tab-cert" style="display:none">
   <div class="sec-label">國際認證</div>
   <div class="cert-motion-title reveal">
-    <div class="intro-kicker">CERTIFICATION SCENE</div>
-    <h2>國際認證現場<br>把作品能力<br>變成看得見的證明</h2>
-    <p>考生實作照片之後會放在這裡<br>用慢慢浮現的動畫呈現</p>
+    <div class="cert-scene-gallery" aria-hidden="true">
+      <img src="images/cert-exam-01.jpg" alt="">
+      <img src="images/cert-exam-02.jpg" alt="">
+      <img src="images/cert-exam-03.jpg" alt="">
+      <img src="images/cert-exam-04.jpg" alt="">
+      <img src="images/cert-exam-05.jpg" alt="">
+      <img src="images/cert-exam-06.jpg" alt="">
+      <img src="images/cert-exam-07.jpg" alt="">
+      <img src="images/cert-exam-08.jpg" alt="">
+      <img src="images/cert-exam-09.jpg" alt="">
+      <img src="images/cert-exam-10.jpg" alt="">
+      <img src="images/cert-exam-11.jpg" alt="">
+      <img src="images/cert-exam-12.jpg" alt="">
+    </div>
+    <div class="cert-motion-copy">
+      <div class="intro-kicker">CERTIFICATION SCENE</div>
+      <h2>國際認證現場<br>把作品能力<br>變成看得見的證明</h2>
+    </div>
   </div>
   <div class="card">
     <div class="card-img cert-photo-duo">
