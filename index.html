@@ -113,6 +113,8 @@ button.official-link{width:100%;appearance:none;-webkit-appearance:none;}
 #tab-courses,#tab-products,#tab-cert,#tab-comp{max-width:640px;margin:0 auto;}
 .card-img.is-empty::after{content:'圖片準備中';font-size:13px;color:var(--gold3);letter-spacing:3px;}
 body.is-tab-view .home-only{display:none;}
+body.is-tab-view .brand-intro{padding:22px 20px 24px;}
+body.is-tab-view .official-links{margin-top:0;}
 @media (max-width:760px){.brand-intro-inner{grid-template-columns:1fr;gap:18px}.official-links{grid-template-columns:1fr 1fr}.hero{padding:48px 18px 38px}.hero h1{font-size:28px;letter-spacing:3px}.brand-logo{width:72px;height:52px}.brand{font-size:23px}.brand-wrap{gap:10px;min-height:72px}.cart-btn{padding:6px 10px;font-size:12px}}
 .sec-label{font-size:13px;letter-spacing:3px;color:var(--gold3);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
 .sec-label::before{content:'◆';font-size:9px;color:var(--gold);}
@@ -273,8 +275,8 @@ textarea{resize:vertical;height:70px;}
     <div class="hero-line">課程　商品　認證　競賽</div>
     <div class="hero-quote">真正被留下來的<br>從來不只是作品<br>而是作品背後的心意</div>
   </div>
-</div><section class="brand-intro home-only">
-  <div class="brand-intro-inner reveal">
+</div><section class="brand-intro">
+  <div class="brand-intro-inner reveal home-only">
     <div>
       <div class="intro-kicker">ABOUT CHANGJIUSHENG</div>
       <h2>把金紙工藝<br>做成能被留下的祝福</h2>
@@ -292,7 +294,7 @@ textarea{resize:vertical;height:70px;}
     </div>
   </div>
   <div class="official-links">
-    <a class="official-link reveal" href="#about-founder">關於昌久貹</a>
+    <button class="official-link reveal" type="button" onclick="showHomeSection('about-founder')">關於昌久貹</button>
     <button class="official-link reveal" type="button" onclick="goTab('courses')">課程內容</button>
     <button class="official-link reveal" type="button" onclick="goTab('products')">作品訂製</button>
     <button class="official-link reveal" type="button" onclick="goTab('cert')">認證與競賽</button>
@@ -981,6 +983,7 @@ if('IntersectionObserver' in window){
 }
 let cart=[],pickerItem=null,selectedSession=null;
 function switchTab(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');document.body.classList.toggle('is-tab-view',id!=='courses');['courses','products','cert','comp'].forEach(k=>{document.getElementById('tab-'+k).style.display=k===id?'block':'none';});}
+function showHomeSection(sectionId){const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'courses'"));if(targetTab)switchTab(targetTab,'courses');setTimeout(()=>{const target=document.getElementById(sectionId);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});},50);}
 function goTab(id){const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'"+id+"'"));if(targetTab)switchTab(targetTab,id);const target=document.getElementById('tab-'+id);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});}
 function openPicker(name,price,sessions){pickerItem={name,price,sessions};selectedSession=null;document.getElementById('pickerTitle').textContent=name+'｜選擇場次';document.getElementById('pickerOptions').innerHTML=sessions.map((s,i)=>`<div class="session-opt" onclick="selectSess(this,${i})"><div class="radio"><div class="radio-dot"></div></div><div><div class="s-loc">📍 ${s.loc}</div><div class="s-date">📅 ${s.date}</div>${s.teacher?`<div class="s-teacher-d">👩‍🏫 ${s.teacher}</div>`:''}</div></div>`).join('');document.getElementById('pickerOverlay').classList.add('open');}
 function selectSess(el,i){document.querySelectorAll('.session-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');selectedSession=i;}
