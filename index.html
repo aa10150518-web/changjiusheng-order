@@ -112,6 +112,7 @@ button.official-link{width:100%;appearance:none;-webkit-appearance:none;}
 @media (max-width:760px){.hero-content{margin:0 auto;padding:26px 20px}.hero-media::after{background:linear-gradient(180deg,rgba(26,18,7,.34),rgba(255,248,235,.9) 72%)}.classroom-inner{grid-template-columns:1fr}.classroom-gallery img,.classroom-gallery img:first-child{height:230px}.classroom-gallery{grid-template-columns:1fr}}
 #tab-courses,#tab-products,#tab-cert,#tab-comp{max-width:640px;margin:0 auto;}
 .card-img.is-empty::after{content:'圖片準備中';font-size:13px;color:var(--gold3);letter-spacing:3px;}
+body.is-tab-view .home-only{display:none;}
 @media (max-width:760px){.brand-intro-inner{grid-template-columns:1fr;gap:18px}.official-links{grid-template-columns:1fr 1fr}.hero{padding:48px 18px 38px}.hero h1{font-size:28px;letter-spacing:3px}.brand-logo{width:72px;height:52px}.brand{font-size:23px}.brand-wrap{gap:10px;min-height:72px}.cart-btn{padding:6px 10px;font-size:12px}}
 .sec-label{font-size:13px;letter-spacing:3px;color:var(--gold3);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
 .sec-label::before{content:'◆';font-size:9px;color:var(--gold);}
@@ -129,10 +130,10 @@ button.official-link{width:100%;appearance:none;-webkit-appearance:none;}
 .card-img.course-photo-gallery{height:320px;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#f7efe1;}
 .course-photo-tile{position:relative;overflow:hidden;background:linear-gradient(160deg,#fffaf0,#f4e6c9);}
 .course-photo-tile img{width:100%;height:100%;object-fit:contain;object-position:center center;padding:6px;}
-.course-photo-label{position:absolute;left:10px;top:10px;z-index:2;background:rgba(42,31,14,.76);color:#fff;font-size:12px;letter-spacing:1px;padding:4px 9px;}
+.course-photo-label{position:absolute;left:10px;top:10px;z-index:2;background:rgba(42,31,14,.76);color:#fff;font-size:12px;letter-spacing:1px;line-height:1.3;padding:4px 9px;}
 .card-img.course-photo-single{height:560px;background:linear-gradient(160deg,#fffaf0,#f4e6c9);}
 .card-img.course-photo-single img{width:100%;height:100%;object-fit:contain;object-position:center center;padding:6px;}
-@media (max-width:760px){.card-img.course-photo-duo{height:230px}.card-img.course-photo-gallery{height:300px}.card-img.course-photo-single{height:520px}}
+@media (max-width:760px){.card-img.course-photo-duo{height:230px}.card-img.course-photo-gallery{height:300px}.card-img.course-photo-single{height:520px}.course-photo-label{top:auto;bottom:10px;left:8px;font-size:11px;padding:5px 8px;line-height:1.25;}}
 
 .card-img.poster-duo{height:auto;aspect-ratio:4/3;display:grid;grid-template-columns:1fr 1fr;gap:2px;align-items:stretch;overflow:hidden;background:linear-gradient(160deg,#fffaf0,#f4e6c9);}
 .card-img.poster-duo img{width:100% !important;height:100% !important;object-fit:cover;object-position:top center;padding:0;display:block;}
@@ -272,7 +273,7 @@ textarea{resize:vertical;height:70px;}
     <div class="hero-line">課程　商品　認證　競賽</div>
     <div class="hero-quote">真正被留下來的<br>從來不只是作品<br>而是作品背後的心意</div>
   </div>
-</div><section class="brand-intro">
+</div><section class="brand-intro home-only">
   <div class="brand-intro-inner reveal">
     <div>
       <div class="intro-kicker">ABOUT CHANGJIUSHENG</div>
@@ -297,7 +298,7 @@ textarea{resize:vertical;height:70px;}
     <button class="official-link reveal" type="button" onclick="goTab('cert')">認證與競賽</button>
   </div>
 </section>
-<section class="about-founder" id="about-founder">
+<section class="about-founder home-only" id="about-founder">
   <div class="about-founder-inner reveal">
     <div class="about-founder-card">
       <div class="founder-photo"><img src="images/founder-linyunrou.jpg" alt="昌久貹主理人林韵媃"></div>
@@ -318,7 +319,7 @@ textarea{resize:vertical;height:70px;}
     </div>
   </div>
 </section>
-<section class="classroom-section">
+<section class="classroom-section home-only">
   <div class="classroom-inner reveal">
     <div class="classroom-copy">
       <div class="intro-kicker">CLASSROOM</div>
@@ -979,7 +980,7 @@ if('IntersectionObserver' in window){
   revealItems.forEach(item=>item.classList.add('in-view'));
 }
 let cart=[],pickerItem=null,selectedSession=null;
-function switchTab(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');['courses','products','cert','comp'].forEach(k=>{document.getElementById('tab-'+k).style.display=k===id?'block':'none';});}
+function switchTab(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');document.body.classList.toggle('is-tab-view',id!=='courses');['courses','products','cert','comp'].forEach(k=>{document.getElementById('tab-'+k).style.display=k===id?'block':'none';});}
 function goTab(id){const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'"+id+"'"));if(targetTab)switchTab(targetTab,id);const target=document.getElementById('tab-'+id);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});}
 function openPicker(name,price,sessions){pickerItem={name,price,sessions};selectedSession=null;document.getElementById('pickerTitle').textContent=name+'｜選擇場次';document.getElementById('pickerOptions').innerHTML=sessions.map((s,i)=>`<div class="session-opt" onclick="selectSess(this,${i})"><div class="radio"><div class="radio-dot"></div></div><div><div class="s-loc">📍 ${s.loc}</div><div class="s-date">📅 ${s.date}</div>${s.teacher?`<div class="s-teacher-d">👩‍🏫 ${s.teacher}</div>`:''}</div></div>`).join('');document.getElementById('pickerOverlay').classList.add('open');}
 function selectSess(el,i){document.querySelectorAll('.session-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');selectedSession=i;}
