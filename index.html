@@ -26,7 +26,7 @@ body{background:
 .cart-btn{background:transparent;border:1px solid var(--gold3);color:var(--gold3);padding:7px 13px;border-radius:3px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:inherit;letter-spacing:1px;}
 .cart-btn:hover{background:var(--gold3);color:var(--white);}
 .cart-count{background:var(--red);color:#fff;border-radius:50%;width:16px;height:16px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;}
-.tabs{background:rgba(243,232,211,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(139,107,26,0.25);display:flex;overflow-x:auto;padding:0 10px;}
+.tabs{background:rgba(243,232,211,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(139,107,26,0.25);display:flex;overflow-x:auto;padding:0 10px;position:sticky;top:87px;z-index:99;box-shadow:0 6px 18px rgba(58,42,24,.08);}
 .tab{padding:9px 14px;font-size:13px;color:var(--ink3);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;letter-spacing:1px;transition:all .2s;}
 .tab.active{color:var(--gold3);border-bottom-color:var(--gold);font-weight:500;}
 .hero{position:relative;padding:70px 22px 54px;text-align:center;background:
@@ -114,7 +114,7 @@ button.official-link{width:100%;appearance:none;-webkit-appearance:none;}
 .student-showcase-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:.58fr 1.42fr;gap:24px;align-items:start;}
 .student-showcase h2{font-family:'Noto Serif TC',serif;font-size:26px;line-height:1.55;letter-spacing:3px;color:var(--ink);margin-bottom:10px;}
 .student-showcase p{font-size:14px;line-height:2;color:var(--ink2);letter-spacing:.8px;}
-.student-media-layout{display:grid;grid-template-columns:1.36fr .64fr;gap:14px;align-items:start;}
+.student-media-layout{display:grid;grid-template-columns:1.36fr .64fr;gap:14px;align-items:stretch;}
 .student-slideshow{position:relative;min-height:620px;overflow:hidden;border:1px solid rgba(201,168,76,.28);box-shadow:0 12px 30px rgba(42,31,14,.13);background:#f7efe1;}
 .student-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;opacity:0;transform:scale(1);animation:studentPhotoCycle 30s infinite;}
 .student-slide:nth-child(1){object-position:center 34%;}
@@ -126,15 +126,29 @@ button.official-link{width:100%;appearance:none;-webkit-appearance:none;}
 .student-slide:nth-child(3){animation-delay:12s;}
 .student-slide:nth-child(4){animation-delay:18s;}
 .student-slide:nth-child(5){animation-delay:24s;}
-.student-video-box{min-height:360px;border:1px solid rgba(201,168,76,.28);box-shadow:0 12px 30px rgba(42,31,14,.13);background:#1f170c;display:flex;flex-direction:column;}
-.student-video-box video{width:100%;height:100%;min-height:360px;object-fit:cover;display:block;background:#1f170c;}
+.student-video-box{height:620px;border:1px solid rgba(201,168,76,.28);box-shadow:0 12px 30px rgba(42,31,14,.13);background:#1f170c;display:flex;flex-direction:column;}
+.student-video-box video{width:100%;height:100%;object-fit:cover;display:block;background:#1f170c;}
 @keyframes studentPhotoCycle{0%{opacity:0;transform:scale(1);}7%{opacity:1;}24%{opacity:1;}34%{opacity:0;transform:scale(.985);}100%{opacity:0;transform:scale(1);}}
 .student-photo-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:12px;}
 .student-photo-grid.practice{grid-template-columns:repeat(4,1fr);}
 .student-photo-slot{min-height:190px;border:1.5px dashed rgba(201,168,76,.42);background:linear-gradient(135deg,rgba(255,253,248,.86),rgba(243,232,211,.72));display:flex;align-items:center;justify-content:center;text-align:center;color:var(--gold3);font-family:'Noto Serif TC',serif;font-size:15px;letter-spacing:2px;box-shadow:0 10px 26px rgba(42,31,14,.08);}
 .student-photo-slot.large{min-height:392px;grid-row:span 2;}
 .student-practice-showcase{margin:22px 0 26px;padding:22px 18px;background:rgba(255,253,248,.72);border:1px solid rgba(201,168,76,.22);box-shadow:0 10px 28px rgba(139,107,26,.08);}
-@media (max-width:760px){.student-showcase-inner{grid-template-columns:1fr}.student-media-layout{grid-template-columns:1fr}.student-slideshow{min-height:520px}.student-video-box,.student-video-box video{min-height:230px}.student-photo-grid,.student-photo-grid.practice{grid-template-columns:1fr 1fr}.student-photo-slot,.student-photo-slot.large{min-height:180px;grid-row:auto}.student-showcase h2{font-size:24px}.student-practice-showcase{padding:18px 12px}}
+.student-result-section{background:linear-gradient(180deg,rgba(248,241,226,.92),rgba(255,253,248,.98));padding:34px 18px;border-top:1px solid rgba(201,168,76,.16);border-bottom:1px solid rgba(201,168,76,.16);}
+.student-result-inner{max-width:920px;margin:0 auto;}
+.result-showcase-carousel{position:relative;min-height:560px;overflow:hidden;border:1px solid rgba(201,168,76,.28);background:#f7efe1;box-shadow:0 14px 34px rgba(42,31,14,.13);}
+.result-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;opacity:0;transform:scale(1);animation:resultPhotoCycle 54s infinite;}
+.result-slide:nth-child(2){animation-delay:6s;}
+.result-slide:nth-child(3){animation-delay:12s;}
+.result-slide:nth-child(4){animation-delay:18s;}
+.result-slide:nth-child(5){animation-delay:24s;}
+.result-slide:nth-child(6){animation-delay:30s;}
+.result-slide:nth-child(7){animation-delay:36s;}
+.result-slide:nth-child(8){animation-delay:42s;}
+.result-slide:nth-child(9){animation-delay:48s;}
+@keyframes resultPhotoCycle{0%{opacity:0;transform:scale(1);}5%{opacity:1;}15%{opacity:1;}21%{opacity:0;transform:scale(.985);}100%{opacity:0;transform:scale(1);}}
+@media (max-width:760px){.student-showcase-inner{grid-template-columns:1fr}.student-media-layout{grid-template-columns:1fr}.student-slideshow{min-height:520px}.student-video-box{height:230px;min-height:230px}.student-video-box video{height:230px;min-height:230px}.student-photo-grid,.student-photo-grid.practice{grid-template-columns:1fr 1fr}.student-photo-slot,.student-photo-slot.large{min-height:180px;grid-row:auto}.student-showcase h2{font-size:24px}.student-practice-showcase{padding:18px 12px}}
+@media (max-width:760px){.student-result-section{padding:28px 14px}.result-showcase-carousel{min-height:520px}}
 @media (max-width:430px){.student-photo-grid,.student-photo-grid.practice{grid-template-columns:1fr}.student-photo-slot{min-height:160px}}
 @media (max-width:760px){.hero-content{background:transparent;border:none;box-shadow:none;backdrop-filter:none}.hero-content h1,.hero-content .hero-orn,.hero-content .hero-line,.hero-content .hero-quote{text-shadow:0 2px 12px rgba(255,253,248,.95),0 1px 3px rgba(255,253,248,.75)}}
 #tab-courses,#tab-products,#tab-cert,#tab-comp{max-width:640px;margin:0 auto;}
@@ -142,11 +156,12 @@ button.official-link{width:100%;appearance:none;-webkit-appearance:none;}
 #tab-cert,#tab-comp{background:linear-gradient(145deg,rgba(58,42,24,.96),rgba(92,67,38,.9));border:1px solid rgba(226,192,106,.42);padding:18px 16px 24px;box-shadow:0 18px 46px rgba(42,31,14,.18);}
 #tab-cert .sec-label,#tab-comp .sec-label{color:var(--gold2);}
 #tab-cert .sec-label::after,#tab-comp .sec-label::after{background:linear-gradient(90deg,rgba(226,192,106,.6),transparent);}
+#sec-paper,#sec-marketing,#tab-products,#tab-cert,#tab-comp,#student-results{scroll-margin-top:142px;}
 .card-img.is-empty::after{content:'圖片準備中';font-size:13px;color:var(--gold3);letter-spacing:3px;}
 body.is-tab-view .home-only{display:none;}
 body.is-tab-view .brand-intro{padding:22px 20px 24px;}
 body.is-tab-view .official-links{margin-top:0;}
-@media (max-width:760px){.brand-intro-inner{grid-template-columns:1fr;gap:18px}.official-links{grid-template-columns:1fr 1fr}.hero{padding:48px 18px 38px}.hero h1{font-size:28px;letter-spacing:3px}.brand-logo{width:72px;height:52px}.brand{font-size:23px}.brand-wrap{gap:10px;min-height:72px}.cart-btn{padding:6px 10px;font-size:12px}}
+@media (max-width:760px){.brand-intro-inner{grid-template-columns:1fr;gap:18px}.official-links{grid-template-columns:1fr 1fr}.hero{padding:48px 18px 38px}.hero h1{font-size:28px;letter-spacing:3px}.brand-logo{width:72px;height:52px}.brand{font-size:23px}.brand-wrap{gap:10px;min-height:72px}.cart-btn{padding:6px 10px;font-size:12px}.tabs{top:73px}#sec-paper,#sec-marketing,#tab-products,#tab-cert,#tab-comp,#student-results{scroll-margin-top:128px}}
 .sec-label{font-size:13px;letter-spacing:3px;color:var(--gold3);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
 .sec-label::before{content:'◆';font-size:9px;color:var(--gold);}
 .sec-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,0.4),transparent);}
@@ -512,16 +527,6 @@ textarea{resize:vertical;height:70px;}
   </div>
   </div><!-- end sec-paper -->
 
-  <div class="student-practice-showcase reveal">
-    <div class="sec-label">學員課後練習作品</div>
-    <div class="student-photo-grid practice">
-      <div class="student-photo-slot">練習作品 01</div>
-      <div class="student-photo-slot">練習作品 02</div>
-      <div class="student-photo-slot">練習作品 03</div>
-      <div class="student-photo-slot">練習作品 04</div>
-    </div>
-  </div>
-
   <!-- 行銷課程 -->
   <div id="sec-marketing" style="margin-top:8px;">
     <div class="sec-label">行銷課程</div>
@@ -886,6 +891,23 @@ textarea{resize:vertical;height:70px;}
     </div>
   </div>
 </div>
+
+<section id="student-results" class="student-result-section home-only">
+  <div class="student-result-inner reveal">
+    <div class="sec-label">學員下課合照與成果作品</div>
+    <div class="result-showcase-carousel" aria-label="學員下課合照與成果作品輪播">
+      <img class="result-slide" src="images/student-result-01.jpg" alt="學員下課合照">
+      <img class="result-slide" src="images/student-result-02.jpg" alt="學員成果作品">
+      <img class="result-slide" src="images/student-result-03.jpg" alt="學員成果作品">
+      <img class="result-slide" src="images/student-result-04.jpg" alt="學員成果作品">
+      <img class="result-slide" src="images/student-result-05.jpg" alt="學員下課合照">
+      <img class="result-slide" src="images/student-result-06.jpg" alt="學員成果作品">
+      <img class="result-slide" src="images/student-result-07.jpg" alt="學員成果作品">
+      <img class="result-slide" src="images/student-result-08.jpg" alt="學員成果作品">
+      <img class="result-slide" src="images/student-result-09.jpg" alt="學員成果作品">
+    </div>
+  </div>
+</section>
 
 <!-- 學員評價區塊 -->
 <div style="background:linear-gradient(160deg,#FFF0F4 0%,#FFE4EC 50%,#FFF0F4 100%);padding:28px 18px;">
