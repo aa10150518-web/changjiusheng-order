@@ -91,10 +91,10 @@ button.official-link{width:100%;appearance:none;-webkit-appearance:none;}
 
 .hero-media{position:absolute;inset:0;overflow:hidden;z-index:0;}
 .hero-media::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,18,7,.6),rgba(26,18,7,.22) 46%,rgba(250,244,232,.84) 100%);}
-.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.04);animation:heroPhotoCycle 28s infinite;}
-.hero-slide:nth-child(2){animation-delay:7s;}
-.hero-slide:nth-child(3){animation-delay:14s;}
-.hero-slide:nth-child(4){animation-delay:21s;}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.04);animation:heroPhotoCycle 16s infinite;}
+.hero-slide:nth-child(2){animation-delay:4s;}
+.hero-slide:nth-child(3){animation-delay:8s;}
+.hero-slide:nth-child(4){animation-delay:12s;}
 .hero-slide-1{background-position:center 54%;}
 .hero-slide-2{background-position:center 50%;}
 .hero-slide-3{background-position:center 56%;}
@@ -116,19 +116,29 @@ button.official-link{width:100%;appearance:none;-webkit-appearance:none;}
 .student-showcase p{font-size:14px;line-height:2;color:var(--ink2);letter-spacing:.8px;}
 .student-media-layout{display:grid;grid-template-columns:1.36fr .64fr;gap:14px;align-items:stretch;}
 .student-slideshow{position:relative;min-height:620px;overflow:hidden;border:1px solid rgba(201,168,76,.28);box-shadow:0 12px 30px rgba(42,31,14,.13);background:#f7efe1;}
-.student-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;opacity:0;transform:scale(1);animation:studentPhotoCycle 30s infinite;}
-.student-slide:nth-child(1){object-position:center 34%;}
-.student-slide:nth-child(2){object-position:center 42%;}
-.student-slide:nth-child(3){object-position:center 44%;}
-.student-slide:nth-child(4){object-position:center 40%;}
-.student-slide:nth-child(5){object-position:center 38%;}
-.student-slide:nth-child(2){animation-delay:6s;}
-.student-slide:nth-child(3){animation-delay:12s;}
-.student-slide:nth-child(4){animation-delay:18s;}
-.student-slide:nth-child(5){animation-delay:24s;}
+.student-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;opacity:0;transform:scale(1);animation:studentPhotoCycle 36s infinite;}
+.student-slide:nth-child(1){object-position:center 45%;}
+.student-slide:nth-child(2){object-position:center 38%;}
+.student-slide:nth-child(3){object-position:center 42%;}
+.student-slide:nth-child(4){object-position:center 42%;}
+.student-slide:nth-child(5){object-position:center 45%;}
+.student-slide:nth-child(6){object-position:center 34%;}
+.student-slide:nth-child(7){object-position:center 42%;}
+.student-slide:nth-child(8){object-position:center 44%;}
+.student-slide:nth-child(9){object-position:center 40%;}
+.student-slide:nth-child(10){object-position:center 38%;}
+.student-slide:nth-child(2){animation-delay:3.6s;}
+.student-slide:nth-child(3){animation-delay:7.2s;}
+.student-slide:nth-child(4){animation-delay:10.8s;}
+.student-slide:nth-child(5){animation-delay:14.4s;}
+.student-slide:nth-child(6){animation-delay:18s;}
+.student-slide:nth-child(7){animation-delay:21.6s;}
+.student-slide:nth-child(8){animation-delay:25.2s;}
+.student-slide:nth-child(9){animation-delay:28.8s;}
+.student-slide:nth-child(10){animation-delay:32.4s;}
 .student-video-box{height:620px;border:1px solid rgba(201,168,76,.28);box-shadow:0 12px 30px rgba(42,31,14,.13);background:#1f170c;display:flex;flex-direction:column;}
 .student-video-box video{width:100%;height:100%;object-fit:cover;display:block;background:#1f170c;}
-@keyframes studentPhotoCycle{0%{opacity:0;transform:scale(1);}7%{opacity:1;}24%{opacity:1;}34%{opacity:0;transform:scale(.985);}100%{opacity:0;transform:scale(1);}}
+@keyframes studentPhotoCycle{0%{opacity:0;transform:scale(1);}2%{opacity:1;}8%{opacity:1;}10%{opacity:0;transform:scale(.985);}100%{opacity:0;transform:scale(1);}}
 .student-photo-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:12px;}
 .student-photo-grid.practice{grid-template-columns:repeat(4,1fr);}
 .student-photo-slot{min-height:190px;border:1.5px dashed rgba(201,168,76,.42);background:linear-gradient(135deg,rgba(255,253,248,.86),rgba(243,232,211,.72));display:flex;align-items:center;justify-content:center;text-align:center;color:var(--gold3);font-family:'Noto Serif TC',serif;font-size:15px;letter-spacing:2px;box-shadow:0 10px 26px rgba(42,31,14,.08);}
@@ -137,16 +147,17 @@ button.official-link{width:100%;appearance:none;-webkit-appearance:none;}
 .student-result-section{background:linear-gradient(180deg,rgba(248,241,226,.92),rgba(255,253,248,.98));padding:34px 18px;border-top:1px solid rgba(201,168,76,.16);border-bottom:1px solid rgba(201,168,76,.16);}
 .student-result-inner{max-width:920px;margin:0 auto;}
 .result-showcase-carousel{position:relative;min-height:560px;overflow:hidden;border:1px solid rgba(201,168,76,.28);background:#f7efe1;box-shadow:0 14px 34px rgba(42,31,14,.13);}
-.result-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;opacity:0;transform:scale(1);animation:resultPhotoCycle 54s infinite;}
-.result-slide:nth-child(2){animation-delay:6s;}
-.result-slide:nth-child(3){animation-delay:12s;}
-.result-slide:nth-child(4){animation-delay:18s;}
-.result-slide:nth-child(5){animation-delay:24s;}
-.result-slide:nth-child(6){animation-delay:30s;}
-.result-slide:nth-child(7){animation-delay:36s;}
-.result-slide:nth-child(8){animation-delay:42s;}
-.result-slide:nth-child(9){animation-delay:48s;}
-@keyframes resultPhotoCycle{0%{opacity:0;transform:scale(1);}5%{opacity:1;}15%{opacity:1;}21%{opacity:0;transform:scale(.985);}100%{opacity:0;transform:scale(1);}}
+.result-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;opacity:0;transform:scale(1);animation:resultPhotoCycle 36s infinite;}
+.result-slide:nth-child(2){animation-delay:3.6s;}
+.result-slide:nth-child(3){animation-delay:7.2s;}
+.result-slide:nth-child(4){animation-delay:10.8s;}
+.result-slide:nth-child(5){animation-delay:14.4s;}
+.result-slide:nth-child(6){animation-delay:18s;}
+.result-slide:nth-child(7){animation-delay:21.6s;}
+.result-slide:nth-child(8){animation-delay:25.2s;}
+.result-slide:nth-child(9){animation-delay:28.8s;}
+.result-slide:nth-child(10){animation-delay:32.4s;}
+@keyframes resultPhotoCycle{0%{opacity:0;transform:scale(1);}2%{opacity:1;}8%{opacity:1;}10%{opacity:0;transform:scale(.985);}100%{opacity:0;transform:scale(1);}}
 @media (max-width:760px){.student-showcase-inner{grid-template-columns:1fr}.student-media-layout{grid-template-columns:1fr}.student-slideshow{min-height:520px}.student-video-box{height:230px;min-height:230px}.student-video-box video{height:230px;min-height:230px}.student-photo-grid,.student-photo-grid.practice{grid-template-columns:1fr 1fr}.student-photo-slot,.student-photo-slot.large{min-height:180px;grid-row:auto}.student-showcase h2{font-size:24px}.student-practice-showcase{padding:18px 12px}}
 @media (max-width:760px){.student-result-section{padding:28px 14px}.result-showcase-carousel{min-height:520px}}
 @media (max-width:430px){.student-photo-grid,.student-photo-grid.practice{grid-template-columns:1fr}.student-photo-slot{min-height:160px}}
@@ -197,22 +208,22 @@ body.is-tab-view .official-links{margin-top:0;}
 .cert-motion-title{position:relative;min-height:360px;margin-bottom:14px;padding:30px 24px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;border:1px solid rgba(201,168,76,.32);background:#2c2116;box-shadow:0 14px 34px rgba(139,107,26,.08);}
 .cert-motion-title::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(24,14,8,.72),rgba(24,14,8,.36),rgba(255,248,232,.2));}
 .cert-scene-gallery{position:absolute;inset:0;z-index:0;}
-.cert-scene-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;opacity:0;transform:scale(1.08);animation:certSceneCycle 72s infinite;}
-.cert-scene-gallery img:nth-child(2){animation-delay:6s;}
-.cert-scene-gallery img:nth-child(3){animation-delay:12s;}
-.cert-scene-gallery img:nth-child(4){animation-delay:18s;}
-.cert-scene-gallery img:nth-child(5){animation-delay:24s;}
-.cert-scene-gallery img:nth-child(6){animation-delay:30s;}
-.cert-scene-gallery img:nth-child(7){animation-delay:36s;}
-.cert-scene-gallery img:nth-child(8){animation-delay:42s;}
-.cert-scene-gallery img:nth-child(9){animation-delay:48s;}
-.cert-scene-gallery img:nth-child(10){animation-delay:54s;}
-.cert-scene-gallery img:nth-child(11){animation-delay:60s;}
-.cert-scene-gallery img:nth-child(12){animation-delay:66s;}
+.cert-scene-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;opacity:0;transform:scale(1.08);animation:certSceneCycle 42s infinite;}
+.cert-scene-gallery img:nth-child(2){animation-delay:3.5s;}
+.cert-scene-gallery img:nth-child(3){animation-delay:7s;}
+.cert-scene-gallery img:nth-child(4){animation-delay:10.5s;}
+.cert-scene-gallery img:nth-child(5){animation-delay:14s;}
+.cert-scene-gallery img:nth-child(6){animation-delay:17.5s;}
+.cert-scene-gallery img:nth-child(7){animation-delay:21s;}
+.cert-scene-gallery img:nth-child(8){animation-delay:24.5s;}
+.cert-scene-gallery img:nth-child(9){animation-delay:28s;}
+.cert-scene-gallery img:nth-child(10){animation-delay:31.5s;}
+.cert-scene-gallery img:nth-child(11){animation-delay:35s;}
+.cert-scene-gallery img:nth-child(12){animation-delay:38.5s;}
 .cert-motion-copy{position:relative;z-index:2;max-width:560px;color:#fff;}
 .cert-motion-title .intro-kicker{color:#f0cf76;text-shadow:0 2px 12px rgba(0,0,0,.38);}
 .cert-motion-title h2{font-family:'Noto Serif TC',serif;font-size:30px;line-height:1.55;letter-spacing:4px;color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.46);animation:certTitleIn 3.4s cubic-bezier(.2,.8,.2,1) both;}
-@keyframes certSceneCycle{0%{opacity:0;transform:scale(1.08);}4%{opacity:1;}12%{opacity:1;}16%{opacity:0;transform:scale(1.02);}100%{opacity:0;transform:scale(1.08);}}
+@keyframes certSceneCycle{0%{opacity:0;transform:scale(1.08);}2.5%{opacity:1;}7%{opacity:1;}8.5%{opacity:0;transform:scale(1.02);}100%{opacity:0;transform:scale(1.08);}}
 @keyframes certTitleIn{0%{opacity:0;transform:scale(.86);filter:blur(4px);}68%{opacity:1;transform:scale(1.035);filter:blur(0);}100%{opacity:1;transform:scale(1);filter:blur(0);}}
 @media (max-width:760px){.cert-motion-title{min-height:315px;padding:26px 16px}.cert-motion-title h2{font-size:25px;letter-spacing:3px}.cert-motion-title::before{background:linear-gradient(90deg,rgba(24,14,8,.76),rgba(24,14,8,.42),rgba(255,248,232,.18));}}
 
@@ -412,6 +423,11 @@ textarea{resize:vertical;height:70px;}
     </div>
     <div class="student-media-layout">
       <div class="student-slideshow" aria-label="學員上課照片輪播">
+        <img class="student-slide" src="images/student-class-new-01.jpg" alt="學員上課紀錄">
+        <img class="student-slide" src="images/student-class-new-02.jpg" alt="學員上課紀錄">
+        <img class="student-slide" src="images/student-class-new-03.jpg" alt="學員上課紀錄">
+        <img class="student-slide" src="images/student-class-new-04.jpg" alt="學員上課紀錄">
+        <img class="student-slide" src="images/student-class-new-05.jpg" alt="學員上課紀錄">
         <img class="student-slide" src="images/student-class-01.jpg" alt="學員上課紀錄">
         <img class="student-slide" src="images/student-class-02.jpg" alt="學員上課紀錄">
         <img class="student-slide" src="images/student-class-03.jpg" alt="學員上課紀錄">
@@ -452,6 +468,7 @@ textarea{resize:vertical;height:70px;}
     <div class="pills">
       <div class="pill" style="background:#FFE8EF;border-color:#F2728A;color:#C04060;">📍 5月開課日</div>
       <div class="pill" style="background:#E8F5E9;border-color:#6DBF8A;color:#2E7D52;">📍 6月開課日</div>
+      <div class="pill" style="background:#F1ECFF;border-color:#9B80D8;color:#5B3FA3;">📍 7月開課日</div>
     </div>
     <div style="padding:8px 14px 10px 18px;">
       <div style="font-size:12px;color:var(--gold3);margin-bottom:8px;letter-spacing:1px;">選擇班別</div>
@@ -485,8 +502,9 @@ textarea{resize:vertical;height:70px;}
       <div style="display:flex;flex-direction:column;gap:5px;">
         <div class="session-row"><span class="s-pill" style="background:#FFE8EF;border-color:#F2728A;">📍 台中 5/19(二)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃・潘怡婷</span></div>
         <div class="session-row"><span class="s-pill" style="background:#FFE8EF;border-color:#F2728A;">📍 高雄 5/24(日)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃・潘怡婷</span></div>
-        <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📍 台中 6/16(二)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃・潘怡婷</span></div>
+        <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📍 台中 6/18(四)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃・潘怡婷</span></div>
         <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📍 高雄 6/27(六)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃・潘怡婷</span></div>
+        <div class="session-row"><span class="s-pill" style="background:#F1ECFF;border-color:#9B80D8;">📍 屏東 7/4(六)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 林韵媃・潘怡婷</span></div>
       </div>
     </div>
   </div>
@@ -551,10 +569,11 @@ textarea{resize:vertical;height:70px;}
       <div class="session-row"><span class="s-pill" style="background:#FFE8EF;border-color:#F2728A;">📍 高雄 5/31(日)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 AI行銷 林韵媃</span></div>
       <div class="session-row"><span class="s-pill" style="background:#FFE8EF;border-color:#F2728A;">📍 台中 5/22(五)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 平台流量 陳美璇</span></div>
       <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📍 台中 6/10(三)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 AI行銷 林韵媃</span></div>
+      <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📍 高雄 6/14(日)</span><span class="s-dot">·</span><span class="s-teacher">👩‍🏫 AI行銷 林韵媃</span></div>
     </div>
     <div class="card-footer">
       <div><span class="price">$3,780</span><span class="price-unit">/ 人</span></div>
-      <button class="add-btn" onclick="openPicker('AI 行銷入門班',3780,[{loc:'高雄',date:'5月31日(日)',teacher:'AI行銷 林韵媃'},{loc:'台中',date:'5月22日(五)',teacher:'平台流量 陳美璇'},{loc:'台中',date:'6月10日(三)',teacher:'AI行銷 林韵媃'}])">選擇場次</button>
+      <button class="add-btn" onclick="openPicker('AI 行銷入門班',3780,[{loc:'高雄',date:'5月31日(日)',teacher:'AI行銷 林韵媃'},{loc:'台中',date:'5月22日(五)',teacher:'平台流量 陳美璇'},{loc:'台中',date:'6月10日(三)',teacher:'AI行銷 林韵媃'},{loc:'高雄',date:'6月14日(日)',teacher:'AI行銷 林韵媃'}])">選擇場次</button>
     </div>
   </div>
 
@@ -573,6 +592,7 @@ textarea{resize:vertical;height:70px;}
     <div class="sessions">
       <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📅 6月6日(六)</span><span class="s-dot">·</span><span class="s-teacher">🌟 早鳥優惠</span></div>
       <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📅 6月24日(三)</span></div>
+      <div class="session-row"><span class="s-pill" style="background:#E8F5E9;border-color:#6DBF8A;">📍 高雄 6月28日(日)</span></div>
     </div>
     <div class="card-footer">
       <div class="price-wrap">
@@ -909,6 +929,7 @@ textarea{resize:vertical;height:70px;}
   <div class="student-result-inner reveal">
     <div class="sec-label">學員下課合照與成果作品</div>
     <div class="result-showcase-carousel" aria-label="學員下課合照與成果作品輪播">
+      <img class="result-slide" src="images/student-result-new-01.jpg" alt="學員下課合照與成果作品">
       <img class="result-slide" src="images/student-result-01.jpg" alt="學員下課合照">
       <img class="result-slide" src="images/student-result-02.jpg" alt="學員成果作品">
       <img class="result-slide" src="images/student-result-03.jpg" alt="學員成果作品">
@@ -1097,9 +1118,9 @@ function goTab(id){const targetTab=[...document.querySelectorAll('.tab')].find(t
 function openPicker(name,price,sessions){pickerItem={name,price,sessions};selectedSession=null;document.getElementById('pickerTitle').textContent=name+'｜選擇場次';document.getElementById('pickerOptions').innerHTML=sessions.map((s,i)=>`<div class="session-opt" onclick="selectSess(this,${i})"><div class="radio"><div class="radio-dot"></div></div><div><div class="s-loc">📍 ${s.loc}</div><div class="s-date">📅 ${s.date}</div>${s.teacher?`<div class="s-teacher-d">👩‍🏫 ${s.teacher}</div>`:''}</div></div>`).join('');document.getElementById('pickerOverlay').classList.add('open');}
 function selectSess(el,i){document.querySelectorAll('.session-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');selectedSession=i;}
 function tierOptionHtml(s,i,icon){const priceText=s.priceLabel||s.teacher||'';const detail=s.detail||s.loc||'';const teacher=s.teacher&&!s.priceLabel?s.teacher:s.teacherName||'';return `<div class="session-opt" onclick="selectSess(this,${i})"><div class="radio"><div class="radio-dot"></div></div><div class="session-copy"><div class="s-loc">${icon} ${s.date}</div>${detail&&detail!=='課程班別'?`<div class="s-date">${detail}</div>`:''}${teacher?`<div class="s-teacher-d">👩‍🏫 ${teacher}</div>`:''}</div><div class="session-price">${priceText}</div></div>`;}
-function openBouquetTierPicker(){pickerItem={name:'小花束金紙花束班',price:0,sessions:[{loc:'入門班',date:'台中 5/19(二)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'高雄 5/24(日)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'台中 6/16(二)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'高雄 6/27(六)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'進階班',date:'台中 6/16(二)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'進階班',date:'高雄 6/27(六)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'職能認證班',date:'台中 6/16(二)',detail:'職能認證班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500},{loc:'職能認證班',date:'高雄 6/27(六)',detail:'職能認證班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500}]};selectedSession=null;document.getElementById('pickerTitle').textContent='小花束金紙花束班｜選擇班別與場次';document.getElementById('pickerOptions').innerHTML=pickerItem.sessions.map((s,i)=>tierOptionHtml(s,i,'🌸')).join('');document.getElementById('pickerOverlay').classList.add('open');}
+function openBouquetTierPicker(){pickerItem={name:'小花束金紙花束班',price:0,sessions:[{loc:'入門班',date:'台中 5/19(二)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'高雄 5/24(日)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'台中 6/18(四)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'高雄 6/27(六)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'屏東 7月4日(六)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'進階班',date:'台中 6/18(四)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'進階班',date:'高雄 6/27(六)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'進階班',date:'屏東 7月4日(六)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'職能認證班',date:'台中 6/18(四)',detail:'職能認證班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500},{loc:'職能認證班',date:'高雄 6/27(六)',detail:'職能認證班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500},{loc:'職能認證班',date:'屏東 7月4日(六)',detail:'職能認證班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500}]};selectedSession=null;document.getElementById('pickerTitle').textContent='小花束金紙花束班｜選擇班別與場次';document.getElementById('pickerOptions').innerHTML=pickerItem.sessions.map((s,i)=>tierOptionHtml(s,i,'🌸')).join('');document.getElementById('pickerOverlay').classList.add('open');}
 function openCourseTierPicker(name){pickerItem={name,price:0,sessions:[{loc:'課程班別',date:'入門班',teacher:'NT$32,800',price:32800},{loc:'課程班別',date:'進階班',teacher:'NT$36,800',price:36800}]};selectedSession=null;document.getElementById('pickerTitle').textContent=name+'｜選擇班別';document.getElementById('pickerOptions').innerHTML=pickerItem.sessions.map((s,i)=>tierOptionHtml(s,i,'🌸')).join('');document.getElementById('pickerOverlay').classList.add('open');}
-function openPickerCustom(){pickerItem={name:'AI 品牌實戰進階班',price:0,sessions:[{loc:'線上/實體',date:'6月6日(六)',teacher:'早鳥價 $5,800',price:5800},{loc:'線上/實體',date:'6月24日(三)',teacher:'一般價 $6,600',price:6600}]};selectedSession=null;document.getElementById('pickerTitle').textContent='AI 品牌實戰進階班｜選擇場次';document.getElementById('pickerOptions').innerHTML=pickerItem.sessions.map((s,i)=>tierOptionHtml(s,i,'📅')).join('');document.getElementById('pickerOverlay').classList.add('open');}
+function openPickerCustom(){pickerItem={name:'AI 品牌實戰進階班',price:0,sessions:[{loc:'線上/實體',date:'6月6日(六)',teacher:'早鳥價 $5,800',price:5800},{loc:'線上/實體',date:'6月24日(三)',teacher:'一般價 $6,600',price:6600},{loc:'高雄',date:'6月28日(日)',teacher:'一般價 $6,600',price:6600}]};selectedSession=null;document.getElementById('pickerTitle').textContent='AI 品牌實戰進階班｜選擇場次';document.getElementById('pickerOptions').innerHTML=pickerItem.sessions.map((s,i)=>tierOptionHtml(s,i,'📅')).join('');document.getElementById('pickerOverlay').classList.add('open');}
 function confirmSession(){if(selectedSession===null){alert('請選擇場次');return;}const s=pickerItem.sessions[selectedSession];const price=s.price||pickerItem.price;const label=s.teacherName?`${pickerItem.name}（${s.loc} ${s.date} · ${s.teacherName}）`:s.loc==='課程班別'?`${pickerItem.name}（${s.date} · ${s.teacher}）`:s.teacher?`${pickerItem.name}（${s.loc} ${s.date} · ${s.teacher}）`:`${pickerItem.name}（${s.loc} ${s.date}）`;addToCartRaw(label,price);closeOverlay('pickerOverlay');showToast('✓ 已加入報名清單');}
 function addDirect(name,price,btn,origLabel){addToCartRaw(name,price);if(btn){btn.classList.add('added');btn.textContent='✓ 已加入';setTimeout(()=>{btn.classList.remove('added');btn.textContent=origLabel;},2000);}showToast('✓ 已加入清單');}
 function addToCartRaw(name,price){const ex=cart.find(i=>i.name===name);if(ex)ex.qty++;else cart.push({name,price,qty:1});updateCount();}
