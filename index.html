@@ -299,12 +299,20 @@ body.is-tab-view .official-links{margin-top:0;}
 .mini-card{background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:12px 10px;text-align:center;position:relative;overflow:hidden;cursor:pointer;}
 .mini-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold2),var(--gold3));}
 .mini-card:hover{background:#FFFBF0;}
+.mini-card.has-photo{padding:0;text-align:left;}
+.mini-photo{height:148px;background:#f7efe1;overflow:hidden;border-bottom:1px solid rgba(201,168,76,.2);}
+.mini-photo.duo{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.mini-photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:center center;}
+.mini-card-copy{padding:10px;text-align:center;}
+.product-card-photos{height:180px;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#f7efe1;border-bottom:1px solid rgba(201,168,76,.18);overflow:hidden;}
+.product-card-photos img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;}
 .mini-icon{font-size:24px;margin-bottom:6px;}
 .mini-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;}
 .mini-desc{font-size:12px;color:var(--ink3);line-height:1.6;}
 .mini-full{background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:14px;position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;margin-bottom:8px;cursor:pointer;}
 .mini-full::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold2),var(--gold3));}
 .mini-full:hover{background:#FFFBF0;}
+@media (max-width:760px){.mini-photo{height:136px}.product-card-photos{height:160px;}}
 .overlay{display:none;position:fixed;inset:0;background:rgba(42,31,14,.6);z-index:200;}
 .overlay.open{display:flex;align-items:flex-end;}
 .bottom-sheet{background:var(--white);border-radius:16px 16px 0 0;border-top:3px solid var(--gold);padding:20px 18px 32px;width:100%;max-width:520px;margin:0 auto;max-height:80vh;overflow-y:auto;transform:translateY(100%);transition:transform .3s ease;}
@@ -762,18 +770,11 @@ textarea{resize:vertical;height:70px;}
       <small>祭祖、追思、清明、中元、祖先、告別式等敬奉</small>
     </button>
   </div>
-  <div class="card product-category-item product-blessing">
-    <div class="card-body">
-      <div class="card-tag">手作 · 全紙製</div>
-      <div class="card-title">好神花｜神明供花</div>
-      <div class="card-subtitle">敬獻的不只是花<br>而是一份誠意與心意</div>
-      <div class="card-desc">✔ 全紙質可燒化　✔ 多色系搭配<br>✔ 適合祝壽・還願・敬神</div>
-    </div>
-    <div class="pills"><div class="pill">📦 宅配/自取</div><div class="pill">🎨 多色可選</div></div>
-    <div class="card-footer"><span style="font-size:13px;color:var(--ink3)">洽詢報價</span><button class="add-btn" onclick="addDirect('好神花｜神明供花（洽詢）',0,this,'加入詢問')">加入詢問</button></div>
-  </div>
-
   <div class="card product-category-item product-memorial">
+    <div class="product-card-photos">
+      <img src="images/product-yongsi-01.jpg" alt="永思花作品">
+      <img src="images/product-yongsi-02.jpg" alt="永思花作品">
+    </div>
     <div class="card-body">
       <div class="card-tag">清明 · 思親</div>
       <div class="card-title">永思花｜思念紀念花</div>
@@ -784,24 +785,25 @@ textarea{resize:vertical;height:70px;}
     <div class="card-footer"><span style="font-size:13px;color:var(--ink3)">洽詢報價</span><button class="add-btn" onclick="addDirect('永思花｜思念紀念花（洽詢）',0,this,'加入詢問')">加入詢問</button></div>
   </div>
 
-  <div class="series-title product-category-item product-blessing">紙藝花禮系列 🌸</div>
+  <div class="series-title product-category-item product-blessing">神明敬獻作品 🌸</div>
   <div class="mini-grid product-category-item product-blessing">
-    <div class="mini-card" onclick="addDirect('金紙花束（洽詢）',0,null,'')"><div class="mini-icon">💐</div><div class="mini-title">金紙花束</div><div class="mini-desc">手工製作・可燒化</div></div>
-    <div class="mini-card" onclick="addDirect('轎前花（洽詢）',0,null,'')"><div class="mini-icon">🏮</div><div class="mini-title">轎前花</div><div class="mini-desc">廟會裝飾・神明桌</div></div>
+    <div class="mini-card has-photo" onclick="addDirect('好神花｜神明供花（洽詢）',0,null,'')"><div class="mini-photo"><img src="images/product-haoshen-01.jpg" alt="好神花作品"></div><div class="mini-card-copy"><div class="mini-title">好神花</div><div class="mini-desc">神明供花・敬獻祝壽</div></div></div>
+    <div class="mini-card has-photo" onclick="addDirect('金紙花束（洽詢）',0,null,'')"><div class="mini-photo duo"><img src="images/product-bouquet-01.jpg" alt="金紙花束作品"><img src="images/product-bouquet-02.jpg" alt="金紙花束作品"></div><div class="mini-card-copy"><div class="mini-title">金紙花束</div><div class="mini-desc">手工製作・可燒化</div></div></div>
+    <div class="mini-card has-photo" onclick="addDirect('轎前花（洽詢）',0,null,'')"><div class="mini-photo"><img src="images/product-jiaoqian-01.jpg" alt="轎前花作品"></div><div class="mini-card-copy"><div class="mini-title">轎前花</div><div class="mini-desc">廟會裝飾・神明桌</div></div></div>
+    <div class="mini-card" onclick="addDirect('客製花禮（洽詢）',0,null,'')"><div class="mini-icon">🎁</div><div class="mini-title">客製花禮</div><div class="mini-desc">色系・花型・包裝客製</div></div>
   </div>
-  <div class="mini-full product-category-item product-blessing" onclick="addDirect('客製花禮（洽詢）',0,null,'')"><div style="font-size:22px">🎁</div><div><div class="mini-title">客製花禮</div><div class="mini-desc" style="font-size:10px;color:var(--ink3)">依需求客製色系・花型・包裝，歡迎洽詢</div></div></div>
 
   <div class="series-title product-category-item product-blessing">其他祈福系列 🚩</div>
   <div class="product-category-item product-blessing product-category-note" style="font-size:10px;color:var(--gold3);margin-bottom:10px;letter-spacing:1px">👉 儀式／祈福／能量象徵類</div>
   <div class="mini-grid product-category-item product-blessing">
     <div class="mini-card" onclick="addDirect('小龍船（洽詢）',0,null,'')"><div class="mini-icon">🐉</div><div class="mini-title">小龍船</div><div class="mini-desc">祈福儀式用</div></div>
     <div class="mini-card" onclick="addDirect('法船（洽詢）',0,null,'')"><div class="mini-icon">⛵</div><div class="mini-title">法船</div><div class="mini-desc">儀式象徵</div></div>
-    <div class="mini-card" onclick="addDirect('鳳船（洽詢）',0,null,'')"><div class="mini-icon">🦚</div><div class="mini-title">鳳船</div><div class="mini-desc">能量象徵</div></div>
+    <div class="mini-card has-photo" onclick="addDirect('焰旺來（鳳梨）（洽詢）',0,null,'')"><div class="mini-photo"><img src="images/product-pineapple-01.jpg" alt="焰旺來鳳梨作品"></div><div class="mini-card-copy"><div class="mini-title">焰旺來</div><div class="mini-desc">鳳梨造型・祈福敬獻</div></div></div>
     <div class="mini-card" onclick="addDirect('五行龍船（洽詢）',0,null,'')"><div class="mini-icon">🔯</div><div class="mini-title">五行龍船</div><div class="mini-desc">五行平衡</div></div>
     <div class="mini-card" onclick="addDirect('補財庫系列（洽詢）',0,null,'')"><div class="mini-icon">💰</div><div class="mini-title">補財庫系列</div><div class="mini-desc">財運祈福</div></div>
-    <div class="mini-card" onclick="addDirect('一桶金（洽詢）',0,null,'')"><div class="mini-icon">🪣</div><div class="mini-title">一桶金</div><div class="mini-desc">招財象徵</div></div>
+    <div class="mini-card has-photo" onclick="addDirect('一桶金（洽詢）',0,null,'')"><div class="mini-photo"><img src="images/product-yitongjin-01.jpg" alt="一桶金作品"></div><div class="mini-card-copy"><div class="mini-title">一桶金</div><div class="mini-desc">招財象徵</div></div></div>
+    <div class="mini-card" onclick="addDirect('元寶塔（洽詢）',0,null,'')"><div class="mini-icon">🏯</div><div class="mini-title">元寶塔</div><div class="mini-desc">規格與報價洽詢</div></div>
   </div>
-  <div class="mini-full product-category-item product-blessing" onclick="addDirect('元寶塔（洽詢）',0,null,'')"><div style="font-size:22px">🏯</div><div><div class="mini-title">元寶塔</div><div class="mini-desc" style="font-size:10px;color:var(--ink3)">財富能量象徵，歡迎洽詢規格與報價</div></div></div>
 </div>
 
 <!-- 國際認證 -->
