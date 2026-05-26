@@ -710,11 +710,11 @@ textarea{resize:vertical;height:70px;}
           <div class="offer-thumb"><img src="images/haoshen-offer-shennong-2026.jpg" alt="神農大帝好神花優惠款式"></div>
           <div class="offer-copy">
             <div class="offer-name">好神花優惠款式</div>
-            <div class="offer-sub">神農大帝祝壽款｜優惠即日起至 2026/06/11</div>
+            <div class="offer-sub">可更換色系｜優惠即日起至 2026/06/11</div>
             <div class="offer-price">NT$499／束　NT$988／對</div>
             <div class="offer-actions">
               <a class="line-offer-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a>
-              <button class="offer-btn" onclick="addDirect('神農大帝好神花優惠款（一對）',988,this,'加入購物車')">下單一對</button>
+              <button class="offer-btn" onclick="openOfferOrderPicker('神農大帝好神花優惠款',[{date:'一束',priceLabel:'NT$499',price:499,itemName:'神農大帝好神花優惠款（一束）'},{date:'一對',priceLabel:'NT$988',price:988,itemName:'神農大帝好神花優惠款（一對）'}])">加入購物車</button>
             </div>
           </div>
         </div>
@@ -724,10 +724,9 @@ textarea{resize:vertical;height:70px;}
             <div class="offer-name">金紙花束優惠價格</div>
             <div class="offer-sub">金紙小花束｜多色款式可選</div>
             <div class="offer-price">NT$450／束　NT$888／對</div>
-            <div class="offer-actions three">
+            <div class="offer-actions">
               <a class="line-offer-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a>
-              <button class="offer-btn" onclick="addDirect('金紙小花束優惠款（一束）',450,this,'加入購物車')">下單一束</button>
-              <button class="offer-btn" onclick="addDirect('金紙小花束優惠款（一對）',888,this,'加入購物車')">下單一對</button>
+              <button class="offer-btn" onclick="openOfferOrderPicker('金紙小花束優惠款',[{date:'一束',priceLabel:'NT$450',price:450,itemName:'金紙小花束優惠款（一束）'},{date:'一對',priceLabel:'NT$888',price:888,itemName:'金紙小花束優惠款（一對）'}])">加入購物車</button>
             </div>
           </div>
         </div>
@@ -899,7 +898,7 @@ textarea{resize:vertical;height:70px;}
     <div class="sheet-title" id="pickerTitle">選擇場次</div>
     <div class="sheet-sub">請選擇您要報名的地點與日期</div>
     <div id="pickerOptions"></div>
-    <button class="confirm-btn" onclick="confirmSession()">確認場次 · 加入報名 →</button>
+    <button class="confirm-btn" onclick="confirmSession()">確認選擇 · 加入清單 →</button>
   </div>
 </div>
 
@@ -1253,8 +1252,9 @@ function openBouquetTierPicker(){pickerItem={name:'小花束金紙花束班',pri
 function renderBouquetTier(type){selectedSession=null;const types=['入門班','進階班','職能認證班'];const sessions=pickerItem.sessions.map((s,i)=>({...s,originalIndex:i})).filter(s=>s.loc===type);document.getElementById('pickerOptions').innerHTML=`<div class="tier-tabs">${types.map(t=>`<button class="tier-tab ${t===type?'active':''}" type="button" onclick="renderBouquetTier('${t}')">${t}</button>`).join('')}</div><div class="tier-help">請先選班別，再選擇上課城市與日期</div>${sessions.map(s=>tierOptionHtml(s,s.originalIndex,'📅')).join('')}`;}
 function openBouquetTierPicker(){pickerItem={name:'小花束金紙花束班',price:0,sessions:[{loc:'入門班',date:'台中 5/19(二)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'高雄 5/24(日)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'台中 6/18(四)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'高雄 6/27(六)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'屏東 7月4日(六)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'進階班',date:'台中 6/18(四)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'進階班',date:'高雄 6/27(六)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'進階班',date:'屏東 7月4日(六)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'職能認證班',date:'台中 6/18(四)',detail:'職能認證班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500},{loc:'職能認證班',date:'高雄 6/27(六)',detail:'職能認證班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500},{loc:'職能認證班',date:'屏東 7月4日(六)',detail:'職能認證班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500}]};document.getElementById('pickerTitle').textContent='小花束金紙花束班｜選擇班別';renderBouquetTier('入門班');document.getElementById('pickerOverlay').classList.add('open');}
 function openCourseTierPicker(name){pickerItem={name,price:0,sessions:[{loc:'課程班別',date:'入門班',teacher:'NT$32,800',price:32800},{loc:'課程班別',date:'進階班',teacher:'NT$36,800',price:36800}]};selectedSession=null;document.getElementById('pickerTitle').textContent=name+'｜選擇班別';document.getElementById('pickerOptions').innerHTML=pickerItem.sessions.map((s,i)=>tierOptionHtml(s,i,'🌸')).join('');document.getElementById('pickerOverlay').classList.add('open');}
+function openOfferOrderPicker(name,options){pickerItem={name,price:0,sessions:options.map(o=>({...o,loc:'優惠款'}))};selectedSession=null;document.getElementById('pickerTitle').textContent=name+'｜選擇數量';document.getElementById('pickerOptions').innerHTML=pickerItem.sessions.map((s,i)=>tierOptionHtml(s,i,'🛒')).join('');document.getElementById('pickerOverlay').classList.add('open');}
 function openPickerCustom(){pickerItem={name:'AI 品牌實戰進階班',price:0,sessions:[{loc:'',date:'6月28日(日)',teacher:'早鳥價 $5,800',price:5800}]};selectedSession=null;document.getElementById('pickerTitle').textContent='AI 品牌實戰進階班｜選擇場次';document.getElementById('pickerOptions').innerHTML=pickerItem.sessions.map((s,i)=>tierOptionHtml(s,i,'📅')).join('');document.getElementById('pickerOverlay').classList.add('open');}
-function confirmSession(){if(selectedSession===null){alert('請選擇場次');return;}const s=pickerItem.sessions[selectedSession];const price=s.price||pickerItem.price;const label=s.teacherName?`${pickerItem.name}（${s.loc} ${s.date} · ${s.teacherName}）`:s.loc==='課程班別'?`${pickerItem.name}（${s.date} · ${s.teacher}）`:s.teacher?`${pickerItem.name}（${s.loc} ${s.date} · ${s.teacher}）`:`${pickerItem.name}（${s.loc} ${s.date}）`;addToCartRaw(label,price);closeOverlay('pickerOverlay');showToast('✓ 已加入報名清單');}
+function confirmSession(){if(selectedSession===null){alert('請選擇項目');return;}const s=pickerItem.sessions[selectedSession];const price=s.price||pickerItem.price;const label=s.itemName?s.itemName:s.teacherName?`${pickerItem.name}（${s.loc} ${s.date} · ${s.teacherName}）`:s.loc==='課程班別'?`${pickerItem.name}（${s.date} · ${s.teacher}）`:s.teacher?`${pickerItem.name}（${s.loc} ${s.date} · ${s.teacher}）`:`${pickerItem.name}（${s.loc} ${s.date}）`;addToCartRaw(label,price);closeOverlay('pickerOverlay');showToast('✓ 已加入清單');}
 function addDirect(name,price,btn,origLabel){addToCartRaw(name,price);if(btn){btn.classList.add('added');btn.textContent='✓ 已加入';setTimeout(()=>{btn.classList.remove('added');btn.textContent=origLabel;},2000);}showToast('✓ 已加入清單');}
 function addToCartRaw(name,price){const ex=cart.find(i=>i.name===name);if(ex)ex.qty++;else cart.push({name,price,qty:1});updateCount();}
 function updateCount(){const n=cart.reduce((s,i)=>s+i.qty,0);const el=document.getElementById('cartCount');el.textContent=n;el.style.display=n>0?'flex':'none';}
