@@ -302,17 +302,22 @@ body.is-tab-view .official-links{margin-top:0;}
 .mini-card.has-photo{padding:0;text-align:left;}
 .mini-photo{height:148px;background:#f7efe1;overflow:hidden;border-bottom:1px solid rgba(201,168,76,.2);}
 .mini-photo.duo{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
-.mini-photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:center center;}
+.mini-photo img{width:100%;height:100%;display:block;object-fit:contain;object-position:center center;}
 .mini-card-copy{padding:10px;text-align:center;}
 .product-card-photos{height:180px;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#f7efe1;border-bottom:1px solid rgba(201,168,76,.18);overflow:hidden;}
-.product-card-photos img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;}
+.product-card-photos img{width:100%;height:100%;object-fit:contain;object-position:center center;display:block;}
+.mini-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px;}
+.mini-line-btn,.mini-inquiry-btn{border:none;border-radius:16px;padding:7px 8px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:1px;text-align:center;text-decoration:none;cursor:pointer;white-space:nowrap;}
+.mini-line-btn{background:#06C755;color:#fff;}
+.mini-inquiry-btn{background:var(--red);color:#fff;}
+.mini-inquiry-btn:hover{background:#7A1F0E;}
 .mini-icon{font-size:24px;margin-bottom:6px;}
 .mini-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;}
 .mini-desc{font-size:12px;color:var(--ink3);line-height:1.6;}
 .mini-full{background:var(--white);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:14px;position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;margin-bottom:8px;cursor:pointer;}
 .mini-full::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold2),var(--gold3));}
 .mini-full:hover{background:#FFFBF0;}
-@media (max-width:760px){.mini-photo{height:136px}.product-card-photos{height:160px;}}
+@media (max-width:760px){.mini-photo{height:150px}.product-card-photos{height:180px;}.mini-actions{grid-template-columns:1fr}.mini-line-btn,.mini-inquiry-btn{width:100%;}}
 .overlay{display:none;position:fixed;inset:0;background:rgba(42,31,14,.6);z-index:200;}
 .overlay.open{display:flex;align-items:flex-end;}
 .bottom-sheet{background:var(--white);border-radius:16px 16px 0 0;border-top:3px solid var(--gold);padding:20px 18px 32px;width:100%;max-width:520px;margin:0 auto;max-height:80vh;overflow-y:auto;transform:translateY(100%);transition:transform .3s ease;}
@@ -787,8 +792,8 @@ textarea{resize:vertical;height:70px;}
 
   <div class="series-title product-category-item product-blessing">神明敬獻作品 🌸</div>
   <div class="mini-grid product-category-item product-blessing">
-    <div class="mini-card has-photo" onclick="addDirect('好神花｜神明供花（洽詢）',0,null,'')"><div class="mini-photo"><img src="images/product-haoshen-01.jpg" alt="好神花作品"></div><div class="mini-card-copy"><div class="mini-title">好神花</div><div class="mini-desc">神明供花・敬獻祝壽</div></div></div>
-    <div class="mini-card has-photo" onclick="addDirect('金紙花束（洽詢）',0,null,'')"><div class="mini-photo duo"><img src="images/product-bouquet-01.jpg" alt="金紙花束作品"><img src="images/product-bouquet-02.jpg" alt="金紙花束作品"></div><div class="mini-card-copy"><div class="mini-title">金紙花束</div><div class="mini-desc">手工製作・可燒化</div></div></div>
+    <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-haoshen-01.jpg" alt="好神花作品"></div><div class="mini-card-copy"><div class="mini-title">好神花</div><div class="mini-desc">尺寸 S / M / L / XL・顏色可選・花盤可選・可客製</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('好神花｜神明供花（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
+    <div class="mini-card has-photo"><div class="mini-photo duo"><img src="images/product-bouquet-01.jpg" alt="金紙花束作品"><img src="images/product-bouquet-02.jpg" alt="金紙花束作品"></div><div class="mini-card-copy"><div class="mini-title">金紙花束</div><div class="mini-desc">全金紙製作・顏色可選・可客製</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('金紙花束（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
     <div class="mini-card has-photo" onclick="addDirect('轎前花（洽詢）',0,null,'')"><div class="mini-photo"><img src="images/product-jiaoqian-01.jpg" alt="轎前花作品"></div><div class="mini-card-copy"><div class="mini-title">轎前花</div><div class="mini-desc">廟會裝飾・神明桌</div></div></div>
     <div class="mini-card" onclick="addDirect('客製花禮（洽詢）',0,null,'')"><div class="mini-icon">🎁</div><div class="mini-title">客製花禮</div><div class="mini-desc">色系・花型・包裝客製</div></div>
   </div>
@@ -801,7 +806,7 @@ textarea{resize:vertical;height:70px;}
     <div class="mini-card has-photo" onclick="addDirect('焰旺來（鳳梨）（洽詢）',0,null,'')"><div class="mini-photo"><img src="images/product-pineapple-01.jpg" alt="焰旺來鳳梨作品"></div><div class="mini-card-copy"><div class="mini-title">焰旺來</div><div class="mini-desc">鳳梨造型・祈福敬獻</div></div></div>
     <div class="mini-card" onclick="addDirect('五行龍船（洽詢）',0,null,'')"><div class="mini-icon">🔯</div><div class="mini-title">五行龍船</div><div class="mini-desc">五行平衡</div></div>
     <div class="mini-card" onclick="addDirect('補財庫系列（洽詢）',0,null,'')"><div class="mini-icon">💰</div><div class="mini-title">補財庫系列</div><div class="mini-desc">財運祈福</div></div>
-    <div class="mini-card has-photo" onclick="addDirect('一桶金（洽詢）',0,null,'')"><div class="mini-photo"><img src="images/product-yitongjin-01.jpg" alt="一桶金作品"></div><div class="mini-card-copy"><div class="mini-title">一桶金</div><div class="mini-desc">招財象徵</div></div></div>
+    <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-yitongjin-01.jpg" alt="一桶金作品"></div><div class="mini-card-copy"><div class="mini-title">一桶金</div><div class="mini-desc">招財象徵・可選尺寸</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('一桶金（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
     <div class="mini-card" onclick="addDirect('元寶塔（洽詢）',0,null,'')"><div class="mini-icon">🏯</div><div class="mini-title">元寶塔</div><div class="mini-desc">規格與報價洽詢</div></div>
   </div>
 </div>
