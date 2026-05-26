@@ -192,11 +192,19 @@ body.is-tab-view .official-links{margin-top:0;}
 .highlight-note{font-size:12px;color:var(--ink3);line-height:1.8;margin-top:12px;}
 .offer-list{display:flex;flex-direction:column;gap:9px;margin-top:8px;}
 .offer-item{border:1px solid rgba(201,168,76,.28);background:linear-gradient(135deg,#fffaf0,#fffdf8);border-radius:7px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.offer-item.feature{display:block;padding:0;overflow:hidden;}
+.offer-thumb{width:100%;background:#f7efe1;border-bottom:1px solid rgba(201,168,76,.22);}
+.offer-thumb img{width:100%;display:block;object-fit:cover;}
+.offer-copy{padding:12px;}
 .offer-name{font-size:14px;font-weight:700;color:var(--ink);line-height:1.5;}
 .offer-sub{font-size:12px;color:var(--ink3);margin-top:2px;}
+.offer-price{font-family:'Noto Serif TC',serif;font-size:18px;font-weight:800;color:var(--red);letter-spacing:1px;margin-top:6px;}
+.offer-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+.offer-actions.three{grid-template-columns:1fr 1fr 1fr;}
+.line-offer-btn{border:none;background:#06C755;color:#fff;border-radius:18px;padding:8px 12px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:1px;text-align:center;text-decoration:none;white-space:nowrap;}
 .offer-btn{border:none;background:var(--red);color:#fff;border-radius:18px;padding:8px 12px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:1px;cursor:pointer;white-space:nowrap;}
 .offer-btn:hover{background:#7A1F0E;}
-@media (max-width:760px){.product-highlight{grid-template-columns:1fr}.festival-item{grid-template-columns:1fr}.festival-date{text-align:left;white-space:normal}.offer-item{align-items:flex-start;flex-direction:column}.offer-btn{width:100%;}}
+@media (max-width:760px){.product-highlight{grid-template-columns:1fr}.festival-item{grid-template-columns:1fr}.festival-date{text-align:left;white-space:normal}.offer-item{align-items:flex-start;flex-direction:column}.offer-actions,.offer-actions.three{grid-template-columns:1fr}.offer-btn{width:100%;}}
 .card-img{width:100%;height:178px;background:linear-gradient(160deg,#FDF7EC,#FAF0DC);display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(201,168,76,0.15);overflow:hidden;}
 .card-img[style]{height:178px!important;padding:0!important;overflow:hidden!important;}
 .card-img img{width:100%;height:100%;display:block;object-fit:cover;max-height:none!important;}
@@ -698,19 +706,30 @@ textarea{resize:vertical;height:70px;}
       <div class="highlight-kicker">優惠款式</div>
       <div class="highlight-title">近期主打</div>
       <div class="offer-list">
-        <div class="offer-item">
-          <div>
+        <div class="offer-item feature">
+          <div class="offer-thumb"><img src="images/haoshen-offer-shennong-2026.jpg" alt="神農大帝好神花優惠款式"></div>
+          <div class="offer-copy">
             <div class="offer-name">好神花優惠款式</div>
-            <div class="offer-sub">可依色系與預算洽詢</div>
+            <div class="offer-sub">神農大帝祝壽款｜優惠即日起至 2026/06/11</div>
+            <div class="offer-price">NT$499／束　NT$988／對</div>
+            <div class="offer-actions">
+              <a class="line-offer-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a>
+              <button class="offer-btn" onclick="addDirect('神農大帝好神花優惠款（一對）',988,this,'加入購物車')">下單一對</button>
+            </div>
           </div>
-          <button class="offer-btn" onclick="addDirect('好神花優惠款式（詢問）',0,this,'加入詢問')">加入詢問</button>
         </div>
-        <div class="offer-item">
-          <div>
+        <div class="offer-item feature">
+          <div class="offer-thumb"><img src="images/bouquet-offer-small-2026.jpg" alt="金紙小花束優惠價格"></div>
+          <div class="offer-copy">
             <div class="offer-name">金紙花束優惠價格</div>
-            <div class="offer-sub">可依需求搭配款式</div>
+            <div class="offer-sub">金紙小花束｜多色款式可選</div>
+            <div class="offer-price">NT$450／束　NT$888／對</div>
+            <div class="offer-actions three">
+              <a class="line-offer-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a>
+              <button class="offer-btn" onclick="addDirect('金紙小花束優惠款（一束）',450,this,'加入購物車')">下單一束</button>
+              <button class="offer-btn" onclick="addDirect('金紙小花束優惠款（一對）',888,this,'加入購物車')">下單一對</button>
+            </div>
           </div>
-          <button class="offer-btn" onclick="addDirect('金紙花束優惠價格（詢問）',0,this,'加入詢問')">加入詢問</button>
         </div>
       </div>
     </div>
