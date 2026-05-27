@@ -26,8 +26,9 @@ body{background:
 .cart-btn:hover{background:var(--gold3);color:var(--white);}
 .cart-count{background:var(--red);color:#fff;border-radius:50%;width:16px;height:16px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;}
 .tabs{background:rgba(243,232,211,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(139,107,26,0.25);display:flex;overflow-x:auto;padding:0 10px;position:sticky;top:87px;z-index:99;box-shadow:0 6px 18px rgba(58,42,24,.08);}
-.tab{padding:9px 14px;font-size:13px;color:var(--ink3);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;letter-spacing:1px;transition:all .2s;}
+.tab{padding:9px 14px;font-size:13px;color:var(--ink3);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;letter-spacing:1px;transition:all .2s;text-decoration:none;}
 .tab.active{color:var(--gold3);border-bottom-color:var(--gold);font-weight:500;}
+.tab-link:hover{color:var(--gold3);}
 .hero{position:relative;padding:70px 22px 54px;text-align:center;background:
   radial-gradient(circle at 50% 18%,rgba(201,168,76,.16),transparent 34%),
   linear-gradient(180deg,rgba(255,253,248,.98) 0%,rgba(250,244,232,.96) 58%,rgba(243,232,211,.92) 100%);
@@ -415,6 +416,7 @@ textarea{resize:vertical;height:70px;}
 <div class="tabs">
   <div class="tab active" onclick="switchTab(this,'courses')">📚 課程專區</div>
   <div class="tab" onclick="switchTab(this,'products')">🌸 作品訂製</div>
+  <a class="tab tab-link" href="about.html">關於我們</a>
   <div class="tab" onclick="switchTab(this,'cert')">📜 國際認證</div>
   <div class="tab" onclick="switchTab(this,'comp')">🏆 國際競賽</div>
 </div>
@@ -791,8 +793,12 @@ textarea{resize:vertical;height:70px;}
     <div class="pills"><div class="pill">📦 宅配</div><div class="pill">🎁 精美包裝</div></div>
     <div class="card-footer"><span style="font-size:13px;color:var(--ink3)">洽詢報價</span><div class="mini-actions product-card-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('永思花｜思念紀念花（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div>
   </div>
+  <div class="series-title product-category-item product-memorial">弔念祭祖系列</div>
+  <div class="mini-grid product-category-item product-memorial">
+    <div class="mini-card" onclick="addDirect('法船（洽詢）',0,null,'')"><div class="mini-icon">⛵</div><div class="mini-title">法船</div><div class="mini-desc">儀式象徵</div></div>
+  </div>
 
-  <div class="series-title product-category-item product-blessing">神明敬獻作品 🌸</div>
+  <div class="series-title product-category-item product-blessing">敬獻花束 🌸</div>
   <div class="mini-grid product-category-item product-blessing">
     <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-haoshen-01.jpg" alt="好神花作品"></div><div class="mini-card-copy"><div class="mini-title">好神花</div><div class="mini-desc">尺寸 S / M / L / XL・顏色可選・花盤可選・可客製</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('好神花｜神明供花（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
     <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-jiaoqian-01.jpg" alt="轎前花作品"></div><div class="mini-card-copy"><div class="mini-title">轎前花</div><div class="mini-desc">廟會裝飾・神明桌</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('轎前花（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
@@ -804,11 +810,10 @@ textarea{resize:vertical;height:70px;}
   <div class="product-category-item product-blessing product-category-note" style="font-size:10px;color:var(--gold3);margin-bottom:10px;letter-spacing:1px">👉 儀式／祈福／能量象徵類</div>
   <div class="mini-grid product-category-item product-blessing">
     <div class="mini-card" onclick="addDirect('小龍船（洽詢）',0,null,'')"><div class="mini-icon">🐉</div><div class="mini-title">小龍船</div><div class="mini-desc">祈福儀式用</div></div>
-    <div class="mini-card" onclick="addDirect('法船（洽詢）',0,null,'')"><div class="mini-icon">⛵</div><div class="mini-title">法船</div><div class="mini-desc">儀式象徵</div></div>
     <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-pineapple-01.jpg" alt="焰旺來鳳梨作品"></div><div class="mini-card-copy"><div class="mini-title">焰旺來</div><div class="mini-desc">鳳梨造型・祈福敬獻</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('焰旺來（鳳梨）（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
     <div class="mini-card" onclick="addDirect('五行龍船（洽詢）',0,null,'')"><div class="mini-icon">🔯</div><div class="mini-title">五行龍船</div><div class="mini-desc">五行平衡</div></div>
-    <div class="mini-card" onclick="addDirect('補財庫系列（洽詢）',0,null,'')"><div class="mini-icon">💰</div><div class="mini-title">補財庫系列</div><div class="mini-desc">財運祈福</div></div>
     <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-yitongjin-01.jpg" alt="一桶金作品"></div><div class="mini-card-copy"><div class="mini-title">一桶金</div><div class="mini-desc">招財象徵・可選尺寸</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('一桶金（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
+    <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-birthday-cake-01.jpg" alt="祝壽蛋糕作品"></div><div class="mini-card-copy"><div class="mini-title">祝壽蛋糕</div><div class="mini-desc">可依照神明與幾層訂製</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('祝壽蛋糕（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
     <div class="mini-card" onclick="addDirect('元寶塔（洽詢）',0,null,'')"><div class="mini-icon">🏯</div><div class="mini-title">元寶塔</div><div class="mini-desc">規格與報價洽詢</div></div>
   </div>
 </div>
@@ -1196,7 +1201,7 @@ textarea{resize:vertical;height:70px;}
 </div>
 
 <!-- 聯絡與上課資訊 -->
-<section style="background:linear-gradient(180deg,#FFFDF8 0%,#F7EFE0 100%);padding:30px 18px 28px;">
+<section id="contact-info" style="background:linear-gradient(180deg,#FFFDF8 0%,#F7EFE0 100%);padding:30px 18px 28px;">
   <div style="max-width:860px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:18px;">
       <div style="font-size:9px;letter-spacing:4px;color:var(--gold3);margin-bottom:6px;">CONTACT & LOCATION</div>
@@ -1300,6 +1305,8 @@ function updateCount(){const n=cart.reduce((s,i)=>s+i.qty,0);const el=document.g
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
 function backToTop(){window.scrollTo({top:0,behavior:'smooth'});}
 function toggleSocialFloat(){document.getElementById('socialFloat')?.classList.toggle('open');}
+function openInitialHash(){const hash=location.hash.replace('#','');const tabMap={'tab-courses':'courses','sec-paper':'courses','sec-marketing':'courses','tab-products':'products','tab-cert':'cert','tab-comp':'comp'};if(tabMap[hash]){const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'"+tabMap[hash]+"'"));if(targetTab)switchTab(targetTab,tabMap[hash]);setTimeout(()=>document.getElementById(hash)?.scrollIntoView({behavior:'smooth',block:'start'}),80);}}
+window.addEventListener('load',openInitialHash);
 function openCart(){renderCart();document.getElementById('cartOverlay').classList.add('open');}
 function renderCart(){const el=document.getElementById('cartItems');if(!cart.length){el.innerHTML='<div class="empty-cart"><div style="font-size:36px;margin-bottom:8px">🛒</div>尚未加入任何項目</div>';document.getElementById('cartTotalRow').style.display='none';document.getElementById('checkoutBtn').style.display='none';return;}el.innerHTML=cart.map((item,i)=>`<div class="cart-item"><div><div class="ci-name">${item.name}</div><div class="ci-price">${item.price>0?'NT$ '+item.price.toLocaleString()+' × '+item.qty:'洽詢報價'}</div></div><button class="rm-btn" onclick="removeItem(${i})">✕</button></div>`).join('');const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);document.getElementById('cartTotal').textContent=total>0?'NT$ '+total.toLocaleString():'含洽詢項目';document.getElementById('cartTotalRow').style.display='flex';document.getElementById('checkoutBtn').style.display='block';}
 function removeItem(i){cart.splice(i,1);updateCount();renderCart();}
