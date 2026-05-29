@@ -367,6 +367,8 @@ body.is-tab-view .official-links{margin-top:0;}
 .fg{margin-bottom:14px;}
 label{display:block;font-size:13px;letter-spacing:1px;color:var(--gold3);margin-bottom:6px;}
 .req{color:var(--red);}
+.competition-team-field{display:none;background:#fff8ec;border:1px solid rgba(201,168,76,.45);border-radius:6px;padding:12px 14px;margin-bottom:14px;}
+.competition-team-field .team-help{font-size:12px;color:var(--ink3);line-height:1.8;margin:6px 0 0;}
 input,select,textarea{width:100%;padding:11px 12px;border:1px solid rgba(201,168,76,.3);border-radius:3px;font-family:inherit;font-size:15px;color:var(--ink);background:var(--paper3);outline:none;transition:border-color .2s;}
 input:focus,select:focus,textarea:focus{border-color:var(--gold);background:var(--white);}
 textarea{resize:vertical;height:70px;}
@@ -1013,6 +1015,11 @@ textarea{resize:vertical;height:70px;}
         </div>
       </div>
       <div class="fg"><label>備註 / 特殊需求</label><textarea id="f-note" placeholder="若選擇匯款，請在此填寫匯款後五碼，方便我們核對，謝謝！"></textarea></div>
+      <div class="competition-team-field" id="competitionTeamField">
+        <label>團體賽組員名單 <span class="req">*</span></label>
+        <textarea id="f-team-members" placeholder="請填寫 3 位參賽者資料&#10;代表：姓名／身分證字號&#10;組員 2：姓名／身分證字號&#10;組員 3：姓名／身分證字號"></textarea>
+        <div class="team-help">此欄位只會在國際團體賽出現。身分證字號供大會領獎金與名單核對使用，課程與作品訂購不需要填寫。</div>
+      </div>
       <label style="margin-bottom:10px;display:block">付款方式 <span class="req">*</span></label>
       <div class="pay-opts">
         <div class="pay-opt selected" onclick="selPay(this)"><span class="pay-icon">🏦</span>匯款轉帳</div>
@@ -1324,7 +1331,7 @@ window.addEventListener('load',openInitialHash);
 function openCart(){renderCart();document.getElementById('cartOverlay').classList.add('open');}
 function renderCart(){const el=document.getElementById('cartItems');if(!cart.length){el.innerHTML='<div class="empty-cart"><div style="font-size:36px;margin-bottom:8px">🛒</div>尚未加入任何項目</div>';document.getElementById('cartTotalRow').style.display='none';document.getElementById('checkoutBtn').style.display='none';return;}el.innerHTML=cart.map((item,i)=>`<div class="cart-item"><div><div class="ci-name">${item.name}</div><div class="ci-price">${item.price>0?'NT$ '+item.price.toLocaleString()+' × '+item.qty:'洽詢報價'}</div></div><button class="rm-btn" onclick="removeItem(${i})">✕</button></div>`).join('');const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);document.getElementById('cartTotal').textContent=total>0?'NT$ '+total.toLocaleString():'含洽詢項目';document.getElementById('cartTotalRow').style.display='flex';document.getElementById('checkoutBtn').style.display='block';}
 function removeItem(i){cart.splice(i,1);updateCount();renderCart();}
-function openCheckout(){closeOverlay('cartOverlay');document.getElementById('summaryItems').innerHTML=cart.map(i=>`<div class="sr"><span>${i.name}</span><span>${i.price>0?'NT$ '+(i.price*i.qty).toLocaleString():'洽詢'}</span></div>`).join('');const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);document.getElementById('summaryTotal').textContent=total>0?'NT$ '+total.toLocaleString():'含洽詢項目';document.getElementById('modalOverlay').classList.add('open');}
+function openCheckout(){closeOverlay('cartOverlay');document.getElementById('summaryItems').innerHTML=cart.map(i=>`<div class="sr"><span>${i.name}</span><span>${i.price>0?'NT$ '+(i.price*i.qty).toLocaleString():'洽詢'}</span></div>`).join('');const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);document.getElementById('summaryTotal').textContent=total>0?'NT$ '+total.toLocaleString():'含洽詢項目';updateCompetitionTeamFields();document.getElementById('modalOverlay').classList.add('open');}
 function selPay(el){document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');const text=el.textContent;const needAccount=text.includes('匯款')||text.includes('現場繳費');document.getElementById('bankInfoForm').style.display=needAccount?'block':'none';}
 async function copyBankAccount(btn){const account=document.getElementById('bankAccountNo').textContent.trim();try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(account);}else{const temp=document.createElement('textarea');temp.value=account;temp.setAttribute('readonly','');temp.style.position='fixed';temp.style.left='-9999px';document.body.appendChild(temp);temp.select();document.execCommand('copy');document.body.removeChild(temp);}if(btn){const old=btn.textContent;btn.textContent='已複製帳號';setTimeout(()=>btn.textContent=old,1800);}showToast('✓ 已複製匯款帳號');}catch(err){alert('複製失敗，請手動複製帳號 104540167516');}}
 function isRegistrationCart(){return cart.some(item=>/(課|班|認證|大賽|考核|模擬考|講師|參賽)/.test(item.name));}
@@ -1334,11 +1341,13 @@ function hasRequiredOrderFields(){return ['f-name','f-phone','f-line'].every(id=
 async function requestStudentNotificationPermission(){if(!('Notification' in window))return 'unsupported';if(Notification.permission==='default'){try{return await Notification.requestPermission();}catch(err){return Notification.permission||'default';}}return Notification.permission;}
 function renderStudentSystemNotice(orderNo,status){const screen=document.getElementById('successScreen');if(!screen)return;const isRegistration=currentOrderType()==='registration';let notice=document.getElementById('studentSystemNotice');if(!notice){notice=document.createElement('div');notice.id='studentSystemNotice';notice.className='student-system-notice';const bankInfo=document.getElementById('bankInfo');screen.insertBefore(notice,bankInfo||null);}notice.innerHTML=`<div class="notice-title">系統通知</div><div class="notice-copy">訂單 ${orderNo} 已送出。我們已收到您的${isRegistration?'報名':'訂購'}資料，請留意 Email 或 LINE 後續通知。</div><div class="notice-status">${isRegistration?'報名資料':'訂單'}已送出</div>`;}
 async function notifyStudentAfterOrder(orderNo,permissionPromise){await permissionPromise;renderStudentSystemNotice(orderNo,'page');showToast(currentOrderType()==='registration'?'報名資料已送出':'訂單已送出');}
+function hasTeamCompetitionCart(){return cart.some(item=>/團體爭霸戰|團體賽/.test(item.name));}
+function updateCompetitionTeamFields(){const field=document.getElementById('competitionTeamField');if(field)field.style.display=hasTeamCompetitionCart()?'block':'none';}
 const submitOrderHandler=submitOrder;
-submitOrder=async function(){const permissionPromise=Promise.resolve('page');await submitOrderHandler.apply(this,arguments);const orderNo=document.getElementById('orderNo')?.textContent?.trim();if(orderNo&&document.getElementById('successScreen')?.classList.contains('show'))await notifyStudentAfterOrder(orderNo,permissionPromise);};
+submitOrder=async function(){const permissionPromise=Promise.resolve('page');const needsTeam=hasTeamCompetitionCart();const teamEl=document.getElementById('f-team-members');const teamMembers=teamEl?.value.trim()||'';if(needsTeam&&!teamMembers){alert('團體賽需要填寫 3 位參賽者姓名與身分證字號，方便送交大會與領獎金核對。');teamEl?.focus();return;}const noteEl=document.getElementById('f-note');const originalNote=noteEl?.value||'';if(needsTeam&&noteEl){const teamBlock=`團體賽組員名單：\n${teamMembers}`;noteEl.value=[originalNote.trim(),teamBlock].filter(Boolean).join('\n\n');}try{await submitOrderHandler.apply(this,arguments);}finally{if(needsTeam&&noteEl)noteEl.value=originalNote;}const orderNo=document.getElementById('orderNo')?.textContent?.trim();if(orderNo&&document.getElementById('successScreen')?.classList.contains('show'))await notifyStudentAfterOrder(orderNo,permissionPromise);};
 function handleOverlayClick(e,id){if(e.target===document.getElementById(id))closeOverlay(id);}
 function closeOverlay(id){document.getElementById(id).classList.remove('open');}
-function resetAll(){isSubmittingOrder=false;cart=[];updateCount();closeOverlay('modalOverlay');document.getElementById('modalBody').classList.remove('hide');document.getElementById('successScreen').classList.remove('show');['f-name','f-phone','f-line','f-email','f-note'].forEach(id=>document.getElementById(id).value='');document.getElementById('f-city').value='';}
+function resetAll(){isSubmittingOrder=false;cart=[];updateCount();closeOverlay('modalOverlay');document.getElementById('modalBody').classList.remove('hide');document.getElementById('successScreen').classList.remove('show');['f-name','f-phone','f-line','f-email','f-note','f-team-members'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});document.getElementById('f-city').value='';updateCompetitionTeamFields();}
 </script>
 
 
