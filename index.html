@@ -153,7 +153,7 @@ button.official-link{width:100%;appearance:none;-webkit-appearance:none;}
 .student-result-section{background:linear-gradient(180deg,rgba(248,241,226,.92),rgba(255,253,248,.98));padding:34px 18px;border-top:1px solid rgba(201,168,76,.16);border-bottom:1px solid rgba(201,168,76,.16);}
 .student-result-inner{max-width:920px;margin:0 auto;}
 .result-showcase-carousel{position:relative;min-height:560px;overflow:hidden;border:1px solid rgba(201,168,76,.28);background:#f7efe1;box-shadow:0 14px 34px rgba(42,31,14,.13);}
-.result-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;opacity:0;transform:scale(1);animation:resultPhotoCycle 36s infinite;}
+.result-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;opacity:0;transform:scale(1);animation:resultPhotoCycle 39.6s infinite;}
 .result-slide:nth-child(2){animation-delay:3.6s;}
 .result-slide:nth-child(3){animation-delay:7.2s;}
 .result-slide:nth-child(4){animation-delay:10.8s;}
@@ -163,6 +163,7 @@ button.official-link{width:100%;appearance:none;-webkit-appearance:none;}
 .result-slide:nth-child(8){animation-delay:25.2s;}
 .result-slide:nth-child(9){animation-delay:28.8s;}
 .result-slide:nth-child(10){animation-delay:32.4s;}
+.result-slide:nth-child(11){animation-delay:36s;}
 @keyframes resultPhotoCycle{0%{opacity:0;transform:scale(1);}2%{opacity:1;}8%{opacity:1;}10%{opacity:0;transform:scale(.985);}100%{opacity:0;transform:scale(1);}}
 @media (max-width:760px){.student-showcase-inner{grid-template-columns:1fr}.student-media-layout{grid-template-columns:1fr}.student-slideshow{min-height:520px}.student-video-box{height:230px;min-height:230px}.student-video-box video{height:230px;min-height:230px}.student-photo-grid,.student-photo-grid.practice{grid-template-columns:1fr 1fr}.student-photo-slot,.student-photo-slot.large{min-height:180px;grid-row:auto}.student-showcase h2{font-size:24px}.student-practice-showcase{padding:18px 12px}}
 @media (max-width:760px){.student-result-section{padding:28px 14px}.result-showcase-carousel{min-height:520px}}
@@ -1108,6 +1109,7 @@ textarea{resize:vertical;height:70px;}
   <div class="student-result-inner reveal">
     <div class="sec-label">學員下課合照與成果作品</div>
     <div class="result-showcase-carousel" aria-label="學員下課合照與成果作品輪播">
+      <img class="result-slide" src="images/student-result-202606-01.jpg" alt="學員下課合照">
       <img class="result-slide" src="images/student-result-new-01.jpg" alt="學員下課合照與成果作品">
       <img class="result-slide" src="images/student-result-01.jpg" alt="學員下課合照">
       <img class="result-slide" src="images/student-result-02.jpg" alt="學員成果作品">
