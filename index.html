@@ -175,6 +175,19 @@ button.official-link{width:100%;appearance:none;-webkit-appearance:none;}
 #tab-cert .sec-label,#tab-comp .sec-label{color:var(--gold2);}
 #tab-cert .sec-label::after,#tab-comp .sec-label::after{background:linear-gradient(90deg,rgba(226,192,106,.6),transparent);}
 #sec-paper,#sec-marketing,#tab-products,#tab-cert,#tab-comp,#student-results{scroll-margin-top:142px;}
+.course-switch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;position:relative;z-index:20;}
+.course-menu-wrap{position:relative;}
+.course-menu-btn{width:100%;border:0;color:#fff;padding:12px;border-radius:6px;font-family:'Noto Serif TC',serif;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+.course-menu-btn.paper{background:linear-gradient(135deg,#C9A84C,#E2A82A);}
+.course-menu-btn.marketing{background:linear-gradient(135deg,#6F5F82,#B79A5A);}
+.course-arrow{font-size:12px;line-height:1;transition:transform .2s;}
+.course-menu-wrap.open .course-arrow{transform:rotate(180deg);}
+.course-menu{position:absolute;left:0;right:0;top:calc(100% + 6px);display:none;background:rgba(255,253,248,.98);border:1px solid rgba(201,168,76,.35);border-radius:8px;box-shadow:0 14px 34px rgba(58,42,24,.16);padding:6px;z-index:50;}
+.course-menu-wrap.open .course-menu{display:block;}
+.course-menu-item{width:100%;border:0;background:transparent;color:var(--ink);padding:10px 12px;text-align:left;border-radius:6px;font-family:inherit;font-size:13px;line-height:1.45;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.course-menu-item:hover{background:rgba(201,168,76,.12);color:var(--gold3);}
+.course-menu-item span{font-size:11px;color:var(--gold3);white-space:nowrap;}
+@media (max-width:760px){.course-switch{grid-template-columns:1fr 1fr;gap:8px}.course-menu-btn{padding:11px 8px;font-size:13px}.course-menu{max-height:300px;overflow:auto}.course-menu-item{font-size:12px;padding:10px 9px;letter-spacing:0}}
 .card-img.is-empty::after{content:'圖片準備中';font-size:13px;color:var(--gold3);letter-spacing:3px;}
 body.is-tab-view .home-only{display:none;}
 body.is-tab-view .brand-intro{padding:22px 20px 24px;}
@@ -537,16 +550,31 @@ textarea{resize:vertical;height:70px;}
 <!-- 紙藝課程 -->
 <div id="tab-courses">
   <!-- 分類快捷按鈕 -->
-  <div style="display:flex;gap:10px;margin-bottom:18px;">
-    <a href="#sec-paper" style="flex:1;text-align:center;background:linear-gradient(135deg,#C9A84C,#E2A82A);color:#fff;padding:12px;border-radius:6px;font-family:'Noto Serif TC',serif;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:1px;">紙藝課程</a>
-    <a href="#sec-marketing" style="flex:1;text-align:center;background:linear-gradient(135deg,#6F5F82,#B79A5A);color:#fff;padding:12px;border-radius:6px;font-family:'Noto Serif TC',serif;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:1px;">行銷課程</a>
+  <div class="course-switch">
+    <div class="course-menu-wrap" id="courseWrap-paper">
+      <button class="course-menu-btn paper" type="button" onclick="toggleCourseMenu('paper',event)">紙藝課程 <span class="course-arrow">▾</span></button>
+      <div class="course-menu" id="courseMenu-paper">
+        <button class="course-menu-item" type="button" onclick="jumpToCourse('course-bouquet','paper')">小花束金紙花束班 <span>入門 / 進階 / 認證</span></button>
+        <button class="course-menu-item" type="button" onclick="jumpToCourse('course-haoshen','paper')">好神花紙藝課 <span>供花製作</span></button>
+        <button class="course-menu-item" type="button" onclick="jumpToCourse('course-yongsi','paper')">永思花紙藝課 <span>追思作品</span></button>
+        <button class="course-menu-item" type="button" onclick="jumpToCourse('course-fuyuan','paper')">福圓追思寶桶 <span>職能檢定</span></button>
+      </div>
+    </div>
+    <div class="course-menu-wrap" id="courseWrap-marketing">
+      <button class="course-menu-btn marketing" type="button" onclick="toggleCourseMenu('marketing',event)">行銷課程 <span class="course-arrow">▾</span></button>
+      <div class="course-menu" id="courseMenu-marketing">
+        <button class="course-menu-item" type="button" onclick="jumpToCourse('course-ai-marketing','marketing')">AI 行銷入門班 <span>入門</span></button>
+        <button class="course-menu-item" type="button" onclick="jumpToCourse('course-ai-brand','marketing')">AI 品牌實戰進階班 <span>進階</span></button>
+        <button class="course-menu-item" type="button" onclick="jumpToCourse('course-website-zero','marketing')">零基礎官網架設班 <span>架站</span></button>
+      </div>
+    </div>
   </div>
 
   <!-- 紙藝課程 -->
   <div id="sec-paper">
     <div class="sec-label">紙藝課程</div>
   <!-- 小花束班 -->
-  <div class="card">
+  <div class="card" id="course-bouquet">
     <div class="card-img course-photo-duo">
       <img src="images/course-bouquet-01.jpg" alt="小花束金紙花束課程合照" style="display: block;">
       <img src="images/course-bouquet-02.jpg" alt="小花束金紙花束課程合照" style="display: block;">
@@ -601,7 +629,7 @@ textarea{resize:vertical;height:70px;}
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" id="course-haoshen">
     <div class="card-img course-photo-gallery">
       <div class="course-photo-tile"><img src="images/course-haoshen-intro.jpg" alt="好神花入門班作品" style="display: block;"><span class="course-photo-label">入門班</span></div>
       <div class="course-photo-tile"><img src="images/course-haoshen-advanced.jpg" alt="好神花進階班作品" style="display: block;"><span class="course-photo-label">進階班</span></div>
@@ -619,7 +647,7 @@ textarea{resize:vertical;height:70px;}
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" id="course-yongsi">
     <div class="card-img course-photo-single">
       <img src="images/course-yongsi.jpg" alt="永思花紙藝課作品" style="display: block;">
     </div>
@@ -636,7 +664,7 @@ textarea{resize:vertical;height:70px;}
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" id="course-fuyuan">
     <div class="card-img course-photo-gallery fuyuan-poster-gallery">
       <div class="course-photo-tile"><img src="images/course-fuyuan-bucket-01.png" alt="福圓追思寶桶課程海報" style="display: block;"></div>
       <div class="course-photo-tile"><img src="images/course-fuyuan-bucket-02.png" alt="福圓追思寶桶作品海報" style="display: block;"></div>
@@ -659,7 +687,7 @@ textarea{resize:vertical;height:70px;}
   <div id="sec-marketing" style="margin-top:8px;">
     <div class="sec-label">行銷課程</div>
 
-  <div class="card">
+  <div class="card" id="course-ai-marketing">
     <div class="card-img poster-duo">
       <img src="images/course-ai-marketing-new-01.jpg" alt="AI 行銷入門班課程海報" style="display: block;">
       <img src="images/course-ai-marketing-new-02.jpg" alt="AI 自然流量行銷實戰課海報" style="display: block;">
@@ -687,7 +715,7 @@ textarea{resize:vertical;height:70px;}
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" id="course-ai-brand">
     <div class="card-img poster-single">
       <img src="images/course-ai-brand-advanced.jpg" alt="AI 品牌實戰進階班課程海報" style="display: block;">
     </div>
@@ -711,7 +739,7 @@ textarea{resize:vertical;height:70px;}
     </div>
   </div>
   <!-- 零基礎官網架設班 -->
-  <div class="card">
+  <div class="card" id="course-website-zero">
     <div class="card-img poster-single">
       <img src="images/course-website-zero.jpg" alt="零基礎官網架設班課程海報" style="display: block;">
     </div>
@@ -1439,6 +1467,10 @@ if('IntersectionObserver' in window){
 let cart=[],pickerItem=null,selectedSession=null;
 function switchTab(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');document.body.classList.toggle('is-tab-view',id!=='courses');['courses','products','cert','comp'].forEach(k=>{document.getElementById('tab-'+k).style.display=k===id?'block':'none';});}
 function showHomeSection(sectionId){const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'courses'"));if(targetTab)switchTab(targetTab,'courses');setTimeout(()=>{const target=document.getElementById(sectionId);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});},50);}
+function closeCourseMenus(){document.querySelectorAll('.course-menu-wrap').forEach(w=>w.classList.remove('open'));}
+function toggleCourseMenu(type,event){if(event)event.stopPropagation();const wrap=document.getElementById('courseWrap-'+type);const willOpen=!wrap?.classList.contains('open');closeCourseMenus();if(wrap&&willOpen)wrap.classList.add('open');}
+function jumpToCourse(courseId,type){closeCourseMenus();const section=document.getElementById(type==='paper'?'sec-paper':'sec-marketing');const target=document.getElementById(courseId)||section;if(section)section.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>target?.scrollIntoView({behavior:'smooth',block:'start'}),140);}
+document.addEventListener('click',e=>{if(!e.target.closest('.course-menu-wrap'))closeCourseMenus();});
 function goTab(id){const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'"+id+"'"));if(targetTab)switchTab(targetTab,id);const target=document.getElementById('tab-'+id);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});}
 function switchProductCategory(category,btn){const wrap=document.getElementById('tab-products');if(!wrap)return;wrap.dataset.productCategory=category;wrap.querySelectorAll('.product-category-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');}
 function openPicker(name,price,sessions){pickerItem={name,price,sessions};selectedSession=null;document.getElementById('pickerTitle').textContent=name+'｜選擇場次';document.getElementById('pickerOptions').innerHTML=sessions.map((s,i)=>`<div class="session-opt" onclick="selectSess(this,${i})"><div class="radio"><div class="radio-dot"></div></div><div><div class="s-loc">📍 ${s.loc}</div><div class="s-date">📅 ${s.date}</div>${s.teacher?`<div class="s-teacher-d">👩‍🏫 ${s.teacher}</div>`:''}</div></div>`).join('');document.getElementById('pickerOverlay').classList.add('open');}
