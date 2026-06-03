@@ -485,7 +485,8 @@ textarea{resize:vertical;height:70px;}
     <div class="top-menu-group">
       <div class="top-menu-title">神明敬獻・祝壽供品</div>
       <div class="top-menu-list">
-        <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-blessing-start')">神明敬獻・祝壽供品 <span>分類</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-monthly-offers')">當月優惠款 <span>神明</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-category-switch')">神明敬獻・祝壽供品 <span>分類</span></button>
         <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-haoshen')">好神花 <span>供花</span></button>
         <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-jiaoqian')">轎前花 <span>神明桌</span></button>
         <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-bouquet')">福願花束 <span>客製</span></button>
@@ -498,7 +499,8 @@ textarea{resize:vertical;height:70px;}
     <div class="top-menu-group">
       <div class="top-menu-title">弔念祭祖・追思供花</div>
       <div class="top-menu-list">
-        <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-memorial-start')">弔念祭祖・追思供花 <span>分類</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-monthly-offers')">當月優惠款 <span>追思</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-category-switch')">弔念祭祖・追思供花 <span>分類</span></button>
         <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-yongsi')">永思花 <span>追思</span></button>
         <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-memorial-bucket-floor')">福圓追思寶桶 <span>圓滿金磚柱</span></button>
         <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-memorial-bucket-table')">福圓追思寶桶 <span>桌上型</span></button>
@@ -837,7 +839,7 @@ textarea{resize:vertical;height:70px;}
 <!-- 作品訂製 -->
 <div id="tab-products" style="display:none" data-product-category="blessing">
   <div class="sec-label">作品訂製</div>
-  <div class="product-highlight">
+  <div class="product-highlight" id="product-monthly-offers">
     <div class="highlight-panel">
       <div class="highlight-kicker">近期提醒</div>
       <div class="highlight-title">祝壽與民俗日</div>
@@ -892,7 +894,7 @@ textarea{resize:vertical;height:70px;}
       </div>
     </div>
   </div>
-  <div class="product-category-switch" aria-label="作品分類">
+  <div class="product-category-switch" id="product-category-switch" aria-label="作品分類">
     <button class="product-category-btn active" type="button" data-product-category-btn="blessing" onclick="switchProductCategory('blessing',this)">
       <span>神明敬獻・祝壽供品</span>
       <small>神明祝壽、還願、安坐、入火、答謝等敬奉</small>
