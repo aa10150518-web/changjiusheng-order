@@ -554,7 +554,7 @@ textarea{resize:vertical;height:70px;}
     <div class="course-menu-wrap" id="courseWrap-paper">
       <button class="course-menu-btn paper" type="button" onclick="toggleCourseMenu('paper',event)">紙藝課程 <span class="course-arrow">▾</span></button>
       <div class="course-menu" id="courseMenu-paper">
-        <button class="course-menu-item" type="button" onclick="jumpToCourse('course-bouquet','paper')">小花束金紙花束班 <span>入門 / 進階 / 認證</span></button>
+        <button class="course-menu-item" type="button" onclick="jumpToCourse('course-bouquet','paper')">福願花束手作班 <span>入門 / 進階 / 檢定</span></button>
         <button class="course-menu-item" type="button" onclick="jumpToCourse('course-haoshen','paper')">好神花紙藝課 <span>供花製作</span></button>
         <button class="course-menu-item" type="button" onclick="jumpToCourse('course-yongsi','paper')">永思花紙藝課 <span>追思作品</span></button>
         <button class="course-menu-item" type="button" onclick="jumpToCourse('course-fuyuan','paper')">福圓追思寶桶 <span>職能檢定</span></button>
@@ -580,10 +580,10 @@ textarea{resize:vertical;height:70px;}
       <img src="images/course-bouquet-02.jpg" alt="小花束金紙花束課程合照" style="display: block;">
     </div>
     <div class="card-body">
-      <div class="card-tag">手作 · 入門｜進階｜職能認證</div>
-      <div class="card-title">小花束金紙花束班</div>
-      <div class="card-subtitle">從入門到認證<br>一次選好你的班別</div>
-      <div class="card-desc">🌸 新手可學<br>🌸 循序漸進<br>🌸 含材料與課後複習</div>
+      <div class="card-tag">手作 · 入門｜進階｜職能檢定</div>
+      <div class="card-title">福願花束手作班</div>
+      <div class="card-subtitle">從入門到檢定<br>一次學好你的祝福花禮</div>
+      <div class="card-desc">從小花束到大花束<br>學會金紙花藝的祝福手作<br><br>🌸 新手可學<br>🌸 循序進階<br>🌸 含材料與課後複習</div>
     </div>
     <div class="pills">
       <div class="pill" style="background:#FFE8EF;border-color:#F2728A;color:#C04060;">📅 5月開課日</div>
@@ -596,19 +596,19 @@ textarea{resize:vertical;height:70px;}
         <div style="background:#EFF6FF;border:1.5px solid #6A9FD8;border-radius:6px;padding:10px 12px;">
           <div>
             <div style="font-size:14px;font-weight:500;color:var(--ink);">入門班</div>
-            <div style="font-size:12px;color:var(--ink3);line-height:1.8;">從零開始學習花型與包裝<br>兩束不同風格小花束</div>
+            <div style="font-size:12px;color:var(--ink3);line-height:1.8;">完成兩束不同風格小花束<br>適合零基礎、新手體驗</div>
           </div>
         </div>
         <div style="background:#FFF5EE;border:1.5px solid #E8954A;border-radius:6px;padding:10px 12px;">
           <div>
             <div style="font-size:14px;font-weight:500;color:var(--ink);">進階班</div>
-            <div style="font-size:12px;color:var(--ink3);line-height:1.8;">深化技法<br>兩束小花束＋一束大花束</div>
+            <div style="font-size:12px;color:var(--ink3);line-height:1.8;">完成兩束小花束＋一束大花束<br>學習進階花型與整體搭配</div>
           </div>
         </div>
         <div style="background:#FFFBEC;border:1.5px solid #C9A84C;border-radius:6px;padding:10px 12px;">
           <div>
-            <div style="font-size:14px;font-weight:500;color:var(--ink);">職能認證班</div>
-            <div style="font-size:12px;color:var(--ink3);line-height:1.8;">進階班課程＋單一認證考核<br>贈送考前模擬重點</div>
+            <div style="font-size:14px;font-weight:500;color:var(--ink);">職能檢定班</div>
+            <div style="font-size:12px;color:var(--ink3);line-height:1.8;">單一認證課程＋考前重點說明<br>適合想取得認證與教學資格者</div>
           </div>
         </div>
       </div>
@@ -1483,6 +1483,8 @@ function openCourseTierPicker(name){pickerItem={name,price:0,sessions:[{loc:'課
 function openFuyuanBucketPicker(){pickerItem={name:'福圓追思寶桶｜工藝美學職能檢定課程',price:0,sessions:[{loc:'台中 6/17(三)',date:'課程費用',detail:'台中 6/17(三)｜已含檢定費',priceLabel:'NT$6,800 / 人',price:6800,itemName:'福圓追思寶桶｜工藝美學職能檢定課程（台中 6/17(三)）'},{loc:'台中 6/17(三)',date:'課程＋圓滿金磚柱',detail:'台中 6/17(三)｜已含檢定費｜加購圓滿金磚柱',priceLabel:'NT$7,600 / 人',price:7600,itemName:'福圓追思寶桶｜工藝美學職能檢定課程＋圓滿金磚柱（台中 6/17(三)）'}]};selectedSession=null;document.getElementById('pickerTitle').textContent='福圓追思寶桶｜選擇項目';document.getElementById('pickerOptions').innerHTML=pickerItem.sessions.map((s,i)=>tierOptionHtml(s,i,'')).join('');document.getElementById('pickerOverlay').classList.add('open');}
 function openOfferOrderPicker(name,options){pickerItem={name,price:0,sessions:options.map(o=>({...o,loc:'優惠款'}))};selectedSession=null;document.getElementById('pickerTitle').textContent=name+'｜選擇數量';document.getElementById('pickerOptions').innerHTML=pickerItem.sessions.map((s,i)=>tierOptionHtml(s,i,'🛒')).join('');document.getElementById('pickerOverlay').classList.add('open');}
 function openPickerCustom(){pickerItem={name:'AI 品牌實戰進階班',price:0,sessions:[{loc:'',date:'6月28日(日)',teacher:'早鳥價 $5,800',price:5800}]};selectedSession=null;document.getElementById('pickerTitle').textContent='AI 品牌實戰進階班｜選擇場次';document.getElementById('pickerOptions').innerHTML=pickerItem.sessions.map((s,i)=>tierOptionHtml(s,i,'📅')).join('');document.getElementById('pickerOverlay').classList.add('open');}
+function renderBouquetTier(type){selectedSession=null;const types=['入門班','進階班','職能檢定班'];const sessions=pickerItem.sessions.map((s,i)=>({...s,originalIndex:i})).filter(s=>s.loc===type);document.getElementById('pickerOptions').innerHTML=`<div class="tier-tabs">${types.map(t=>`<button class="tier-tab ${t===type?'active':''}" type="button" onclick="renderBouquetTier('${t}')">${t}</button>`).join('')}</div><div class="tier-help">請先選班別，再選擇上課城市與日期</div>${sessions.map(s=>tierOptionHtml(s,s.originalIndex,'📅')).join('')}`;}
+function openBouquetTierPicker(){pickerItem={name:'福願花束手作班',price:0,sessions:[{loc:'入門班',date:'台中 5/19(二)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'高雄 5/24(日)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'台中 6/18(四)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'高雄 6/27(六)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'屏東 7月4日(六)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'進階班',date:'台中 6/18(四)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'進階班',date:'高雄 6/27(六)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'進階班',date:'屏東 7月4日(六)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'職能檢定班',date:'台中 6/18(四)',detail:'職能檢定班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500},{loc:'職能檢定班',date:'高雄 6/27(六)',detail:'職能檢定班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500},{loc:'職能檢定班',date:'屏東 7月4日(六)',detail:'職能檢定班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500}]};document.getElementById('pickerTitle').textContent='福願花束手作班｜選擇班別';renderBouquetTier('入門班');document.getElementById('pickerOverlay').classList.add('open');}
 function confirmSession(){if(selectedSession===null){alert('請選擇項目');return;}const s=pickerItem.sessions[selectedSession];const price=s.price||pickerItem.price;const label=s.itemName?s.itemName:s.teacherName?`${pickerItem.name}（${s.loc} ${s.date} · ${s.teacherName}）`:s.loc==='課程班別'?`${pickerItem.name}（${s.date} · ${s.teacher}）`:s.teacher?`${pickerItem.name}（${s.loc} ${s.date} · ${s.teacher}）`:`${pickerItem.name}（${s.loc} ${s.date}）`;addToCartRaw(label,price);closeOverlay('pickerOverlay');showToast('✓ 已加入清單');}
 function addDirect(name,price,btn,origLabel){addToCartRaw(name,price);if(btn){btn.classList.add('added');btn.textContent='✓ 已加入';setTimeout(()=>{btn.classList.remove('added');btn.textContent=origLabel;},2000);}showToast('✓ 已加入清單');}
 function addToCartRaw(name,price){const ex=cart.find(i=>i.name===name);if(ex)ex.qty++;else cart.push({name,price,qty:1});updateCount();}
