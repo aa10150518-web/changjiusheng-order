@@ -240,9 +240,9 @@ body.is-tab-view .official-links{margin-top:0;}
 .card-img.course-photo-gallery{height:320px;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#f7efe1;}
 .course-photo-tile{position:relative;overflow:hidden;background:linear-gradient(160deg,#fffaf0,#f4e6c9);}
 .course-photo-tile img{width:100%;height:100%;object-fit:contain;object-position:center center;padding:6px;}
-.card-img.course-photo-gallery.fuyuan-poster-gallery{height:auto;align-items:start;overflow:visible;}
-.fuyuan-poster-gallery .course-photo-tile{overflow:visible;}
-.fuyuan-poster-gallery .course-photo-tile img{height:auto;object-fit:contain;padding:0;}
+.card-img.course-photo-gallery.fuyuan-poster-gallery{height:auto;aspect-ratio:1.42/1;align-items:stretch;overflow:hidden;}
+.fuyuan-poster-gallery .course-photo-tile{overflow:hidden;}
+.fuyuan-poster-gallery .course-photo-tile img{width:100%;height:100%;object-fit:cover;object-position:center top;padding:0;}
 .course-photo-label{position:absolute;left:10px;top:10px;z-index:2;background:rgba(42,31,14,.76);color:#fff;font-size:12px;letter-spacing:1px;line-height:1.3;padding:4px 9px;}
 .card-img.course-photo-single{height:560px;background:linear-gradient(160deg,#fffaf0,#f4e6c9);}
 .card-img.course-photo-single img{width:100%;height:100%;object-fit:contain;object-position:center center;padding:6px;}
