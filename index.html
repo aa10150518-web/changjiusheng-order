@@ -1152,7 +1152,7 @@ textarea{resize:vertical;height:70px;}
       <div class="fg"><label>Email（選填）</label><input type="email" id="f-email" placeholder="example@email.com"></div>
       <div class="form-row" style="margin-bottom:14px;">
         <div id="cityFieldWrap">
-          <label>居住縣市</label>
+          <label id="cityLabel">居住縣市</label>
           <select id="f-city">
             <option value="">請選擇</option>
             <option>臺北市</option><option>新北市</option><option>桃園市</option>
@@ -1179,11 +1179,21 @@ textarea{resize:vertical;height:70px;}
             <option>連江縣</option>
           </select>
         </div>
+        <div id="districtFieldWrap" style="display:none">
+          <label>收件區域 <span class="req">*</span></label>
+          <select id="f-district">
+            <option value="">請先選擇縣市</option>
+          </select>
+        </div>
+        <div id="zipFieldWrap" style="display:none">
+          <label>郵遞區號</label>
+          <input type="text" id="f-zip" placeholder="選擇區域後自動帶入" readonly>
+        </div>
       </div>
       <div class="fg" id="shippingAddressField" style="display:none">
         <label>收件地址 <span class="req">*</span></label>
         <textarea id="f-address" placeholder="請填寫完整收件地址；若要自取請填「自取」"></textarea>
-        <div class="team-help">作品需要寄送時請填寫完整地址；若要自取可填「自取」。</div>
+        <div class="team-help">作品需要寄送時請填寫完整地址；若要自取可填「自取」，系統會帶入 401 臺中市東區。</div>
       </div>
       <div class="fg"><label>備註 / 特殊需求</label><textarea id="f-note" placeholder="可填寫特殊需求、同行者、商品客製內容；若已匯款也可先填後五碼。"></textarea></div>
       <div class="competition-team-field" id="competitionTeamField">
@@ -1205,14 +1215,14 @@ textarea{resize:vertical;height:70px;}
           <div style="display:flex;justify-content:space-between;"><span style="color:var(--ink3)">戶名</span><span style="font-weight:500">林韵媃</span></div>
         </div>
         <button type="button" class="copy-account-btn" onclick="copyBankAccount(this)">複製匯款帳號</button>
-        <div style="margin-top:10px;font-size:13px;color:var(--red);font-weight:700;">⚠️ 匯款完成才算報名成功；若忘記填後五碼，可在送出訂單後補填</div>
+        <div id="paymentCompletionNotice" style="margin-top:10px;font-size:13px;color:var(--red);font-weight:700;">⚠️ 匯款完成才算報名成功；若忘記填後五碼，可在送出訂單後補填</div>
       </div>
       <!-- 注意事項 -->
       <div style="margin-top:16px;background:linear-gradient(160deg,#FFF5F5,#FFE8E8,#FFF5F5);border:1px solid rgba(180,30,30,0.2);border-radius:6px;padding:16px;">
         <div id="checkoutNoticeTitle" style="font-size:18px;letter-spacing:3px;color:#9B2B1A;margin-bottom:12px;font-weight:900;font-family:'Noto Serif TC',serif;">📋 報名注意事項</div>
         <div style="font-size:13px;color:var(--ink2);line-height:2.2;">
           <div style="font-weight:700;color:#9B2B1A;margin-bottom:4px;">付款相關</div>
-          <div>・匯款完成後，請填寫後五碼，方可確認報名成功</div>
+          <div id="paymentConfirmLine">・匯款完成後，請填寫後五碼，方可確認報名成功</div>
           <div>・保護雙方權益，課程一旦付費，無法退費，保留課程半年</div>
           <div style="font-weight:700;color:#9B2B1A;margin:10px 0 4px;">課程相關</div>
           <div>・課程無法取消，如需調整場次請提前 3 天聯繫老師</div>
@@ -1223,8 +1233,8 @@ textarea{resize:vertical;height:70px;}
           <div style="font-weight:700;color:#9B2B1A;margin:10px 0 4px;">競賽相關</div>
           <div>・報名競賽選手，一旦繳費無法退款，敬請見諒</div>
           <div style="font-weight:700;color:#9B2B1A;margin:10px 0 4px;">其他</div>
-          <div>・報名即視為同意以上所有條款</div>
-          <div>・送出報名後，訂單狀態會先列為待付款</div>
+          <div id="agreeTermsLine">・報名即視為同意以上所有條款</div>
+          <div id="pendingStatusLine">・送出報名後，訂單狀態會先列為待付款</div>
           <div>・完成匯款並經確認後，才會寄出付款確認通知</div>
           <div>・如有任何疑問，請 <a href="https://line.me/ti/p/~lovebaby15" target="_blank" style="color:var(--pink-dark);font-weight:700;text-decoration:none;">點此加入 LINE 洽詢 →</a></div>
         </div>
@@ -1625,6 +1635,57 @@ function hasMixedOrderTypes(){return cartCategories().length>1;}
 function currentOrderType(){return cartCategories()[0]||'product';}
 function orderTypeLabel(type=currentOrderType()){return {course:'報名課程',product:'訂購作品',certification:'檢定認證',competition:'國際競賽'}[type]||'訂購作品';}
 function orderActionLabel(type=currentOrderType()){return {course:'報名',product:'訂購',certification:'認證報名',competition:'競賽報名'}[type]||'訂購';}
+const taiwanZipMap={
+  '臺北市':[['中正區','100'],['大同區','103'],['中山區','104'],['松山區','105'],['大安區','106'],['萬華區','108'],['信義區','110'],['士林區','111'],['北投區','112'],['內湖區','114'],['南港區','115'],['文山區','116']],
+  '基隆市':[['仁愛區','200'],['信義區','201'],['中正區','202'],['中山區','203'],['安樂區','204'],['暖暖區','205'],['七堵區','206']],
+  '新北市':[['萬里區','207'],['金山區','208'],['板橋區','220'],['汐止區','221'],['深坑區','222'],['石碇區','223'],['瑞芳區','224'],['平溪區','226'],['雙溪區','227'],['貢寮區','228'],['新店區','231'],['坪林區','232'],['烏來區','233'],['永和區','234'],['中和區','235'],['土城區','236'],['三峽區','237'],['樹林區','238'],['鶯歌區','239'],['三重區','241'],['新莊區','242'],['泰山區','243'],['林口區','244'],['蘆洲區','247'],['五股區','248'],['八里區','249'],['淡水區','251'],['三芝區','252'],['石門區','253']],
+  '宜蘭縣':[['宜蘭市','260'],['頭城鎮','261'],['礁溪鄉','262'],['壯圍鄉','263'],['員山鄉','264'],['羅東鎮','265'],['三星鄉','266'],['大同鄉','267'],['五結鄉','268'],['冬山鄉','269'],['蘇澳鎮','270'],['南澳鄉','272'],['釣魚臺列嶼','290']],
+  '新竹市':[['東區','300'],['北區','300'],['香山區','300']],
+  '新竹縣':[['竹北市','302'],['湖口鄉','303'],['新豐鄉','304'],['新埔鎮','305'],['關西鎮','306'],['芎林鄉','307'],['寶山鄉','308'],['竹東鎮','310'],['五峰鄉','311'],['橫山鄉','312'],['尖石鄉','313'],['北埔鄉','314'],['峨眉鄉','315']],
+  '桃園市':[['中壢區','320'],['平鎮區','324'],['龍潭區','325'],['楊梅區','326'],['新屋區','327'],['觀音區','328'],['桃園區','330'],['龜山區','333'],['八德區','334'],['大溪區','335'],['復興區','336'],['大園區','337'],['蘆竹區','338']],
+  '苗栗縣':[['竹南鎮','350'],['頭份市','351'],['三灣鄉','352'],['南庄鄉','353'],['獅潭鄉','354'],['後龍鎮','356'],['通霄鎮','357'],['苑裡鎮','358'],['苗栗市','360'],['造橋鄉','361'],['頭屋鄉','362'],['公館鄉','363'],['大湖鄉','364'],['泰安鄉','365'],['銅鑼鄉','366'],['三義鄉','367'],['西湖鄉','368'],['卓蘭鎮','369']],
+  '臺中市':[['中區','400'],['東區','401'],['南區','402'],['西區','403'],['北區','404'],['北屯區','406'],['西屯區','407'],['南屯區','408'],['太平區','411'],['大里區','412'],['霧峰區','413'],['烏日區','414'],['豐原區','420'],['后里區','421'],['石岡區','422'],['東勢區','423'],['和平區','424'],['新社區','426'],['潭子區','427'],['大雅區','428'],['神岡區','429'],['大肚區','432'],['沙鹿區','433'],['龍井區','434'],['梧棲區','435'],['清水區','436'],['大甲區','437'],['外埔區','438'],['大安區','439']],
+  '彰化縣':[['彰化市','500'],['芬園鄉','502'],['花壇鄉','503'],['秀水鄉','504'],['鹿港鎮','505'],['福興鄉','506'],['線西鄉','507'],['和美鎮','508'],['伸港鄉','509'],['員林市','510'],['社頭鄉','511'],['永靖鄉','512'],['埔心鄉','513'],['溪湖鎮','514'],['大村鄉','515'],['埔鹽鄉','516'],['田中鎮','520'],['北斗鎮','521'],['田尾鄉','522'],['埤頭鄉','523'],['溪州鄉','524'],['竹塘鄉','525'],['二林鎮','526'],['大城鄉','527'],['芳苑鄉','528'],['二水鄉','530']],
+  '南投縣':[['南投市','540'],['中寮鄉','541'],['草屯鎮','542'],['國姓鄉','544'],['埔里鎮','545'],['仁愛鄉','546'],['名間鄉','551'],['集集鎮','552'],['水里鄉','553'],['魚池鄉','555'],['信義鄉','556'],['竹山鎮','557'],['鹿谷鄉','558']],
+  '嘉義市':[['東區','600'],['西區','600']],
+  '嘉義縣':[['番路鄉','602'],['梅山鄉','603'],['竹崎鄉','604'],['阿里山鄉','605'],['中埔鄉','606'],['大埔鄉','607'],['水上鄉','608'],['鹿草鄉','611'],['太保市','612'],['朴子市','613'],['東石鄉','614'],['六腳鄉','615'],['新港鄉','616'],['民雄鄉','621'],['大林鎮','622'],['溪口鄉','623'],['義竹鄉','624'],['布袋鎮','625']],
+  '雲林縣':[['斗南鎮','630'],['大埤鄉','631'],['虎尾鎮','632'],['土庫鎮','633'],['褒忠鄉','634'],['東勢鄉','635'],['臺西鄉','636'],['崙背鄉','637'],['麥寮鄉','638'],['斗六市','640'],['林內鄉','643'],['古坑鄉','646'],['莿桐鄉','647'],['西螺鎮','648'],['二崙鄉','649'],['北港鎮','651'],['水林鄉','652'],['口湖鄉','653'],['四湖鄉','654'],['元長鄉','655']],
+  '臺南市':[['中西區','700'],['東區','701'],['南區','702'],['北區','704'],['安平區','708'],['安南區','709'],['永康區','710'],['歸仁區','711'],['新化區','712'],['左鎮區','713'],['玉井區','714'],['楠西區','715'],['南化區','716'],['仁德區','717'],['關廟區','718'],['龍崎區','719'],['官田區','720'],['麻豆區','721'],['佳里區','722'],['西港區','723'],['七股區','724'],['將軍區','725'],['學甲區','726'],['北門區','727'],['新營區','730'],['後壁區','731'],['白河區','732'],['東山區','733'],['六甲區','734'],['下營區','735'],['柳營區','736'],['鹽水區','737'],['善化區','741'],['大內區','742'],['山上區','743'],['新市區','744'],['安定區','745']],
+  '高雄市':[['新興區','800'],['前金區','801'],['苓雅區','802'],['鹽埕區','803'],['鼓山區','804'],['旗津區','805'],['前鎮區','806'],['三民區','807'],['楠梓區','811'],['小港區','812'],['左營區','813'],['仁武區','814'],['大社區','815'],['岡山區','820'],['路竹區','821'],['阿蓮區','822'],['田寮區','823'],['燕巢區','824'],['橋頭區','825'],['梓官區','826'],['彌陀區','827'],['永安區','828'],['湖內區','829'],['鳳山區','830'],['大寮區','831'],['林園區','832'],['鳥松區','833'],['大樹區','840'],['旗山區','842'],['美濃區','843'],['六龜區','844'],['內門區','845'],['杉林區','846'],['甲仙區','847'],['桃源區','848'],['那瑪夏區','849'],['茂林區','851'],['茄萣區','852']],
+  '屏東縣':[['屏東市','900'],['三地門鄉','901'],['霧臺鄉','902'],['瑪家鄉','903'],['九如鄉','904'],['里港鄉','905'],['高樹鄉','906'],['鹽埔鄉','907'],['長治鄉','908'],['麟洛鄉','909'],['竹田鄉','911'],['內埔鄉','912'],['萬丹鄉','913'],['潮州鎮','920'],['泰武鄉','921'],['來義鄉','922'],['萬巒鄉','923'],['崁頂鄉','924'],['新埤鄉','925'],['南州鄉','926'],['林邊鄉','927'],['東港鎮','928'],['琉球鄉','929'],['佳冬鄉','931'],['新園鄉','932'],['枋寮鄉','940'],['枋山鄉','941'],['春日鄉','942'],['獅子鄉','943'],['車城鄉','944'],['牡丹鄉','945'],['恆春鎮','946'],['滿州鄉','947']],
+  '臺東縣':[['臺東市','950'],['綠島鄉','951'],['蘭嶼鄉','952'],['延平鄉','953'],['卑南鄉','954'],['鹿野鄉','955'],['關山鎮','956'],['海端鄉','957'],['池上鄉','958'],['東河鄉','959'],['成功鎮','961'],['長濱鄉','962'],['太麻里鄉','963'],['金峰鄉','964'],['大武鄉','965'],['達仁鄉','966']],
+  '花蓮縣':[['花蓮市','970'],['新城鄉','971'],['秀林鄉','972'],['吉安鄉','973'],['壽豐鄉','974'],['鳳林鎮','975'],['光復鄉','976'],['豐濱鄉','977'],['瑞穗鄉','978'],['萬榮鄉','979'],['玉里鎮','981'],['卓溪鄉','982'],['富里鄉','983']],
+  '金門縣':[['金沙鎮','890'],['金湖鎮','891'],['金寧鄉','892'],['金城鎮','893'],['烈嶼鄉','894'],['烏坵鄉','896']],
+  '澎湖縣':[['馬公市','880'],['西嶼鄉','881'],['望安鄉','882'],['七美鄉','883'],['白沙鄉','884'],['湖西鄉','885']],
+  '連江縣':[['南竿鄉','209'],['北竿鄉','210'],['莒光鄉','211'],['東引鄉','212']]
+};
+function updateDistrictOptions(){
+  const city=document.getElementById('f-city')?.value||'';
+  const district=document.getElementById('f-district');
+  const zip=document.getElementById('f-zip');
+  if(!district||!zip)return;
+  const options=taiwanZipMap[city]||[];
+  district.innerHTML='<option value="">請選擇區域</option>'+options.map(([name,code])=>`<option value="${name}" data-zip="${code}">${name}</option>`).join('');
+  zip.value='';
+}
+function updateZipFromDistrict(){
+  const district=document.getElementById('f-district');
+  const zip=document.getElementById('f-zip');
+  if(zip)zip.value=district?.selectedOptions?.[0]?.dataset?.zip||'';
+}
+function applyPickupAddressIfNeeded(){
+  const address=document.getElementById('f-address');
+  if(!address||!/^自取$/.test(address.value.trim()))return;
+  const city=document.getElementById('f-city');
+  const district=document.getElementById('f-district');
+  const zip=document.getElementById('f-zip');
+  if(city){city.value='臺中市';updateDistrictOptions();}
+  if(district){district.value='東區';}
+  if(zip){zip.value='401';}
+}
+document.getElementById('f-city')?.addEventListener('change',updateDistrictOptions);
+document.getElementById('f-district')?.addEventListener('change',updateZipFromDistrict);
+document.getElementById('f-address')?.addEventListener('input',applyPickupAddressIfNeeded);
 function updateCheckoutUI(){
   const type=currentOrderType();
   const isProduct=type==='product';
@@ -1640,9 +1701,20 @@ function updateCheckoutUI(){
   const signupReminder='<div>・課程一旦付費，無法退費，保留課程半年</div><div>・認證考生僅限考試月份應考，無法延期</div><div>・競賽報名一旦繳費，無法退款</div><div>・如遇颱風或停班停課，另行通知補課</div><div style="margin-top:6px;">・有疑問請 <a href="https://line.me/ti/p/~lovebaby15" target="_blank" style="color:var(--pink-dark);font-weight:700;text-decoration:none;">加入 LINE 洽詢 →</a></div>';
   document.getElementById('checkoutTitle').textContent=titleMap[type]||'填寫訂單資料';
   document.getElementById('checkoutContext').textContent='訂單類型：'+orderTypeLabel(type);
+  document.getElementById('cityLabel').innerHTML=isProduct?'收件縣市 <span class="req">*</span>':'居住縣市';
   document.getElementById('classCityFieldWrap').style.display=isProduct?'none':'block';
+  document.getElementById('districtFieldWrap').style.display=isProduct?'block':'none';
+  document.getElementById('zipFieldWrap').style.display=isProduct?'block':'none';
   document.getElementById('shippingAddressField').style.display=isProduct?'block':'none';
+  const paymentNotice=document.getElementById('paymentCompletionNotice');
+  if(paymentNotice)paymentNotice.textContent=isProduct?'⚠️ 匯款完成才算訂購完成；若忘記填後五碼，可在送出訂單後補填':'⚠️ 匯款完成才算報名成功；若忘記填後五碼，可在送出訂單後補填';
   document.getElementById('checkoutNoticeTitle').textContent=isProduct?'📋 訂購注意事項':'📋 報名注意事項';
+  const paymentConfirmLine=document.getElementById('paymentConfirmLine');
+  const agreeTermsLine=document.getElementById('agreeTermsLine');
+  const pendingStatusLine=document.getElementById('pendingStatusLine');
+  if(paymentConfirmLine)paymentConfirmLine.textContent=isProduct?'・匯款完成後，請填寫後五碼，方可確認訂購完成':'・匯款完成後，請填寫後五碼，方可確認報名成功';
+  if(agreeTermsLine)agreeTermsLine.textContent=isProduct?'・送出訂購資料即視為同意以上所有條款':'・報名即視為同意以上所有條款';
+  if(pendingStatusLine)pendingStatusLine.textContent=isProduct?'・送出訂購資料後，訂單狀態會先列為待付款':'・送出報名後，訂單狀態會先列為待付款';
   document.getElementById('successTitle').textContent=successTitleMap[type]||'訂單已送出';
   document.getElementById('successDesc').innerHTML=successDescMap[type]||successDescMap.product;
   document.getElementById('successReminderBody').innerHTML=isProduct?productReminder:signupReminder;
@@ -1658,21 +1730,32 @@ let isSubmittingOrder=false;async function submitOrder(){
   const l=document.getElementById('f-line').value.trim();
   const e=document.getElementById('f-email').value.trim();
   const city=document.getElementById('f-city').value;
+  const district=(document.getElementById('f-district')?.value||'').trim();
+  const zip=(document.getElementById('f-zip')?.value||'').trim();
   const classCity=document.getElementById('f-class-city').value;
   const address=(document.getElementById('f-address')?.value||'').trim();
   const note=document.getElementById('f-note').value.trim();
   const pay=document.querySelector('.pay-opt.selected')?.textContent?.trim()||'未選擇';
   if(!n||!p||!l){alert('請填寫姓名、電話及 LINE ID');return;}
+  if(isProduct)applyPickupAddressIfNeeded();
   if(isProduct&&!address){alert('請填寫收件地址；若要自取，請填「自取」。');document.getElementById('f-address')?.focus();return;}
+  const pickup=/^自取$/.test(address);
+  const finalCity=pickup?'臺中市':city;
+  const finalDistrict=pickup?'東區':district;
+  const finalZip=pickup?'401':zip;
+  if(isProduct&&!finalCity){alert('請選擇收件縣市。');document.getElementById('f-city')?.focus();return;}
+  if(isProduct&&!finalDistrict){alert('請選擇收件區域，系統會自動帶入郵遞區號。');document.getElementById('f-district')?.focus();return;}
+  const displayShippingCity=pickup?'台中市':finalCity;
+  const shippingAddress=isProduct?(pickup?`${finalZip} ${displayShippingCity}${finalDistrict} 自取`:`${finalZip} ${displayShippingCity}${finalDistrict} ${address}`.trim()):'';
   if(isSubmittingOrder)return;
   isSubmittingOrder=true;
   let orderNo='CJS-'+Date.now().toString().slice(-8);
   const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);
   const items=cart.map(i=>`• ${i.name}${i.price>0?' NT$'+i.price.toLocaleString():' (洽詢)'}`).join('\n');
-  const combinedNote=[`訂單類型：${orderTypeLabel(type)}`,isProduct?`收件地址：${address}`:'',note].filter(Boolean).join('\n');
-  const msg=`🛒 昌久貹｜新訂單通知\n━━━━━━━━━━━━\n📌 訂單類型：${orderTypeLabel(type)}\n📋 訂單編號：${orderNo}\n👤 姓名：${n}\n📞 電話：${p}\n💬 LINE：${l}\n${e?'📧 Email：'+e+'\n':''}📍 居住縣市：${city||'未填'}\n${isProduct?`📦 收件地址：${address||'未填'}\n`:`📍 上課縣市：${classCity||'未填'}\n`}━━━━━━━━━━━━\n📦 項目：\n${items}\n━━━━━━━━━━━━\n💰 合計：${total>0?'NT$ '+total.toLocaleString():'含洽詢項目'}\n💳 付款：${pay}\n${combinedNote?'📝 備註：'+combinedNote+'\n':''}⏰ ${new Date().toLocaleString('zh-TW')}`;
+  const combinedNote=[`訂單類型：${orderTypeLabel(type)}`,isProduct?`收件地址：${shippingAddress}`:'',note].filter(Boolean).join('\n');
+  const msg=`🛒 昌久貹｜新訂單通知\n━━━━━━━━━━━━\n📌 訂單類型：${orderTypeLabel(type)}\n📋 訂單編號：${orderNo}\n👤 姓名：${n}\n📞 電話：${p}\n💬 LINE：${l}\n${e?'📧 Email：'+e+'\n':''}📍 ${isProduct?'收件縣市':'居住縣市'}：${isProduct?(displayShippingCity||'未填'):(city||'未填')}\n${isProduct?`📦 收件地址：${shippingAddress||'未填'}\n`:`📍 上課縣市：${classCity||'未填'}\n`}━━━━━━━━━━━━\n📦 項目：\n${items}\n━━━━━━━━━━━━\n💰 合計：${total>0?'NT$ '+total.toLocaleString():'含洽詢項目'}\n💳 付款：${pay}\n${combinedNote?'📝 備註：'+combinedNote+'\n':''}⏰ ${new Date().toLocaleString('zh-TW')}`;
   try{
-    const notifyRes=await fetch('https://chang-jiu-sheng-order-backend.vercel.app/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,orderType:type,orderCategoryLabel:orderTypeLabel(type),studentEmail:e,studentName:n,phone:p,lineId:l,city,classCity:isProduct?'':classCity,shippingAddress:address,orderNo,items,cartItems:cart,total,payment:pay,note:combinedNote})});
+    const notifyRes=await fetch('https://chang-jiu-sheng-order-backend.vercel.app/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,orderType:type,orderCategoryLabel:orderTypeLabel(type),studentEmail:e,studentName:n,phone:p,lineId:l,city:isProduct?displayShippingCity:city,classCity:isProduct?'':classCity,shippingZip:finalZip,shippingDistrict:finalDistrict,shippingAddress,orderNo,items,cartItems:cart,total,payment:pay,note:combinedNote})});
     const notifyData=await notifyRes.json().catch(()=>null);
     if(notifyData&&notifyData.order&&notifyData.order.order_no)orderNo=notifyData.order.order_no;
   }catch(err){console.log('通知失敗',err);}
@@ -1691,7 +1774,7 @@ const submitOrderHandler=submitOrder;
 submitOrder=async function(){if(hasMixedOrderTypes()){alert('課程、作品、認證、競賽請分開下單，後台才不會混在一起。');return;}const permissionPromise=Promise.resolve('page');const needsTeam=hasTeamCompetitionCart();const teamEl=document.getElementById('f-team-members');const teamMembers=teamEl?.value.trim()||'';if(needsTeam&&!teamMembers){alert('團體賽需要填寫 3 位參賽者姓名與身分證字號，方便送交大會與領獎金核對。');teamEl?.focus();return;}const noteEl=document.getElementById('f-note');const originalNote=noteEl?.value||'';if(needsTeam&&noteEl){const teamBlock=`團體賽組員名單：\n${teamMembers}`;noteEl.value=[originalNote.trim(),teamBlock].filter(Boolean).join('\n\n');}try{await submitOrderHandler.apply(this,arguments);}finally{if(needsTeam&&noteEl)noteEl.value=originalNote;}const orderNo=document.getElementById('orderNo')?.textContent?.trim();if(orderNo&&document.getElementById('successScreen')?.classList.contains('show'))await notifyStudentAfterOrder(orderNo,permissionPromise);};
 function handleOverlayClick(e,id){if(e.target===document.getElementById(id))closeOverlay(id);}
 function closeOverlay(id){document.getElementById(id).classList.remove('open');}
-function resetAll(){isSubmittingOrder=false;cart=[];updateCount();closeOverlay('modalOverlay');document.getElementById('modalBody').classList.remove('hide');document.getElementById('successScreen').classList.remove('show');['f-name','f-phone','f-line','f-email','f-note','f-team-members','paymentLast5','f-address'].forEach(id=>{const el=document.getElementById(id);if(el){el.value='';el.disabled=false;}});const status=document.getElementById('paymentCodeStatus');if(status){status.style.display='none';status.style.color='#2E7D52';status.textContent='已補上匯款後五碼，官方會依同一筆訂單核對。';}const paymentBtn=document.querySelector('#paymentCodeBox button');if(paymentBtn){paymentBtn.disabled=false;paymentBtn.textContent='送出後五碼';}document.getElementById('f-city').value='';document.getElementById('f-class-city').value='';updateCheckoutUI();updateCompetitionTeamFields();}
+function resetAll(){isSubmittingOrder=false;cart=[];updateCount();closeOverlay('modalOverlay');document.getElementById('modalBody').classList.remove('hide');document.getElementById('successScreen').classList.remove('show');['f-name','f-phone','f-line','f-email','f-note','f-team-members','paymentLast5','f-address','f-zip'].forEach(id=>{const el=document.getElementById(id);if(el){el.value='';el.disabled=false;}});const status=document.getElementById('paymentCodeStatus');if(status){status.style.display='none';status.style.color='#2E7D52';status.textContent='已補上匯款後五碼，官方會依同一筆訂單核對。';}const paymentBtn=document.querySelector('#paymentCodeBox button');if(paymentBtn){paymentBtn.disabled=false;paymentBtn.textContent='送出後五碼';}document.getElementById('f-city').value='';document.getElementById('f-class-city').value='';updateDistrictOptions();updateCheckoutUI();updateCompetitionTeamFields();}
 </script>
 
 
