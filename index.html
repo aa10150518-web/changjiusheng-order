@@ -27,8 +27,20 @@ body{background:
 .cart-count{background:var(--red);color:#fff;border-radius:50%;width:16px;height:16px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;}
 .tabs{background:rgba(243,232,211,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(139,107,26,0.25);display:flex;overflow-x:auto;padding:0 10px;position:sticky;top:87px;z-index:99;box-shadow:0 6px 18px rgba(58,42,24,.08);}
 .tab{padding:9px 14px;font-size:13px;color:var(--ink3);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;letter-spacing:1px;transition:all .2s;text-decoration:none;}
+.tab-with-menu{display:flex;align-items:center;gap:5px;}
+.tab-arrow-btn{border:0;background:rgba(255,253,248,.7);color:inherit;border-radius:999px;width:20px;height:20px;line-height:20px;padding:0;font-size:11px;cursor:pointer;transition:transform .2s,background .2s;}
+.tab-with-menu.menu-open .tab-arrow-btn{transform:rotate(180deg);background:rgba(201,168,76,.18);}
 .tab.active{color:var(--gold3);border-bottom-color:var(--gold);font-weight:500;}
 .tab-link:hover{color:var(--gold3);}
+.top-menu-panel{display:none;position:sticky;top:124px;z-index:98;background:rgba(255,253,248,.98);border-bottom:1px solid rgba(201,168,76,.24);box-shadow:0 12px 28px rgba(58,42,24,.1);padding:10px 12px;}
+.top-menu-panel.active{display:block;}
+.top-menu-inner{max-width:640px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.top-menu-group{border:1px solid rgba(201,168,76,.22);border-radius:8px;background:rgba(250,244,232,.72);padding:8px;}
+.top-menu-title{font-size:11px;color:var(--gold3);letter-spacing:2px;margin:0 0 6px;font-weight:700;}
+.top-menu-list{display:grid;grid-template-columns:1fr;gap:4px;}
+.top-menu-item{border:0;background:rgba(255,253,248,.8);color:var(--ink);border-radius:6px;padding:8px 9px;text-align:left;font-family:inherit;font-size:12px;line-height:1.45;cursor:pointer;display:flex;justify-content:space-between;gap:8px;align-items:center;}
+.top-menu-item:hover{background:rgba(201,168,76,.14);color:var(--gold3);}
+.top-menu-item span{font-size:10px;color:var(--gold3);white-space:nowrap;}
 .hero{position:relative;padding:70px 22px 54px;text-align:center;background:
   radial-gradient(circle at 50% 18%,rgba(201,168,76,.16),transparent 34%),
   linear-gradient(180deg,rgba(255,253,248,.98) 0%,rgba(250,244,232,.96) 58%,rgba(243,232,211,.92) 100%);
@@ -438,11 +450,59 @@ textarea{resize:vertical;height:70px;}
   <button class="cart-btn" onclick="openCart()">🛒 購物車<span class="cart-count" id="cartCount" style="display:none">0</span></button>
 </div>
 <div class="tabs">
-  <div class="tab active" onclick="switchTab(this,'courses')">📚 課程專區</div>
-  <div class="tab" onclick="switchTab(this,'products')">🌸 作品訂製</div>
+  <div class="tab active tab-with-menu" onclick="switchTab(this,'courses')">📚 課程專區 <button class="tab-arrow-btn" type="button" aria-label="展開課程選單" onclick="toggleTopMenu('courses',event)">▾</button></div>
+  <div class="tab tab-with-menu" onclick="switchTab(this,'products')">🌸 作品訂製 <button class="tab-arrow-btn" type="button" aria-label="展開作品選單" onclick="toggleTopMenu('products',event)">▾</button></div>
   <div class="tab" onclick="showHomeSection('about-founder')">關於我們</div>
   <div class="tab" onclick="switchTab(this,'cert')">📜 國際認證</div>
   <div class="tab" onclick="switchTab(this,'comp')">🏆 國際競賽</div>
+</div>
+<div class="top-menu-panel" id="topMenu-courses">
+  <div class="top-menu-inner">
+    <div class="top-menu-group">
+      <div class="top-menu-title">紙藝課程</div>
+      <div class="top-menu-list">
+        <button class="top-menu-item" type="button" onclick="jumpTopCourse('course-bouquet','paper')">福願花束手作班 <span>入門 / 進階 / 檢定</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopCourse('course-haoshen','paper')">好神花紙藝課 <span>供花</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopCourse('course-yongsi','paper')">永思花紙藝課 <span>追思</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopCourse('course-fuyuan','paper')">福圓追思寶桶 <span>檢定</span></button>
+      </div>
+    </div>
+    <div class="top-menu-group">
+      <div class="top-menu-title">行銷課程</div>
+      <div class="top-menu-list">
+        <button class="top-menu-item" type="button" onclick="jumpTopCourse('course-ai-marketing','marketing')">AI 行銷入門班 <span>入門</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopCourse('course-ai-brand','marketing')">AI 品牌實戰進階班 <span>進階</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopCourse('course-website-zero','marketing')">零基礎官網架設班 <span>架站</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="top-menu-panel" id="topMenu-products">
+  <div class="top-menu-inner">
+    <div class="top-menu-group">
+      <div class="top-menu-title">神明敬獻・祝壽供品</div>
+      <div class="top-menu-list">
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-blessing-start')">神明敬獻作品 <span>分類</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-haoshen')">好神花 <span>供花</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-jiaoqian')">轎前花 <span>神明桌</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-bouquet')">金紙花束 <span>客製</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-birthday-cake')">祝壽蛋糕 <span>祝壽</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-pineapple')">焰旺來 <span>旺來</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-yitongjin')">一桶金 <span>招財</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-fortune-throne')">納財聚福寶座 <span>納財</span></button>
+      </div>
+    </div>
+    <div class="top-menu-group">
+      <div class="top-menu-title">弔念祭祖・追思供花</div>
+      <div class="top-menu-list">
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-memorial-start')">追思供花作品 <span>分類</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-yongsi')">永思花 <span>追思</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-memorial-bucket-floor')">追思往生桶花 <span>立地型</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-memorial-bucket-table')">追思往生桶花 <span>桌上型</span></button>
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-fachuan')">法船 <span>手掌型</span></button>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="hero">
   <div class="hero-media">
@@ -830,16 +890,16 @@ textarea{resize:vertical;height:70px;}
     </div>
   </div>
   <div class="product-category-switch" aria-label="作品分類">
-    <button class="product-category-btn active" type="button" onclick="switchProductCategory('blessing',this)">
+    <button class="product-category-btn active" type="button" data-product-category-btn="blessing" onclick="switchProductCategory('blessing',this)">
       <span>神明敬獻・祝壽供品</span>
       <small>神明祝壽、還願、安坐、入火、答謝等敬奉</small>
     </button>
-    <button class="product-category-btn" type="button" onclick="switchProductCategory('memorial',this)">
+    <button class="product-category-btn" type="button" data-product-category-btn="memorial" onclick="switchProductCategory('memorial',this)">
       <span>弔念祭祖・追思供花</span>
       <small>祭祖、追思、清明、中元、祖先、告別式等敬奉</small>
     </button>
   </div>
-  <div class="card product-category-item product-memorial">
+  <div class="card product-category-item product-memorial" id="product-yongsi">
     <div class="product-card-photos">
       <img src="images/product-yongsi-01.jpg" alt="永思花作品">
       <img src="images/product-yongsi-02.jpg" alt="永思花作品">
@@ -853,31 +913,31 @@ textarea{resize:vertical;height:70px;}
     <div class="pills"><div class="pill">📦 宅配</div><div class="pill">🎁 精美包裝</div></div>
     <div class="card-footer"><span style="font-size:13px;color:var(--ink3)">洽詢報價</span><div class="mini-actions product-card-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('永思花｜思念紀念花（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div>
   </div>
-  <div class="series-title product-category-item product-memorial">弔念祭祖系列</div>
+  <div class="series-title product-category-item product-memorial" id="product-memorial-start">弔念祭祖系列</div>
   <div class="mini-grid product-category-item product-memorial">
-    <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-memorial-bucket-01.jpg" alt="追思往生桶花作品"></div><div class="mini-card-copy"><div class="mini-title">追思往生桶花</div><div class="mini-desc">立地型（加金磚柱）・一對 NT$4,000</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('追思往生桶花｜立地型（加金磚柱）一對',4000,this,'加入購物車')">加入購物車</button></div></div></div>
-    <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-memorial-bucket-table-01.png" alt="追思往生桶花桌上型作品"></div><div class="mini-card-copy"><div class="mini-title">追思往生桶花</div><div class="mini-desc">桌上型・一對 NT$2,200</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('追思往生桶花｜桌上型一對',2200,this,'加入購物車')">加入購物車</button></div></div></div>
-    <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-fachuan-01.jpg" alt="法船作品"></div><div class="mini-card-copy"><div class="mini-title">法船</div><div class="mini-desc">手掌型尺寸・裝飾可客製化</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('法船｜手掌型尺寸（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
+    <div class="mini-card has-photo" id="product-memorial-bucket-floor"><div class="mini-photo"><img src="images/product-memorial-bucket-01.jpg" alt="追思往生桶花作品"></div><div class="mini-card-copy"><div class="mini-title">追思往生桶花</div><div class="mini-desc">立地型（加金磚柱）・一對 NT$4,000</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('追思往生桶花｜立地型（加金磚柱）一對',4000,this,'加入購物車')">加入購物車</button></div></div></div>
+    <div class="mini-card has-photo" id="product-memorial-bucket-table"><div class="mini-photo"><img src="images/product-memorial-bucket-table-01.png" alt="追思往生桶花桌上型作品"></div><div class="mini-card-copy"><div class="mini-title">追思往生桶花</div><div class="mini-desc">桌上型・一對 NT$2,200</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('追思往生桶花｜桌上型一對',2200,this,'加入購物車')">加入購物車</button></div></div></div>
+    <div class="mini-card has-photo" id="product-fachuan"><div class="mini-photo"><img src="images/product-fachuan-01.jpg" alt="法船作品"></div><div class="mini-card-copy"><div class="mini-title">法船</div><div class="mini-desc">手掌型尺寸・裝飾可客製化</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('法船｜手掌型尺寸（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
   </div>
 
-  <div class="series-title product-category-item product-blessing">敬獻花束 🌸</div>
+  <div class="series-title product-category-item product-blessing" id="product-blessing-start">敬獻花束 🌸</div>
   <div class="mini-grid product-category-item product-blessing">
-    <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-haoshen-01.jpg" alt="好神花作品"></div><div class="mini-card-copy"><div class="mini-title">好神花</div><div class="mini-desc">尺寸 S / M / L / XL・顏色可選・花盤可選・可客製</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('好神花｜神明供花（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
-    <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-jiaoqian-01.jpg" alt="轎前花作品"></div><div class="mini-card-copy"><div class="mini-title">轎前花</div><div class="mini-desc">廟會裝飾・神明桌</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('轎前花（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
-    <div class="mini-card has-photo"><div class="mini-photo duo"><img src="images/product-bouquet-01.jpg" alt="金紙花束作品"><img src="images/product-bouquet-02.jpg" alt="金紙花束作品"></div><div class="mini-card-copy"><div class="mini-title">金紙花束</div><div class="mini-desc">全金紙製作・顏色可選・可客製</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('金紙花束（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
+    <div class="mini-card has-photo" id="product-haoshen"><div class="mini-photo"><img src="images/product-haoshen-01.jpg" alt="好神花作品"></div><div class="mini-card-copy"><div class="mini-title">好神花</div><div class="mini-desc">尺寸 S / M / L / XL・顏色可選・花盤可選・可客製</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('好神花｜神明供花（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
+    <div class="mini-card has-photo" id="product-jiaoqian"><div class="mini-photo"><img src="images/product-jiaoqian-01.jpg" alt="轎前花作品"></div><div class="mini-card-copy"><div class="mini-title">轎前花</div><div class="mini-desc">廟會裝飾・神明桌</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('轎前花（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
+    <div class="mini-card has-photo" id="product-bouquet"><div class="mini-photo duo"><img src="images/product-bouquet-01.jpg" alt="金紙花束作品"><img src="images/product-bouquet-02.jpg" alt="金紙花束作品"></div><div class="mini-card-copy"><div class="mini-title">金紙花束</div><div class="mini-desc">全金紙製作・顏色可選・可客製</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('金紙花束（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
     <div class="mini-card" onclick="addDirect('客製花禮（洽詢）',0,null,'')"><div class="mini-icon">🎁</div><div class="mini-title">客製花禮</div><div class="mini-desc">色系・花型・包裝客製</div></div>
   </div>
 
   <div class="series-title product-category-item product-blessing">其他祈福系列 🚩</div>
   <div class="product-category-item product-blessing product-category-note" style="font-size:10px;color:var(--gold3);margin-bottom:10px;letter-spacing:1px">👉 儀式／祈福／能量象徵類</div>
   <div class="mini-grid product-category-item product-blessing">
-    <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-birthday-cake-01.jpg" alt="祝壽蛋糕作品"></div><div class="mini-card-copy"><div class="mini-title">祝壽蛋糕</div><div class="mini-desc">可依照神明與幾層訂製</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('祝壽蛋糕（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
-    <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-pineapple-01.jpg" alt="焰旺來鳳梨作品"></div><div class="mini-card-copy"><div class="mini-title">焰旺來</div><div class="mini-desc">鳳梨造型象徵「旺來」招財興旺與好運到來</div><div class="mini-desc">整體喜氣華麗，此款為小尺寸，顏色可更改</div><div class="mini-desc">可單顆可一對，如需其他尺寸請洽官方訂製</div><div class="mini-desc">單顆 NT$650 / 一對 NT$999</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="openOfferOrderPicker('焰旺來｜小尺寸',[{date:'單顆',detail:'小尺寸・顏色可更改',priceLabel:'NT$650',price:650,itemName:'焰旺來｜小尺寸單顆'},{date:'一對',detail:'小尺寸・顏色可更改',priceLabel:'NT$999',price:999,itemName:'焰旺來｜小尺寸一對'}])">加入購物車</button></div></div></div>
+    <div class="mini-card has-photo" id="product-birthday-cake"><div class="mini-photo"><img src="images/product-birthday-cake-01.jpg" alt="祝壽蛋糕作品"></div><div class="mini-card-copy"><div class="mini-title">祝壽蛋糕</div><div class="mini-desc">可依照神明與幾層訂製</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('祝壽蛋糕（洽詢）',0,this,'加入購物車')">加入購物車</button></div></div></div>
+    <div class="mini-card has-photo" id="product-pineapple"><div class="mini-photo"><img src="images/product-pineapple-01.jpg" alt="焰旺來鳳梨作品"></div><div class="mini-card-copy"><div class="mini-title">焰旺來</div><div class="mini-desc">鳳梨造型象徵「旺來」招財興旺與好運到來</div><div class="mini-desc">整體喜氣華麗，此款為小尺寸，顏色可更改</div><div class="mini-desc">可單顆可一對，如需其他尺寸請洽官方訂製</div><div class="mini-desc">單顆 NT$650 / 一對 NT$999</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="openOfferOrderPicker('焰旺來｜小尺寸',[{date:'單顆',detail:'小尺寸・顏色可更改',priceLabel:'NT$650',price:650,itemName:'焰旺來｜小尺寸單顆'},{date:'一對',detail:'小尺寸・顏色可更改',priceLabel:'NT$999',price:999,itemName:'焰旺來｜小尺寸一對'}])">加入購物車</button></div></div></div>
     <div class="mini-card" onclick="addDirect('小龍船（洽詢）',0,null,'')"><div class="mini-icon">🐉</div><div class="mini-title">小龍船</div><div class="mini-desc">祈福儀式用</div></div>
     <div class="mini-card" onclick="addDirect('五行龍船（洽詢）',0,null,'')"><div class="mini-icon">🔯</div><div class="mini-title">五行龍船</div><div class="mini-desc">五行平衡</div></div>
-    <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-yitongjin-01.jpg" alt="一桶金作品"></div><div class="mini-card-copy"><div class="mini-title">一桶金｜專屬訂製</div><div class="mini-desc">神明供奉・祝壽・還願・招財祈福</div><div class="mini-desc">象徵財庫豐盈、金銀滿庫</div><div class="mini-desc">可依各神尊需求製作專屬款式</div><div class="mini-desc">基本尺寸・福氣桶尺寸・霸氣浮誇桶，單桶或一對皆可訂製</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="openOfferOrderPicker('一桶金｜專屬訂製',[{date:'基本尺寸｜單桶',detail:'敬神供奉・招財納福',priceLabel:'NT$550',price:550,itemName:'一桶金｜基本尺寸單桶'},{date:'基本尺寸｜一對',detail:'敬神供奉・招財納福',priceLabel:'NT$888',price:888,itemName:'一桶金｜基本尺寸一對'},{date:'福氣桶尺寸｜單桶',detail:'可依神尊與風格訂製',priceLabel:'NT$888',price:888,itemName:'一桶金｜福氣桶尺寸單桶'},{date:'福氣桶尺寸｜一對',detail:'可依神尊與風格訂製',priceLabel:'NT$1,680',price:1680,itemName:'一桶金｜福氣桶尺寸一對'},{date:'霸氣浮誇桶｜單桶',detail:'加大份量與視覺氣勢',priceLabel:'NT$1,280',price:1280,itemName:'一桶金｜霸氣浮誇桶單桶'},{date:'霸氣浮誇桶｜一對',detail:'加大份量與視覺氣勢',priceLabel:'NT$2,380',price:2380,itemName:'一桶金｜霸氣浮誇桶一對'}])">加入購物車</button></div></div></div>
+    <div class="mini-card has-photo" id="product-yitongjin"><div class="mini-photo"><img src="images/product-yitongjin-01.jpg" alt="一桶金作品"></div><div class="mini-card-copy"><div class="mini-title">一桶金｜專屬訂製</div><div class="mini-desc">神明供奉・祝壽・還願・招財祈福</div><div class="mini-desc">象徵財庫豐盈、金銀滿庫</div><div class="mini-desc">可依各神尊需求製作專屬款式</div><div class="mini-desc">基本尺寸・福氣桶尺寸・霸氣浮誇桶，單桶或一對皆可訂製</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="openOfferOrderPicker('一桶金｜專屬訂製',[{date:'基本尺寸｜單桶',detail:'敬神供奉・招財納福',priceLabel:'NT$550',price:550,itemName:'一桶金｜基本尺寸單桶'},{date:'基本尺寸｜一對',detail:'敬神供奉・招財納福',priceLabel:'NT$888',price:888,itemName:'一桶金｜基本尺寸一對'},{date:'福氣桶尺寸｜單桶',detail:'可依神尊與風格訂製',priceLabel:'NT$888',price:888,itemName:'一桶金｜福氣桶尺寸單桶'},{date:'福氣桶尺寸｜一對',detail:'可依神尊與風格訂製',priceLabel:'NT$1,680',price:1680,itemName:'一桶金｜福氣桶尺寸一對'},{date:'霸氣浮誇桶｜單桶',detail:'加大份量與視覺氣勢',priceLabel:'NT$1,280',price:1280,itemName:'一桶金｜霸氣浮誇桶單桶'},{date:'霸氣浮誇桶｜一對',detail:'加大份量與視覺氣勢',priceLabel:'NT$2,380',price:2380,itemName:'一桶金｜霸氣浮誇桶一對'}])">加入購物車</button></div></div></div>
     <div class="mini-card" onclick="addDirect('元寶塔（洽詢）',0,null,'')"><div class="mini-icon">🏯</div><div class="mini-title">元寶塔</div><div class="mini-desc">規格與報價洽詢</div></div>
-    <div class="mini-card has-photo"><div class="mini-photo"><img src="images/product-fortune-throne-01.jpg" alt="納財聚福寶座作品"></div><div class="mini-card-copy"><div class="mini-title">納財聚福寶座</div><div class="mini-desc">元寶滿載・納財聚福・單個 NT$3,680</div><div class="mini-desc">納財迎財入門・聚福家運興旺・寶座安定圓滿</div><div class="mini-desc">供奉・開業祝賀・入厝祈福</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('納財聚福寶座｜單個',3680,this,'加入購物車')">加入購物車</button></div></div></div>
+    <div class="mini-card has-photo" id="product-fortune-throne"><div class="mini-photo"><img src="images/product-fortune-throne-01.jpg" alt="納財聚福寶座作品"></div><div class="mini-card-copy"><div class="mini-title">納財聚福寶座</div><div class="mini-desc">元寶滿載・納財聚福・單個 NT$3,680</div><div class="mini-desc">納財迎財入門・聚福家運興旺・寶座安定圓滿</div><div class="mini-desc">供奉・開業祝賀・入厝祈福</div><div class="mini-actions"><a class="mini-line-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a><button class="mini-inquiry-btn" type="button" onclick="addDirect('納財聚福寶座｜單個',3680,this,'加入購物車')">加入購物車</button></div></div></div>
   </div>
 </div>
 
@@ -1466,14 +1526,19 @@ if('IntersectionObserver' in window){
   revealItems.forEach(item=>item.classList.add('in-view'));
 }
 let cart=[],pickerItem=null,selectedSession=null;
-function switchTab(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');document.body.classList.toggle('is-tab-view',id!=='courses');['courses','products','cert','comp'].forEach(k=>{document.getElementById('tab-'+k).style.display=k===id?'block':'none';});}
+function switchTab(el,id){closeTopMenus();document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');document.body.classList.toggle('is-tab-view',id!=='courses');['courses','products','cert','comp'].forEach(k=>{document.getElementById('tab-'+k).style.display=k===id?'block':'none';});}
 function showHomeSection(sectionId){const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'courses'"));if(targetTab)switchTab(targetTab,'courses');setTimeout(()=>{const target=document.getElementById(sectionId);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});},50);}
+function closeTopMenus(){document.querySelectorAll('.top-menu-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-with-menu').forEach(t=>t.classList.remove('menu-open'));}
+function toggleTopMenu(type,event){if(event)event.stopPropagation();const panel=document.getElementById('topMenu-'+type);const tab=event?.target?.closest('.tab-with-menu');const willOpen=panel&&!panel.classList.contains('active');closeTopMenus();closeCourseMenus();if(panel&&willOpen){panel.classList.add('active');tab?.classList.add('menu-open');}}
+function topTabFor(id){return [...document.querySelectorAll('.tab')].find(t=>{const text=t.textContent||'';return id==='courses'&&text.includes('課程專區')||id==='products'&&text.includes('作品訂製')||id==='cert'&&text.includes('國際認證')||id==='comp'&&text.includes('國際競賽');});}
 function closeCourseMenus(){document.querySelectorAll('.course-menu-wrap').forEach(w=>w.classList.remove('open'));}
 function toggleCourseMenu(type,event){if(event)event.stopPropagation();const wrap=document.getElementById('courseWrap-'+type);const willOpen=!wrap?.classList.contains('open');closeCourseMenus();if(wrap&&willOpen)wrap.classList.add('open');}
 function jumpToCourse(courseId,type){closeCourseMenus();const section=document.getElementById(type==='paper'?'sec-paper':'sec-marketing');const target=document.getElementById(courseId)||section;if(section)section.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>target?.scrollIntoView({behavior:'smooth',block:'start'}),140);}
-document.addEventListener('click',e=>{if(!e.target.closest('.course-menu-wrap'))closeCourseMenus();});
-function goTab(id){const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'"+id+"'"));if(targetTab)switchTab(targetTab,id);const target=document.getElementById('tab-'+id);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});}
-function switchProductCategory(category,btn){const wrap=document.getElementById('tab-products');if(!wrap)return;wrap.dataset.productCategory=category;wrap.querySelectorAll('.product-category-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');}
+function jumpTopCourse(courseId,type){closeTopMenus();const tab=topTabFor('courses');if(tab)switchTab(tab,'courses');setTimeout(()=>jumpToCourse(courseId,type),80);}
+function jumpTopProduct(category,targetId){closeTopMenus();const tab=topTabFor('products');if(tab)switchTab(tab,'products');setTimeout(()=>{const btn=document.querySelector(`[data-product-category-btn="${category}"]`);switchProductCategory(category,btn);setTimeout(()=>document.getElementById(targetId)?.scrollIntoView({behavior:'smooth',block:'start'}),80);},80);}
+document.addEventListener('click',e=>{if(!e.target.closest('.course-menu-wrap'))closeCourseMenus();if(!e.target.closest('.top-menu-panel')&&!e.target.closest('.tab-with-menu'))closeTopMenus();});
+function goTab(id){const targetTab=topTabFor(id)||[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'"+id+"'"));if(targetTab)switchTab(targetTab,id);const target=document.getElementById('tab-'+id);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});}
+function switchProductCategory(category,btn){const wrap=document.getElementById('tab-products');if(!wrap)return;if(!btn)btn=wrap.querySelector(`[data-product-category-btn="${category}"]`);wrap.dataset.productCategory=category;wrap.querySelectorAll('.product-category-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');}
 function openPicker(name,price,sessions){pickerItem={name,price,sessions};selectedSession=null;document.getElementById('pickerTitle').textContent=name+'｜選擇場次';document.getElementById('pickerOptions').innerHTML=sessions.map((s,i)=>`<div class="session-opt" onclick="selectSess(this,${i})"><div class="radio"><div class="radio-dot"></div></div><div><div class="s-loc">📍 ${s.loc}</div><div class="s-date">📅 ${s.date}</div>${s.teacher?`<div class="s-teacher-d">👩‍🏫 ${s.teacher}</div>`:''}</div></div>`).join('');document.getElementById('pickerOverlay').classList.add('open');}
 function selectSess(el,i){document.querySelectorAll('.session-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');selectedSession=i;}
 function tierOptionHtml(s,i,icon){const priceText=s.priceLabel||s.teacher||'';const detail=s.detail||s.loc||'';const teacher=s.teacher&&!s.priceLabel?s.teacher:s.teacherName||'';const iconText=icon?`${icon} `:'';return `<div class="session-opt" onclick="selectSess(this,${i})"><div class="radio"><div class="radio-dot"></div></div><div class="session-copy"><div class="s-loc">${iconText}${s.date}</div>${detail&&detail!=='課程班別'?`<div class="s-date">${detail}</div>`:''}${teacher?`<div class="s-teacher-d">👩‍🏫 ${teacher}</div>`:''}</div><div class="session-price">${priceText}</div></div>`;}
