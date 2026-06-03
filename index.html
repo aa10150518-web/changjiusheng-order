@@ -41,6 +41,7 @@ body{background:
 .top-menu-item{border:0;background:rgba(255,253,248,.8);color:var(--ink);border-radius:6px;padding:12px 14px;text-align:left;font-family:inherit;font-size:15px;line-height:1.45;cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:center;}
 .top-menu-item:hover{background:rgba(201,168,76,.14);color:var(--gold3);}
 .top-menu-item span{font-size:13px;color:var(--gold3);white-space:nowrap;}
+@media (min-width:761px){.tab{font-size:15px;font-weight:400;color:#2f2418}.tab.active{font-weight:500;color:var(--gold3)}.tab-arrow-btn{font-weight:400}}
 @media (max-width:760px){.top-menu-panel{top:118px;padding:10px 8px}.top-menu-inner{max-width:none;grid-template-columns:1fr 1fr;gap:8px}.top-menu-group{padding:8px}.top-menu-title{font-size:12px;letter-spacing:1px}.top-menu-item{font-size:12px;padding:9px 8px;gap:6px;align-items:flex-start}.top-menu-item span{font-size:10px}}
 @media (max-width:430px){.top-menu-item{font-size:11px;flex-direction:column}.top-menu-item span{font-size:9px}}
 .hero{position:relative;padding:70px 22px 54px;text-align:center;background:
@@ -484,6 +485,7 @@ textarea{resize:vertical;height:70px;}
     <div class="top-menu-group">
       <div class="top-menu-title">神明敬獻・祝壽供品</div>
       <div class="top-menu-list">
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-blessing-start')">神明敬獻・祝壽供品 <span>分類</span></button>
         <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-haoshen')">好神花 <span>供花</span></button>
         <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-jiaoqian')">轎前花 <span>神明桌</span></button>
         <button class="top-menu-item" type="button" onclick="jumpTopProduct('blessing','product-bouquet')">金紙花束 <span>客製</span></button>
@@ -496,6 +498,7 @@ textarea{resize:vertical;height:70px;}
     <div class="top-menu-group">
       <div class="top-menu-title">弔念祭祖・追思供花</div>
       <div class="top-menu-list">
+        <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-memorial-start')">弔念祭祖・追思供花 <span>分類</span></button>
         <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-yongsi')">永思花 <span>追思</span></button>
         <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-memorial-bucket-floor')">福圓追思寶桶 <span>圓滿金磚柱</span></button>
         <button class="top-menu-item" type="button" onclick="jumpTopProduct('memorial','product-memorial-bucket-table')">福圓追思寶桶 <span>桌上型</span></button>
