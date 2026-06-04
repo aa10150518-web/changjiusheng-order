@@ -8,7 +8,7 @@
 <meta name="google-site-verification" content="hHRGK-TjHw3LjtZlODW5hNmE37QfvEbxsmvmP39TaIo">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&amp;family=Noto+Sans+TC:wght@300;400;500&amp;display=swap" rel="stylesheet">
 <style>
-.brand-wrap{display:flex;align-items:center;gap:16px;min-height:86px;}
+.brand-wrap{display:flex;align-items:center;gap:16px;min-height:86px;cursor:pointer;}
 .brand-logo{width:92px;height:66px;display:block;flex:0 0 auto;filter:drop-shadow(0 2px 4px rgba(139,107,26,.28));}
 .footer-copy{font-size:10px;color:var(--ink3);letter-spacing:.8px;line-height:1.8;max-width:760px;margin:0 auto;}
 :root{--paper:#FAF4E8;--paper2:#F3E8D3;--paper3:#FFFDF8;--gold:#C9A84C;--gold2:#E2C06A;--gold3:#8B6B1A;--ink:#2A1F0E;--ink2:#5A4830;--ink3:#8A7460;--red:#9B2B1A;--white:#FFFDF8;--pink:#F2728A;--pink-dark:#E05A72;--deep:#3A2A18;--mauve:#76658F;}
@@ -1597,19 +1597,22 @@ if('IntersectionObserver' in window){
   revealItems.forEach(item=>item.classList.add('in-view'));
 }
 let cart=[],pickerItem=null,selectedSession=null;
-function switchTab(el,id){closeTopMenus();document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');document.body.classList.toggle('is-tab-view',id!=='courses');['courses','products','cert','comp'].forEach(k=>{document.getElementById('tab-'+k).style.display=k===id?'block':'none';});}
-function showHomeSection(sectionId){const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'courses'"));if(targetTab)switchTab(targetTab,'courses');setTimeout(()=>{const target=document.getElementById(sectionId);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});},50);}
+function switchTab(el,id,autoScroll=true){closeTopMenus();closeCourseMenus();document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');document.body.classList.toggle('is-tab-view',id!=='courses');['courses','products','cert','comp'].forEach(k=>{const panel=document.getElementById('tab-'+k);if(panel)panel.style.display=k===id?'block':'none';});if(autoScroll)setTimeout(()=>scrollToTabStart(id),60);}
+function showHomeSection(sectionId){const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'courses'"));if(targetTab)switchTab(targetTab,'courses',false);setTimeout(()=>{const target=document.getElementById(sectionId);if(target)scrollToTarget(target,10);},50);}
 function closeTopMenus(){document.querySelectorAll('.top-menu-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-with-menu').forEach(t=>t.classList.remove('menu-open'));}
 function toggleTopMenu(type,event){if(event)event.stopPropagation();const panel=document.getElementById('topMenu-'+type);const tab=event?.target?.closest('.tab-with-menu');const willOpen=panel&&!panel.classList.contains('active');closeTopMenus();closeCourseMenus();if(panel&&willOpen){panel.classList.add('active');tab?.classList.add('menu-open');}}
 function topTabFor(id){return [...document.querySelectorAll('.tab')].find(t=>{const text=t.textContent||'';return id==='courses'&&text.includes('課程專區')||id==='products'&&text.includes('作品訂製')||id==='cert'&&text.includes('國際認證')||id==='comp'&&text.includes('國際競賽');});}
 function scrollToTarget(target,extra=18){if(!target)return;const header=document.querySelector('.header')?.offsetHeight||0;const tabs=document.querySelector('.tabs')?.offsetHeight||0;const top=target.getBoundingClientRect().top+window.pageYOffset-header-tabs-extra;window.scrollTo({top:Math.max(top,0),behavior:'smooth'});}
+function scrollToTabStart(id){const target=document.getElementById('tab-'+id);if(target)scrollToTarget(target,10);}
+function backToTop(){closeTopMenus();closeCourseMenus();window.scrollTo({top:0,behavior:'smooth'});}
 function closeCourseMenus(){document.querySelectorAll('.course-menu-wrap').forEach(w=>w.classList.remove('open'));}
 function toggleCourseMenu(type,event){if(event)event.stopPropagation();const wrap=document.getElementById('courseWrap-'+type);const willOpen=!wrap?.classList.contains('open');closeCourseMenus();if(wrap&&willOpen)wrap.classList.add('open');}
 function jumpToCourse(courseId,type){closeCourseMenus();const section=document.getElementById(type==='paper'?'sec-paper':'sec-marketing');const target=document.getElementById(courseId)||section;scrollToTarget(target);}
-function jumpTopCourse(courseId,type){closeTopMenus();const tab=topTabFor('courses');if(tab)switchTab(tab,'courses');setTimeout(()=>jumpToCourse(courseId,type),80);}
-function jumpTopProduct(category,targetId){closeTopMenus();const tab=topTabFor('products');if(tab)switchTab(tab,'products');setTimeout(()=>{const btn=document.querySelector(`[data-product-category-btn="${category}"]`);switchProductCategory(category,btn);setTimeout(()=>scrollToTarget(document.getElementById(targetId)),80);},80);}
+function jumpTopCourse(courseId,type){closeTopMenus();const tab=topTabFor('courses');if(tab)switchTab(tab,'courses',false);setTimeout(()=>jumpToCourse(courseId,type),80);}
+function jumpTopProduct(category,targetId){closeTopMenus();const tab=topTabFor('products');if(tab)switchTab(tab,'products',false);setTimeout(()=>{const btn=document.querySelector(`[data-product-category-btn="${category}"]`);switchProductCategory(category,btn);setTimeout(()=>scrollToTarget(document.getElementById(targetId)),80);},80);}
 document.addEventListener('click',e=>{if(!e.target.closest('.course-menu-wrap'))closeCourseMenus();if(!e.target.closest('.top-menu-panel')&&!e.target.closest('.tab-with-menu'))closeTopMenus();});
-function goTab(id){const targetTab=topTabFor(id)||[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'"+id+"'"));if(targetTab)switchTab(targetTab,id);const target=document.getElementById('tab-'+id);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});}
+function goTab(id){const targetTab=topTabFor(id)||[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'"+id+"'"));if(targetTab)switchTab(targetTab,id,false);setTimeout(()=>scrollToTabStart(id),60);}
+const brandWrap=document.querySelector('.brand-wrap');if(brandWrap){brandWrap.setAttribute('role','button');brandWrap.setAttribute('tabindex','0');brandWrap.addEventListener('click',backToTop);brandWrap.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();backToTop();}});}
 function switchProductCategory(category,btn){const wrap=document.getElementById('tab-products');if(!wrap)return;if(!btn)btn=wrap.querySelector(`[data-product-category-btn="${category}"]`);wrap.dataset.productCategory=category;wrap.querySelectorAll('.product-category-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');}
 function openPicker(name,price,sessions){pickerItem={name,price,sessions};selectedSession=null;document.getElementById('pickerTitle').textContent=name+'｜選擇場次';document.getElementById('pickerOptions').innerHTML=sessions.map((s,i)=>`<div class="session-opt" onclick="selectSess(this,${i})"><div class="radio"><div class="radio-dot"></div></div><div><div class="s-loc">📍 ${s.loc}</div><div class="s-date">📅 ${s.date}</div>${s.teacher?`<div class="s-teacher-d">👩‍🏫 ${s.teacher}</div>`:''}</div></div>`).join('');document.getElementById('pickerOverlay').classList.add('open');}
 function selectSess(el,i){document.querySelectorAll('.session-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');selectedSession=i;}
@@ -1629,7 +1632,6 @@ function addDirect(name,price,btn,origLabel){addToCartRaw(name,price);if(btn){bt
 function addToCartRaw(name,price){const ex=cart.find(i=>i.name===name);if(ex)ex.qty++;else cart.push({name,price,qty:1});updateCount();}
 function updateCount(){const n=cart.reduce((s,i)=>s+i.qty,0);const el=document.getElementById('cartCount');el.textContent=n;el.style.display=n>0?'flex':'none';}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
-function backToTop(){window.scrollTo({top:0,behavior:'smooth'});}
 function toggleSocialFloat(){document.getElementById('socialFloat')?.classList.toggle('open');}
 function openInitialHash(){const hash=location.hash.replace('#','');const tabMap={'tab-courses':'courses','sec-paper':'courses','sec-marketing':'courses','tab-products':'products','tab-cert':'cert','tab-comp':'comp'};if(tabMap[hash]){const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'"+tabMap[hash]+"'"));if(targetTab)switchTab(targetTab,tabMap[hash]);setTimeout(()=>document.getElementById(hash)?.scrollIntoView({behavior:'smooth',block:'start'}),80);}}
 window.addEventListener('load',openInitialHash);
