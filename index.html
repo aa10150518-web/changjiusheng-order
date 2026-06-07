@@ -49,11 +49,12 @@
 .footer-copy{font-size:10px;color:var(--ink3);letter-spacing:.8px;line-height:1.8;max-width:760px;margin:0 auto;}
 :root{--paper:#FAF4E8;--paper2:#F3E8D3;--paper3:#FFFDF8;--gold:#C9A84C;--gold2:#E2C06A;--gold3:#8B6B1A;--ink:#2A1F0E;--ink2:#5A4830;--ink3:#8A7460;--red:#9B2B1A;--white:#FFFDF8;--pink:#F2728A;--pink-dark:#E05A72;--deep:#3A2A18;--mauve:#76658F;}
 *{box-sizing:border-box;margin:0;padding:0;}
+html{overflow-x:hidden;}
 body{background:
   radial-gradient(circle at 12% 10%,rgba(201,168,76,.24) 0,rgba(201,168,76,0) 30%),
   radial-gradient(circle at 88% 18%,rgba(58,42,24,.12) 0,rgba(58,42,24,0) 26%),
   linear-gradient(180deg,#FFFDF8 0%,#FAF4E8 32%,#ECDDBF 100%);
-  color:var(--ink);font-family:'Noto Sans TC',sans-serif;min-height:100vh;background-attachment:fixed;}
+  color:var(--ink);font-family:'Noto Sans TC',sans-serif;min-height:100vh;background-attachment:fixed;overflow-x:hidden;}
 .top-bar{display:none;}
 .header{background:rgba(255,253,248,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(139,107,26,.62);padding:0 22px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(58,42,24,0.08);}
 .brand{font-family:'Noto Serif TC',serif;font-size:27px;font-weight:900;color:var(--gold3);letter-spacing:6px;line-height:1;}
@@ -128,6 +129,9 @@ body{background:
 .about-founder-card h2,.experience-panel h2{font-family:'Noto Serif TC',serif;font-size:28px;line-height:1.5;letter-spacing:3px;color:var(--ink);margin-bottom:12px;}
 .about-founder-title{font-size:13px;color:var(--gold3);letter-spacing:2px;line-height:1.9;margin-bottom:16px;}
 .about-founder-card p{font-size:15px;line-height:2.1;color:var(--ink2);letter-spacing:.8px;}
+.founder-story{display:grid;gap:20px;}
+.founder-story-section h3{font-family:'Noto Serif TC',serif;font-size:18px;line-height:1.8;letter-spacing:1.5px;color:var(--ink);margin-bottom:6px;}
+.founder-story-section p{margin:0;}
 .founder-quote{border-left:3px solid var(--gold);background:linear-gradient(90deg,rgba(201,168,76,.1),transparent);padding:12px 14px;margin-top:18px;font-family:'Noto Serif TC',serif;color:var(--gold3);font-size:14px;line-height:2;letter-spacing:1px;}
 .experience-panel{display:grid;gap:14px;}
 .experience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
@@ -649,7 +653,24 @@ textarea{resize:vertical;height:70px;}
       <div class="intro-kicker">FOUNDER</div>
       <h2>主理人 林韵媃</h2>
       <div class="about-founder-title">昌久貹金紙藝品文創 品牌主理人</div>
-      <p>從網路行銷<br>美業<br>到與金紙藝術相遇<br><br>每一步<br>都是在找一件真正值得用心做的事<br><br>從第一次接觸紙藝<br>到完成作品<br>走上教學之路<br>再到建立認證與競賽制度<br>這條路是一步一步走出來的</p>
+      <div class="founder-story">
+        <div class="founder-story-section">
+          <h3>我不是從一開始就做紙藝的</h3>
+          <p>在遇見金紙之前，我在網路上賣了將近十年的東西。<br>不是隨便賣，是認真做<br>從流量、文案、到客戶關係，一步一步摸出來的。<br>後來轉去做美業，換了品牌、考了證照、把技術練到穩。<br>每一段都做得很認真。<br>但每一段，都還在找一件真正值得一直做下去的事。<br>直到有一天，我接觸到金紙紙藝。</p>
+        </div>
+        <div class="founder-story-section">
+          <h3>第一次折，就知道這是了</h3>
+          <p>最初的作品很醜。<br>紙張歪七扭八，比例不協調，看了心裡只有一個念頭：<br>「不行，我要做就要做到最好。」<br>就是這個不甘心，讓我開始不停練習、不斷進修。<br>2024年，我開始教學。<br>一開始有人質疑：「這麼簡單也能開課？」<br>我沒有辯解<br>因為我知道，那些看似簡單的東西，裡面藏著多少細節和經驗。<br>不是每個人都看得見，但學生會感受到。<br>短短半年，突破了五十位學生。<br>帶著他們上比賽，看著他們站在台上領獎<br>那個「原來我也可以做到」的笑容，是我做這件事最大的理由</p>
+        </div>
+        <div class="founder-story-section">
+          <h3>為什麼要做認證制度</h3>
+          <p>做到一定程度，我開始思考一件事：<br>紙藝憑什麼沒有制度？<br>其他行業有檢定、有證書、有清楚的進修路徑。<br>但紙藝長期以來，靠的都是口耳相傳、師徒關係，沒有辦法被驗證、被信任、被累積。<br>我希望改變這件事。<br>不是為了讓制度綁住任何人，<br>而是讓每一個真正想走這條路的人，能走得更穩、也更遠。<br>現在，昌久貹有完整的認證系統、有國際競賽舞台、有從入門到講師的完整培訓路徑。<br>這不是一夕建立的。<br>是一步一步走出來的。</p>
+        </div>
+        <div class="founder-story-section">
+          <h3>我教的不只是紙藝</h3>
+          <p>因為我在網路做了十年的銷售，<br>我知道一個好的作品，如果不會說故事、不會被看見，<br>它就只是你自己欣賞的東西。<br>所以我除了教紙藝，也教行銷。<br>教你怎麼把作品變成收入，把興趣變成品牌。<br>不管你是全職媽媽、想斜槓的上班族、還是想開課的老師<br>只要你願意開始，我們就從這裡一起走。</p>
+        </div>
+      </div>
       <div class="founder-quote">紙藝需要制度<br>制度不是為了綁住任何人<br>而是讓每一個想進步的人<br>都能走得更穩也更遠</div>
     </div>
     <div class="experience-panel">
