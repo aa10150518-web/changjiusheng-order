@@ -49,12 +49,12 @@
 .footer-copy{font-size:10px;color:var(--ink3);letter-spacing:.8px;line-height:1.8;max-width:760px;margin:0 auto;}
 :root{--paper:#FAF4E8;--paper2:#F3E8D3;--paper3:#FFFDF8;--gold:#C9A84C;--gold2:#E2C06A;--gold3:#8B6B1A;--ink:#2A1F0E;--ink2:#5A4830;--ink3:#8A7460;--red:#9B2B1A;--white:#FFFDF8;--pink:#F2728A;--pink-dark:#E05A72;--deep:#3A2A18;--mauve:#76658F;}
 *{box-sizing:border-box;margin:0;padding:0;}
-html{overflow-x:hidden;}
+html{overflow-x:clip;}
 body{background:
   radial-gradient(circle at 12% 10%,rgba(201,168,76,.24) 0,rgba(201,168,76,0) 30%),
   radial-gradient(circle at 88% 18%,rgba(58,42,24,.12) 0,rgba(58,42,24,0) 26%),
   linear-gradient(180deg,#FFFDF8 0%,#FAF4E8 32%,#ECDDBF 100%);
-  color:var(--ink);font-family:'Noto Sans TC',sans-serif;min-height:100vh;background-attachment:fixed;overflow-x:hidden;}
+  color:var(--ink);font-family:'Noto Sans TC',sans-serif;min-height:100vh;background-attachment:fixed;overflow-x:clip;}
 .top-bar{display:none;}
 .header{background:rgba(255,253,248,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(139,107,26,.62);padding:0 22px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(58,42,24,0.08);}
 .brand{font-family:'Noto Serif TC',serif;font-size:27px;font-weight:900;color:var(--gold3);letter-spacing:6px;line-height:1;}
