@@ -1324,7 +1324,7 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
         <div><label>電話 <span class="req">*</span></label><input type="tel" id="f-phone" placeholder="0912-345-678"></div>
         <div><label>LINE ID <span class="req">*</span></label><input type="text" id="f-line" placeholder="請輸入 LINE ID"></div>
       </div>
-      <div class="fg"><label>Email（選填）</label><input type="email" id="f-email" placeholder="example@email.com"></div>
+      <div class="fg"><label>Email <span class="req">*</span></label><input type="email" id="f-email" placeholder="example@email.com" required></div>
       <div class="form-row" style="margin-bottom:14px;">
         <div id="cityFieldWrap">
           <label id="cityLabel">居住縣市</label>
@@ -1902,6 +1902,7 @@ function hasMixedOrderTypes(){return cartCategories().length>1;}
 function currentOrderType(){return cartCategories()[0]||'product';}
 function orderTypeLabel(type=currentOrderType()){return {course:'報名課程',product:'訂購作品',certification:'檢定認證',competition:'國際競賽'}[type]||'訂購作品';}
 function orderActionLabel(type=currentOrderType()){return {course:'報名',product:'訂購',certification:'認證報名',competition:'競賽報名'}[type]||'訂購';}
+function isValidEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);}
 const taiwanZipMap={
   '臺北市':[['中正區','100'],['大同區','103'],['中山區','104'],['松山區','105'],['大安區','106'],['萬華區','108'],['信義區','110'],['士林區','111'],['北投區','112'],['內湖區','114'],['南港區','115'],['文山區','116']],
   '基隆市':[['仁愛區','200'],['信義區','201'],['中正區','202'],['中山區','203'],['安樂區','204'],['暖暖區','205'],['七堵區','206']],
@@ -2007,6 +2008,8 @@ let isSubmittingOrder=false;async function submitOrder(){
   const paymentForRecord=paymentTextForRecord(pay,type);
   const paymentAccount=paymentAccountForType(type);
   if(!n||!p||!l){alert('請填寫姓名、電話及 LINE ID');return;}
+  if(!e){alert('請填寫 Email，系統才寄得出報名成功與課前通知。');document.getElementById('f-email')?.focus();return;}
+  if(!isValidEmail(e)){alert('請填寫正確的 Email 格式。');document.getElementById('f-email')?.focus();return;}
   if(isProduct)applyPickupAddressIfNeeded();
   if(isProduct&&!address){alert('請填寫收件地址；若要自取，請填「自取」。');document.getElementById('f-address')?.focus();return;}
   const pickup=/^自取$/.test(address);
@@ -2034,7 +2037,7 @@ let isSubmittingOrder=false;async function submitOrder(){
   document.getElementById('modalBody').classList.add('hide');
   document.getElementById('successScreen').classList.add('show');
 }
-function hasRequiredOrderFields(){return ['f-name','f-phone','f-line'].every(id=>document.getElementById(id)?.value.trim());}
+function hasRequiredOrderFields(){return ['f-name','f-phone','f-line','f-email'].every(id=>document.getElementById(id)?.value.trim())&&isValidEmail(document.getElementById('f-email')?.value.trim()||'');}
 async function requestStudentNotificationPermission(){if(!('Notification' in window))return 'unsupported';if(Notification.permission==='default'){try{return await Notification.requestPermission();}catch(err){return Notification.permission||'default';}}return Notification.permission;}
 function renderStudentSystemNotice(orderNo,status){const screen=document.getElementById('successScreen');if(!screen)return;const type=currentOrderType();const action=orderActionLabel(type);let notice=document.getElementById('studentSystemNotice');if(!notice){notice=document.createElement('div');notice.id='studentSystemNotice';notice.className='student-system-notice';const bankInfo=document.getElementById('bankInfo');screen.insertBefore(notice,bankInfo||null);}notice.innerHTML=`<div class="notice-title">系統通知</div><div class="notice-copy">訂單 ${orderNo} 已送出。我們已收到您的${action}資料，請留意 Email 或 LINE 後續通知。</div><div class="notice-status">${action}資料已送出</div>`;}
 async function notifyStudentAfterOrder(orderNo,permissionPromise){await permissionPromise;renderStudentSystemNotice(orderNo,'page');showToast(orderActionLabel(currentOrderType())+'資料已送出');}
