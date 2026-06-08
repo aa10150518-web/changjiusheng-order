@@ -292,13 +292,11 @@ body.page-home .classroom-section,
 body.page-home .student-showcase,
 body.page-home .main,
 body.page-home #student-results{display:none!important;}
-body.page-about .hero,
 body.page-about .seo-local-section,
 body.page-about .classroom-section,
 body.page-about .student-showcase,
 body.page-about .main,
 body.page-about #student-results{display:none!important;}
-body.page-courses .hero,
 body.page-courses .brand-intro,
 body.page-courses .seo-local-section,
 body.page-courses .about-founder,
@@ -586,6 +584,7 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
   </div>
 </div>
 <div class="tabs">
+  <div class="tab" onclick="location.href='index.html'">首頁</div>
   <div class="tab tab-with-menu" onclick="location.href='courses.html'">📚 課程專區 <button class="tab-arrow-btn" type="button" aria-label="展開課程選單" onclick="toggleTopMenu('courses',event)">▾</button></div>
   <div class="tab tab-with-menu" onclick="goPageTab('products')">🌸 作品訂製 <button class="tab-arrow-btn" type="button" aria-label="展開作品選單" onclick="toggleTopMenu('products',event)">▾</button></div>
   <div class="tab" onclick="location.href='about.html'">關於我們</div>
@@ -1887,7 +1886,7 @@ function updateCount(){const n=cart.reduce((s,i)=>s+i.qty,0);const el=document.g
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
 function toggleSocialFloat(){document.getElementById('socialFloat')?.classList.toggle('open');}
 function openInitialHash(){const hash=location.hash.replace('#','');const tabMap={'tab-courses':'courses','sec-paper':'courses','sec-marketing':'courses','tab-products':'products','tab-cert':'cert','tab-comp':'comp'};if(tabMap[hash]){const targetTab=topTabFor(tabMap[hash]);if(targetTab)switchTab(targetTab,tabMap[hash]);setTimeout(()=>document.getElementById(hash)?.scrollIntoView({behavior:'smooth',block:'start'}),80);return;}const target=document.getElementById(hash);if(target){if(hash.startsWith('course-')){const tab=topTabFor('courses');if(tab)switchTab(tab,'courses',false);}else if(hash.startsWith('product-')){const tab=topTabFor('products');if(tab)switchTab(tab,'products',false);if(hash.includes('memorial')||hash.includes('yongsi')||hash.includes('fachuan'))switchProductCategory('memorial');}setTimeout(()=>scrollToTarget(target),100);}}
-function syncPageNav(){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(currentPageName()==='courses'){const tab=topTabFor('courses');if(tab)switchTab(tab,'courses',false);return;}if(currentPageName()==='about'){const aboutTab=[...document.querySelectorAll('.tab')].find(t=>(t.textContent||'').includes('關於我們'));if(aboutTab)aboutTab.classList.add('active');return;}}
+function syncPageNav(){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(currentPageName()==='home'){const homeTab=[...document.querySelectorAll('.tab')].find(t=>(t.textContent||'').trim()==='首頁');if(homeTab)homeTab.classList.add('active');return;}if(currentPageName()==='courses'){const tab=topTabFor('courses');if(tab)switchTab(tab,'courses',false);return;}if(currentPageName()==='about'){const aboutTab=[...document.querySelectorAll('.tab')].find(t=>(t.textContent||'').includes('關於我們'));if(aboutTab)aboutTab.classList.add('active');return;}}
 window.addEventListener('load',()=>{syncPageNav();if(location.hash)openInitialHash();});
 function openCart(){renderCart();document.getElementById('cartOverlay').classList.add('open');}
 function renderCart(){const el=document.getElementById('cartItems');if(!cart.length){el.innerHTML='<div class="empty-cart"><div style="font-size:36px;margin-bottom:8px">🛒</div>尚未加入任何項目</div>';document.getElementById('cartTotalRow').style.display='none';document.getElementById('checkoutBtn').style.display='none';return;}el.innerHTML=cart.map((item,i)=>`<div class="cart-item"><div><div class="ci-name">${item.name}</div><div class="ci-price">${item.price>0?'NT$ '+item.price.toLocaleString()+' × '+item.qty:'洽詢報價'}</div></div><button class="rm-btn" onclick="removeItem(${i})">✕</button></div>`).join('');const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);document.getElementById('cartTotal').textContent=total>0?'NT$ '+total.toLocaleString():'含洽詢項目';document.getElementById('cartTotalRow').style.display='flex';document.getElementById('checkoutBtn').style.display='block';}
