@@ -290,11 +290,13 @@ body.is-tab-view .official-links{margin-top:0;}
 body.page-home .about-founder,
 body.page-home .classroom-section,
 body.page-home .student-showcase,
+body.page-home .signup-flow-section,
 body.page-home .main,
 body.page-home #student-results{display:none!important;}
 body.page-about .seo-local-section,
 body.page-about .classroom-section,
 body.page-about .student-showcase,
+body.page-about .signup-flow-section,
 body.page-about .main,
 body.page-about #student-results{display:none!important;}
 body.page-courses .brand-intro,
@@ -303,6 +305,19 @@ body.page-courses .about-founder,
 body.page-courses #student-results{display:none!important;}
 body.page-courses .classroom-section{padding-top:32px;}
 body.page-home .brand-intro{padding-bottom:34px;}
+.signup-flow-section{padding:34px 18px 30px;background:linear-gradient(180deg,rgba(255,253,248,.96),rgba(243,232,211,.86));border-top:1px solid rgba(201,168,76,.22);border-bottom:1px solid rgba(201,168,76,.22);}
+.signup-flow-inner{max-width:960px;margin:0 auto;}
+.signup-flow-head{text-align:center;margin-bottom:18px;}
+.signup-flow-head h2{font-family:'Noto Serif TC',serif;font-size:24px;color:var(--ink);letter-spacing:3px;line-height:1.5;margin:6px 0 8px;}
+.signup-flow-head p{font-size:13px;color:var(--ink3);line-height:1.9;letter-spacing:1px;}
+.signup-flow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px;}
+.signup-flow-step{background:rgba(255,253,248,.95);border:1px solid rgba(201,168,76,.32);border-radius:8px;padding:15px 12px;text-align:center;box-shadow:0 10px 24px rgba(58,42,24,.08);}
+.signup-flow-no{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#8B6B1A);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 9px;font-family:'Noto Serif TC',serif;font-size:13px;font-weight:900;}
+.signup-flow-title{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:.5px;margin-bottom:8px;line-height:1.6;}
+.signup-flow-copy{font-size:13px;color:var(--ink3);line-height:1.9;letter-spacing:.4px;}
+.signup-flow-note{background:rgba(255,253,248,.9);border-left:3px solid var(--gold);padding:13px 16px;font-size:14px;color:var(--ink2);line-height:2;letter-spacing:.3px;}
+@media (max-width:900px){.signup-flow-grid{grid-template-columns:1fr 1fr}.signup-flow-step:last-child{grid-column:1/-1}}
+@media (max-width:520px){.signup-flow-grid{grid-template-columns:1fr}.signup-flow-step:last-child{grid-column:auto}.signup-flow-head h2{font-size:22px}}
 @media (max-width:760px){.brand-intro-inner{grid-template-columns:1fr;gap:18px}.official-links{grid-template-columns:1fr 1fr}.hero{padding:48px 18px 38px}.hero h1{font-size:28px;letter-spacing:3px}.brand-logo{width:72px;height:52px}.brand{font-size:23px}.brand-wrap{gap:10px;min-height:72px}.header-actions{gap:6px}.cart-btn{padding:6px 10px;font-size:12px}.tabs{top:73px}#sec-paper,#sec-marketing,#tab-products,#tab-cert,#tab-comp,#student-results{scroll-margin-top:128px}}
 .sec-label{font-size:13px;letter-spacing:3px;color:var(--gold3);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
 .sec-label::before{content:'◆';font-size:9px;color:var(--gold);}
@@ -784,6 +799,22 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
         <video src="images/student-class-video.mp4" controls="" playsinline="" preload="metadata"></video>
       </div>
     </div>
+  </div>
+</section>
+<section class="signup-flow-section home-only">
+  <div class="signup-flow-inner reveal">
+    <div class="signup-flow-head">
+      <div class="intro-kicker">SIGN UP FLOW</div>
+      <h2>課程報名流程</h2>
+    </div>
+    <div class="signup-flow-grid">
+      <div class="signup-flow-step"><div class="signup-flow-no">1</div><div class="signup-flow-title">選擇課程</div><div class="signup-flow-copy">先確認想上的課程與班別</div></div>
+      <div class="signup-flow-step"><div class="signup-flow-no">2</div><div class="signup-flow-title">選擇場次</div><div class="signup-flow-copy">點選日期、地點與老師</div></div>
+      <div class="signup-flow-step"><div class="signup-flow-no">3</div><div class="signup-flow-title">加入清單</div><div class="signup-flow-copy">確認項目後加入購物車</div></div>
+      <div class="signup-flow-step"><div class="signup-flow-no">4</div><div class="signup-flow-title">填寫資料</div><div class="signup-flow-copy">姓名、電話、LINE 與 Email</div></div>
+      <div class="signup-flow-step"><div class="signup-flow-no">5</div><div class="signup-flow-title">收到通知</div><div class="signup-flow-copy">送出後會寄出報名通知</div></div>
+    </div>
+    <div class="signup-flow-note">匯款完成並填寫後五碼後，後台確認款項會寄出付款成功通知；選擇現場繳費的學員，送出報名後也會收到報名通知。Email 請務必填寫正確，通知信才收得到。</div>
   </div>
 </section>
 <div class="main">
