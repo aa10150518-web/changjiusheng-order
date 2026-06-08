@@ -12,6 +12,14 @@
 <meta property="og:url" content="https://changjiusheng.com/">
 <meta property="og:type" content="website">
 <meta name="google-site-verification" content="hHRGK-TjHw3LjtZlODW5hNmE37QfvEbxsmvmP39TaIo">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XD5Q3EX613"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-XD5Q3EX613');
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1705,6 +1713,32 @@ textarea{resize:vertical;height:70px;}
 </div>
 
 <script>
+const analyticsCurrency='TWD';
+function trackEvent(name,params={}){
+  if(typeof gtag==='function')gtag('event',name,params);
+}
+function cartValue(){
+  return Array.isArray(cart)?cart.reduce((sum,item)=>sum+(item.price||0)*(item.qty||1),0):0;
+}
+function analyticsItems(){
+  return Array.isArray(cart)?cart.map(item=>({
+    item_name:item.name,
+    item_category:orderCategoryForItem(item),
+    price:item.price||0,
+    quantity:item.qty||1
+  })):[];
+}
+function bindContactTracking(){
+  document.querySelectorAll('a[href]').forEach(link=>{
+    const href=link.href||'';
+    if(/line\.me|lin\.ee/.test(href)){
+      link.addEventListener('click',()=>trackEvent('click_line',{link_url:href,link_text:link.textContent.trim().slice(0,40)}));
+    }else if(/facebook\.com/.test(href)){
+      link.addEventListener('click',()=>trackEvent('click_facebook',{link_url:href,link_text:link.textContent.trim().slice(0,40)}));
+    }
+  });
+}
+bindContactTracking();
 document.querySelectorAll('.card-img img').forEach(img=>{
   const markImageMissing=()=>{
     img.style.display='none';
@@ -1766,7 +1800,7 @@ function renderBouquetTier(type){selectedSession=null;const types=['入門班','
 function openBouquetTierPicker(){pickerItem={name:'福願花束手作班',price:0,sessions:[{loc:'入門班',date:'台中 5/19(二)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'高雄 5/24(日)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'台中 6/18(四)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'高雄 6/27(六)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'入門班',date:'屏東 7月4日(六)',detail:'入門班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$5,500',price:5500},{loc:'進階班',date:'台中 6/18(四)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'進階班',date:'高雄 6/27(六)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'進階班',date:'屏東 7月4日(六)',detail:'進階班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$9,000',price:9000},{loc:'職能檢定班',date:'台中 6/18(四)',detail:'職能檢定班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500},{loc:'職能檢定班',date:'高雄 6/27(六)',detail:'職能檢定班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500},{loc:'職能檢定班',date:'屏東 7月4日(六)',detail:'職能檢定班',teacherName:'林韵媃・潘怡婷',priceLabel:'NT$13,500',price:13500}]};document.getElementById('pickerTitle').textContent='福願花束手作班｜選擇班別';renderBouquetTier('入門班');document.getElementById('pickerOverlay').classList.add('open');}
 function confirmSession(){if(selectedSession===null){alert('請選擇項目');return;}const s=pickerItem.sessions[selectedSession];const price=s.price||pickerItem.price;const label=s.itemName?s.itemName:s.teacherName?`${pickerItem.name}（${s.loc} ${s.date} · ${s.teacherName}）`:s.loc==='課程班別'?`${pickerItem.name}（${s.date} · ${s.teacher}）`:s.teacher?`${pickerItem.name}（${s.loc} ${s.date} · ${s.teacher}）`:`${pickerItem.name}（${s.loc} ${s.date}）`;addToCartRaw(label,price);closeOverlay('pickerOverlay');showToast('✓ 已加入清單');}
 function addDirect(name,price,btn,origLabel){addToCartRaw(name,price);if(btn){btn.classList.add('added');btn.textContent='✓ 已加入';setTimeout(()=>{btn.classList.remove('added');btn.textContent=origLabel;},2000);}showToast('✓ 已加入清單');}
-function addToCartRaw(name,price){const ex=cart.find(i=>i.name===name);if(ex)ex.qty++;else cart.push({name,price,qty:1});updateCount();}
+function addToCartRaw(name,price){const ex=cart.find(i=>i.name===name);if(ex)ex.qty++;else cart.push({name,price,qty:1});updateCount();trackEvent('add_to_cart',{currency:analyticsCurrency,value:price||0,item_name:name,item_category:orderCategoryForItem(name)});}
 function updateCount(){const n=cart.reduce((s,i)=>s+i.qty,0);const el=document.getElementById('cartCount');el.textContent=n;el.style.display=n>0?'flex':'none';}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
 function toggleSocialFloat(){document.getElementById('socialFloat')?.classList.toggle('open');}
@@ -1783,6 +1817,7 @@ function openCheckout(){
   closeOverlay('cartOverlay');
   document.getElementById('summaryItems').innerHTML=cart.map(i=>`<div class="sr"><span>${i.name}</span><span>${i.price>0?'NT$ '+(i.price*i.qty).toLocaleString():'洽詢'}</span></div>`).join('');
   const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);
+  trackEvent('begin_checkout',{currency:analyticsCurrency,value:total,items:analyticsItems()});
   document.getElementById('summaryTotal').textContent=total>0?'NT$ '+total.toLocaleString():'含洽詢項目';
   updateCheckoutUI();
   updateCompetitionTeamFields();
@@ -1811,9 +1846,9 @@ function updateBankInfoForOrderType(type=currentOrderType()){
 }
 function paymentTextForRecord(pay,type=currentOrderType()){const account=paymentAccountForType(type);return (pay.includes('匯款')||pay.includes('現場繳費'))?`${pay}｜${account.label}`:pay;}
 async function copyBankAccount(btn){const account=document.getElementById('bankAccountNo').textContent.trim();try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(account);}else{const temp=document.createElement('textarea');temp.value=account;temp.setAttribute('readonly','');temp.style.position='fixed';temp.style.left='-9999px';document.body.appendChild(temp);temp.select();document.execCommand('copy');document.body.removeChild(temp);}if(btn){const old=btn.textContent;btn.textContent='已複製帳號';setTimeout(()=>btn.textContent=old,1800);}showToast('✓ 已複製匯款帳號');}catch(err){alert('複製失敗，請手動複製帳號 '+account);}}
-async function submitPaymentCode(btn){const input=document.getElementById('paymentLast5');const status=document.getElementById('paymentCodeStatus');const orderNo=document.getElementById('orderNo')?.textContent?.trim();const last5=(input?.value||'').replace(/\D/g,'').slice(0,5);if(input)input.value=last5;if(!orderNo){alert('找不到訂單編號，請直接用 LINE 傳送後五碼與訂單編號給我們。');return;}if(!/^\d{5}$/.test(last5)){alert('請填寫匯款帳號後五碼');input?.focus();return;}if(btn){btn.disabled=true;btn.textContent='送出中';}try{const res=await fetch('https://chang-jiu-sheng-order-backend.vercel.app/api/payment-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({orderNo,last5,phone:document.getElementById('f-phone')?.value.trim()||'',email:document.getElementById('f-email')?.value.trim()||'',lineId:document.getElementById('f-line')?.value.trim()||''})});const data=await res.json().catch(()=>null);if(!res.ok||!data?.ok)throw new Error(data?.error||'送出失敗');if(input)input.disabled=true;if(btn)btn.textContent='已送出';if(status){status.textContent='已補上匯款後五碼，官方會依同一筆訂單核對。';status.style.display='block';}showToast('已補上匯款後五碼');}catch(err){if(btn){btn.disabled=false;btn.textContent='送出後五碼';}if(status){status.textContent='後五碼送出失敗，請改用 LINE 傳送後五碼與訂單編號。';status.style.display='block';status.style.color='#9B2B1A';}console.log('後五碼更新失敗',err);}}
+async function submitPaymentCode(btn){const input=document.getElementById('paymentLast5');const status=document.getElementById('paymentCodeStatus');const orderNo=document.getElementById('orderNo')?.textContent?.trim();const last5=(input?.value||'').replace(/\D/g,'').slice(0,5);if(input)input.value=last5;if(!orderNo){alert('找不到訂單編號，請直接用 LINE 傳送後五碼與訂單編號給我們。');return;}if(!/^\d{5}$/.test(last5)){alert('請填寫匯款帳號後五碼');input?.focus();return;}if(btn){btn.disabled=true;btn.textContent='送出中';}try{const res=await fetch('https://chang-jiu-sheng-order-backend.vercel.app/api/payment-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({orderNo,last5,phone:document.getElementById('f-phone')?.value.trim()||'',email:document.getElementById('f-email')?.value.trim()||'',lineId:document.getElementById('f-line')?.value.trim()||''})});const data=await res.json().catch(()=>null);if(!res.ok||!data?.ok)throw new Error(data?.error||'送出失敗');if(input)input.disabled=true;if(btn)btn.textContent='已送出';if(status){status.textContent='已補上匯款後五碼，官方會依同一筆訂單核對。';status.style.display='block';}showToast('已補上匯款後五碼');trackEvent('payment_code_submitted',{method:'success_screen',order_no:orderNo});}catch(err){if(btn){btn.disabled=false;btn.textContent='送出後五碼';}if(status){status.textContent='後五碼送出失敗，請改用 LINE 傳送後五碼與訂單編號。';status.style.display='block';status.style.color='#9B2B1A';}console.log('後五碼更新失敗',err);}}
 function openPaymentLookup(){const status=document.getElementById('lookup-status');['lookup-name','lookup-contact','lookup-order','lookup-last5'].forEach(id=>{const el=document.getElementById(id);if(el){el.disabled=false;}});const btn=document.querySelector('#paymentLookupOverlay .submit-btn');if(btn){btn.disabled=false;btn.textContent='送出後五碼';}if(status){status.style.display='none';status.style.color='#2E7D52';status.textContent='';}document.getElementById('paymentLookupOverlay').classList.add('open');}
-async function submitPaymentLookup(btn){const name=document.getElementById('lookup-name')?.value.trim()||'';const contact=document.getElementById('lookup-contact')?.value.trim()||'';const orderNo=document.getElementById('lookup-order')?.value.trim()||'';const last5=(document.getElementById('lookup-last5')?.value||'').replace(/\D/g,'').slice(0,5);const last5Input=document.getElementById('lookup-last5');const status=document.getElementById('lookup-status');if(last5Input)last5Input.value=last5;if(!name&&!orderNo){alert('請填寫下單姓名，或填寫訂單編號。');document.getElementById('lookup-name')?.focus();return;}if(!contact&&!orderNo){alert('請填寫電話或 LINE，避免補錯訂單。');document.getElementById('lookup-contact')?.focus();return;}if(!/^\d{5}$/.test(last5)){alert('請填寫 5 碼匯款後五碼。');last5Input?.focus();return;}if(btn){btn.disabled=true;btn.textContent='送出中';}try{const res=await fetch('https://chang-jiu-sheng-order-backend.vercel.app/api/payment-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,studentName:name,phone:contact,lineId:contact,email:contact,orderNo,last5})});const data=await res.json().catch(()=>null);if(!res.ok||!data?.ok)throw new Error(data?.error||'送出失敗');['lookup-name','lookup-contact','lookup-order','lookup-last5'].forEach(id=>{const el=document.getElementById(id);if(el)el.disabled=true;});if(btn)btn.textContent='已送出';if(status){status.textContent=`已補上匯款後五碼，訂單 ${data.orderNo||orderNo||''} 會由官方核對。`;status.style.color='#2E7D52';status.style.display='block';}showToast('已補上匯款後五碼');}catch(err){if(btn){btn.disabled=false;btn.textContent='送出後五碼';}if(status){status.textContent=err.message||'後五碼送出失敗，請改用 LINE 傳送後五碼與訂單資料。';status.style.color='#9B2B1A';status.style.display='block';}console.log('補填後五碼失敗',err);}}
+async function submitPaymentLookup(btn){const name=document.getElementById('lookup-name')?.value.trim()||'';const contact=document.getElementById('lookup-contact')?.value.trim()||'';const orderNo=document.getElementById('lookup-order')?.value.trim()||'';const last5=(document.getElementById('lookup-last5')?.value||'').replace(/\D/g,'').slice(0,5);const last5Input=document.getElementById('lookup-last5');const status=document.getElementById('lookup-status');if(last5Input)last5Input.value=last5;if(!name&&!orderNo){alert('請填寫下單姓名，或填寫訂單編號。');document.getElementById('lookup-name')?.focus();return;}if(!contact&&!orderNo){alert('請填寫電話或 LINE，避免補錯訂單。');document.getElementById('lookup-contact')?.focus();return;}if(!/^\d{5}$/.test(last5)){alert('請填寫 5 碼匯款後五碼。');last5Input?.focus();return;}if(btn){btn.disabled=true;btn.textContent='送出中';}try{const res=await fetch('https://chang-jiu-sheng-order-backend.vercel.app/api/payment-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,studentName:name,phone:contact,lineId:contact,email:contact,orderNo,last5})});const data=await res.json().catch(()=>null);if(!res.ok||!data?.ok)throw new Error(data?.error||'送出失敗');['lookup-name','lookup-contact','lookup-order','lookup-last5'].forEach(id=>{const el=document.getElementById(id);if(el)el.disabled=true;});if(btn)btn.textContent='已送出';if(status){status.textContent=`已補上匯款後五碼，訂單 ${data.orderNo||orderNo||''} 會由官方核對。`;status.style.color='#2E7D52';status.style.display='block';}showToast('已補上匯款後五碼');trackEvent('payment_code_submitted',{method:'lookup',order_no:data.orderNo||orderNo||''});}catch(err){if(btn){btn.disabled=false;btn.textContent='送出後五碼';}if(status){status.textContent=err.message||'後五碼送出失敗，請改用 LINE 傳送後五碼與訂單資料。';status.style.color='#9B2B1A';status.style.display='block';}console.log('補填後五碼失敗',err);}}
 function orderCategoryForItem(item){
   const name=typeof item==='string'?item:(item?.name||'');
   if(/競賽|爭霸戰|團體賽|參賽|大賽/.test(name))return 'competition';
@@ -1965,7 +2000,7 @@ async function notifyStudentAfterOrder(orderNo,permissionPromise){await permissi
 function hasTeamCompetitionCart(){return cart.some(item=>/團體爭霸戰|團體賽/.test(item.name));}
 function updateCompetitionTeamFields(){const field=document.getElementById('competitionTeamField');if(field)field.style.display=hasTeamCompetitionCart()?'block':'none';}
 const submitOrderHandler=submitOrder;
-submitOrder=async function(){if(hasMixedOrderTypes()){alert('課程、作品、認證、競賽請分開下單，後台才不會混在一起。');return;}const permissionPromise=Promise.resolve('page');const needsTeam=hasTeamCompetitionCart();const teamEl=document.getElementById('f-team-members');const teamMembers=teamEl?.value.trim()||'';if(needsTeam&&!teamMembers){alert('團體賽需要填寫 3 位參賽者姓名與身分證字號，方便送交大會與領獎金核對。');teamEl?.focus();return;}const noteEl=document.getElementById('f-note');const originalNote=noteEl?.value||'';if(needsTeam&&noteEl){const teamBlock=`團體賽組員名單：\n${teamMembers}`;noteEl.value=[originalNote.trim(),teamBlock].filter(Boolean).join('\n\n');}try{await submitOrderHandler.apply(this,arguments);}finally{if(needsTeam&&noteEl)noteEl.value=originalNote;}const orderNo=document.getElementById('orderNo')?.textContent?.trim();if(orderNo&&document.getElementById('successScreen')?.classList.contains('show'))await notifyStudentAfterOrder(orderNo,permissionPromise);};
+submitOrder=async function(){if(hasMixedOrderTypes()){alert('課程、作品、認證、競賽請分開下單，後台才不會混在一起。');return;}const permissionPromise=Promise.resolve('page');const needsTeam=hasTeamCompetitionCart();const teamEl=document.getElementById('f-team-members');const teamMembers=teamEl?.value.trim()||'';if(needsTeam&&!teamMembers){alert('團體賽需要填寫 3 位參賽者姓名與身分證字號，方便送交大會與領獎金核對。');teamEl?.focus();return;}const noteEl=document.getElementById('f-note');const originalNote=noteEl?.value||'';const orderType=currentOrderType();const orderValue=cartValue();const orderItems=analyticsItems();if(needsTeam&&noteEl){const teamBlock=`團體賽組員名單：\n${teamMembers}`;noteEl.value=[originalNote.trim(),teamBlock].filter(Boolean).join('\n\n');}try{await submitOrderHandler.apply(this,arguments);}finally{if(needsTeam&&noteEl)noteEl.value=originalNote;}const orderNo=document.getElementById('orderNo')?.textContent?.trim();if(orderNo&&document.getElementById('successScreen')?.classList.contains('show')){trackEvent('purchase',{transaction_id:orderNo,currency:analyticsCurrency,value:orderValue,order_type:orderType,items:orderItems});trackEvent('submit_order',{order_type:orderType,value:orderValue});await notifyStudentAfterOrder(orderNo,permissionPromise);}};
 function handleOverlayClick(e,id){if(e.target===document.getElementById(id))closeOverlay(id);}
 function closeOverlay(id){document.getElementById(id).classList.remove('open');}
 function resetAll(){isSubmittingOrder=false;cart=[];updateCount();closeOverlay('modalOverlay');document.getElementById('modalBody').classList.remove('hide');document.getElementById('successScreen').classList.remove('show');['f-name','f-phone','f-line','f-email','f-note','f-team-members','paymentLast5','f-address','f-zip'].forEach(id=>{const el=document.getElementById(id);if(el){el.value='';el.disabled=false;}});const status=document.getElementById('paymentCodeStatus');if(status){status.style.display='none';status.style.color='#2E7D52';status.textContent='已補上匯款後五碼，官方會依同一筆訂單核對。';}const paymentBtn=document.querySelector('#paymentCodeBox button');if(paymentBtn){paymentBtn.disabled=false;paymentBtn.textContent='送出後五碼';}document.getElementById('f-city').value='';document.getElementById('f-class-city').value='';updateDistrictOptions();updateCheckoutUI();updateCompetitionTeamFields();}
