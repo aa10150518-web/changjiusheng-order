@@ -287,6 +287,24 @@ button.official-link{width:100%;appearance:none;-webkit-appearance:none;}
 body.is-tab-view .home-only{display:none;}
 body.is-tab-view .brand-intro{padding:22px 20px 24px;}
 body.is-tab-view .official-links{margin-top:0;}
+body.page-home .about-founder,
+body.page-home .classroom-section,
+body.page-home .student-showcase,
+body.page-home .main,
+body.page-home #student-results{display:none!important;}
+body.page-about .hero,
+body.page-about .seo-local-section,
+body.page-about .classroom-section,
+body.page-about .student-showcase,
+body.page-about .main,
+body.page-about #student-results{display:none!important;}
+body.page-courses .hero,
+body.page-courses .brand-intro,
+body.page-courses .seo-local-section,
+body.page-courses .about-founder,
+body.page-courses #student-results{display:none!important;}
+body.page-courses .classroom-section{padding-top:32px;}
+body.page-home .brand-intro{padding-bottom:34px;}
 @media (max-width:760px){.brand-intro-inner{grid-template-columns:1fr;gap:18px}.official-links{grid-template-columns:1fr 1fr}.hero{padding:48px 18px 38px}.hero h1{font-size:28px;letter-spacing:3px}.brand-logo{width:72px;height:52px}.brand{font-size:23px}.brand-wrap{gap:10px;min-height:72px}.header-actions{gap:6px}.cart-btn{padding:6px 10px;font-size:12px}.tabs{top:73px}#sec-paper,#sec-marketing,#tab-products,#tab-cert,#tab-comp,#student-results{scroll-margin-top:128px}}
 .sec-label{font-size:13px;letter-spacing:3px;color:var(--gold3);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
 .sec-label::before{content:'◆';font-size:9px;color:var(--gold);}
@@ -549,6 +567,14 @@ textarea{resize:vertical;height:70px;}
 </style>
 </head>
 <body>
+<script>
+(function(){
+  const file=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  const page=file==='about.html'?'about':file==='courses.html'?'courses':'home';
+  document.body.classList.add('page-'+page);
+  window.CJS_PAGE=page;
+})();
+</script>
 <noscript><img height="1" width="1" style="display:none" alt=""
 src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript=1"></noscript>
 <div class="top-bar"></div>
@@ -560,11 +586,11 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
   </div>
 </div>
 <div class="tabs">
-  <div class="tab active tab-with-menu" onclick="switchTab(this,'courses')">📚 課程專區 <button class="tab-arrow-btn" type="button" aria-label="展開課程選單" onclick="toggleTopMenu('courses',event)">▾</button></div>
-  <div class="tab tab-with-menu" onclick="switchTab(this,'products')">🌸 作品訂製 <button class="tab-arrow-btn" type="button" aria-label="展開作品選單" onclick="toggleTopMenu('products',event)">▾</button></div>
-  <div class="tab" onclick="showHomeSection('about-founder')">關於我們</div>
-  <div class="tab" onclick="switchTab(this,'cert')">📜 國際認證</div>
-  <div class="tab" onclick="switchTab(this,'comp')">🏆 國際競賽</div>
+  <div class="tab tab-with-menu" onclick="location.href='courses.html'">📚 課程專區 <button class="tab-arrow-btn" type="button" aria-label="展開課程選單" onclick="toggleTopMenu('courses',event)">▾</button></div>
+  <div class="tab tab-with-menu" onclick="goPageTab('products')">🌸 作品訂製 <button class="tab-arrow-btn" type="button" aria-label="展開作品選單" onclick="toggleTopMenu('products',event)">▾</button></div>
+  <div class="tab" onclick="location.href='about.html'">關於我們</div>
+  <div class="tab" onclick="goPageTab('cert')">📜 國際認證</div>
+  <div class="tab" onclick="goPageTab('comp')">🏆 國際競賽</div>
 </div>
 <div class="top-menu-panel" id="topMenu-courses">
   <div class="top-menu-inner">
@@ -653,10 +679,10 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
     </div>
   </div>
   <div class="official-links">
-    <button class="official-link reveal" type="button" onclick="showHomeSection('about-founder')">關於昌久貹</button>
-    <button class="official-link reveal" type="button" onclick="goTab('courses')">課程內容</button>
-    <button class="official-link reveal" type="button" onclick="goTab('products')">作品訂製</button>
-    <button class="official-link reveal" type="button" onclick="goTab('cert')">認證與競賽</button>
+    <button class="official-link reveal" type="button" onclick="location.href='about.html'">關於昌久貹</button>
+    <button class="official-link reveal" type="button" onclick="location.href='courses.html'">課程內容</button>
+    <button class="official-link reveal" type="button" onclick="goPageTab('products')">作品訂製</button>
+    <button class="official-link reveal" type="button" onclick="goPageTab('cert')">認證與競賽</button>
   </div>
 </section>
 <section class="seo-local-section home-only">
@@ -1821,8 +1847,10 @@ if('IntersectionObserver' in window){
   revealItems.forEach(item=>item.classList.add('in-view'));
 }
 let cart=[],pickerItem=null,selectedSession=null;
-function switchTab(el,id,autoScroll=true){closeTopMenus();closeCourseMenus();document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');document.body.classList.toggle('is-tab-view',id!=='courses');['courses','products','cert','comp'].forEach(k=>{const panel=document.getElementById('tab-'+k);if(panel)panel.style.display=k===id?'block':'none';});if(autoScroll)setTimeout(()=>scrollToTabStart(id),60);}
-function showHomeSection(sectionId){const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'courses'"));if(targetTab)switchTab(targetTab,'courses',false);setTimeout(()=>{const target=document.getElementById(sectionId);if(target)scrollToTarget(target,10);},50);}
+function currentPageName(){return window.CJS_PAGE||'home';}
+function enterCatalogMode(id){document.body.classList.remove('page-home','page-about');if(!(currentPageName()==='courses'&&id==='courses'))document.body.classList.remove('page-courses');}
+function switchTab(el,id,autoScroll=true){closeTopMenus();closeCourseMenus();enterCatalogMode(id);document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');document.body.classList.toggle('is-tab-view',id!=='courses');['courses','products','cert','comp'].forEach(k=>{const panel=document.getElementById('tab-'+k);if(panel)panel.style.display=k===id?'block':'none';});if(autoScroll)setTimeout(()=>scrollToTabStart(id),60);}
+function showHomeSection(sectionId){if(sectionId==='about-founder'&&currentPageName()!=='about'){location.href='about.html';return;}const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'courses'"));if(targetTab)switchTab(targetTab,'courses',false);setTimeout(()=>{const target=document.getElementById(sectionId);if(target)scrollToTarget(target,10);},50);}
 function closeTopMenus(){document.querySelectorAll('.top-menu-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-with-menu').forEach(t=>t.classList.remove('menu-open'));}
 function toggleTopMenu(type,event){if(event)event.stopPropagation();const panel=document.getElementById('topMenu-'+type);const tab=event?.target?.closest('.tab-with-menu');const willOpen=panel&&!panel.classList.contains('active');closeTopMenus();closeCourseMenus();if(panel&&willOpen){panel.classList.add('active');tab?.classList.add('menu-open');}}
 function topTabFor(id){return [...document.querySelectorAll('.tab')].find(t=>{const text=t.textContent||'';return id==='courses'&&text.includes('課程專區')||id==='products'&&text.includes('作品訂製')||id==='cert'&&text.includes('國際認證')||id==='comp'&&text.includes('國際競賽');});}
@@ -1832,11 +1860,12 @@ function backToTop(){closeTopMenus();closeCourseMenus();window.scrollTo({top:0,b
 function closeCourseMenus(){document.querySelectorAll('.course-menu-wrap').forEach(w=>w.classList.remove('open'));}
 function toggleCourseMenu(type,event){if(event)event.stopPropagation();const wrap=document.getElementById('courseWrap-'+type);const willOpen=!wrap?.classList.contains('open');closeCourseMenus();if(wrap&&willOpen)wrap.classList.add('open');}
 function jumpToCourse(courseId,type){closeCourseMenus();const section=document.getElementById(type==='paper'?'sec-paper':'sec-marketing');const target=document.getElementById(courseId)||section;scrollToTarget(target);}
-function jumpTopCourse(courseId,type){closeTopMenus();const tab=topTabFor('courses');if(tab)switchTab(tab,'courses',false);setTimeout(()=>jumpToCourse(courseId,type),80);}
+function jumpTopCourse(courseId,type){closeTopMenus();if(currentPageName()!=='courses'){location.href='courses.html#'+courseId;return;}const tab=topTabFor('courses');if(tab)switchTab(tab,'courses',false);setTimeout(()=>jumpToCourse(courseId,type),80);}
 function jumpTopProduct(category,targetId){closeTopMenus();const tab=topTabFor('products');if(tab)switchTab(tab,'products',false);setTimeout(()=>{const btn=document.querySelector(`[data-product-category-btn="${category}"]`);switchProductCategory(category,btn);setTimeout(()=>scrollToTarget(document.getElementById(targetId)),80);},80);}
 document.addEventListener('click',e=>{if(!e.target.closest('.course-menu-wrap'))closeCourseMenus();if(!e.target.closest('.top-menu-panel')&&!e.target.closest('.tab-with-menu'))closeTopMenus();});
 function goTab(id){const targetTab=topTabFor(id)||[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'"+id+"'"));if(targetTab)switchTab(targetTab,id,false);setTimeout(()=>scrollToTabStart(id),60);}
-const brandWrap=document.querySelector('.brand-wrap');if(brandWrap){brandWrap.setAttribute('role','button');brandWrap.setAttribute('tabindex','0');brandWrap.addEventListener('click',backToTop);brandWrap.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();backToTop();}});}
+function goPageTab(id){if(currentPageName()==='home'){goTab(id);return;}location.href='index.html#tab-'+id;}
+const brandWrap=document.querySelector('.brand-wrap');if(brandWrap){brandWrap.setAttribute('role','button');brandWrap.setAttribute('tabindex','0');brandWrap.addEventListener('click',()=>{if(currentPageName()==='home')backToTop();else location.href='index.html';});brandWrap.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();if(currentPageName()==='home')backToTop();else location.href='index.html';}});}
 function switchProductCategory(category,btn){const wrap=document.getElementById('tab-products');if(!wrap)return;if(!btn)btn=wrap.querySelector(`[data-product-category-btn="${category}"]`);wrap.dataset.productCategory=category;wrap.querySelectorAll('.product-category-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');}
 function openPicker(name,price,sessions){pickerItem={name,price,sessions};selectedSession=null;document.getElementById('pickerTitle').textContent=name+'｜選擇場次';document.getElementById('pickerOptions').innerHTML=sessions.map((s,i)=>`<div class="session-opt" onclick="selectSess(this,${i})"><div class="radio"><div class="radio-dot"></div></div><div><div class="s-loc">📍 ${s.loc}</div><div class="s-date">📅 ${s.date}</div>${s.teacher?`<div class="s-teacher-d">👩‍🏫 ${s.teacher}</div>`:''}</div></div>`).join('');document.getElementById('pickerOverlay').classList.add('open');}
 function selectSess(el,i){document.querySelectorAll('.session-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');selectedSession=i;}
@@ -1857,8 +1886,9 @@ function addToCartRaw(name,price){const ex=cart.find(i=>i.name===name);if(ex)ex.
 function updateCount(){const n=cart.reduce((s,i)=>s+i.qty,0);const el=document.getElementById('cartCount');el.textContent=n;el.style.display=n>0?'flex':'none';}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
 function toggleSocialFloat(){document.getElementById('socialFloat')?.classList.toggle('open');}
-function openInitialHash(){const hash=location.hash.replace('#','');const tabMap={'tab-courses':'courses','sec-paper':'courses','sec-marketing':'courses','tab-products':'products','tab-cert':'cert','tab-comp':'comp'};if(tabMap[hash]){const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'"+tabMap[hash]+"'"));if(targetTab)switchTab(targetTab,tabMap[hash]);setTimeout(()=>document.getElementById(hash)?.scrollIntoView({behavior:'smooth',block:'start'}),80);}}
-window.addEventListener('load',openInitialHash);
+function openInitialHash(){const hash=location.hash.replace('#','');const tabMap={'tab-courses':'courses','sec-paper':'courses','sec-marketing':'courses','tab-products':'products','tab-cert':'cert','tab-comp':'comp'};if(tabMap[hash]){const targetTab=topTabFor(tabMap[hash]);if(targetTab)switchTab(targetTab,tabMap[hash]);setTimeout(()=>document.getElementById(hash)?.scrollIntoView({behavior:'smooth',block:'start'}),80);return;}const target=document.getElementById(hash);if(target){if(hash.startsWith('course-')){const tab=topTabFor('courses');if(tab)switchTab(tab,'courses',false);}else if(hash.startsWith('product-')){const tab=topTabFor('products');if(tab)switchTab(tab,'products',false);if(hash.includes('memorial')||hash.includes('yongsi')||hash.includes('fachuan'))switchProductCategory('memorial');}setTimeout(()=>scrollToTarget(target),100);}}
+function syncPageNav(){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(currentPageName()==='courses'){const tab=topTabFor('courses');if(tab)switchTab(tab,'courses',false);return;}if(currentPageName()==='about'){const aboutTab=[...document.querySelectorAll('.tab')].find(t=>(t.textContent||'').includes('關於我們'));if(aboutTab)aboutTab.classList.add('active');return;}}
+window.addEventListener('load',()=>{syncPageNav();if(location.hash)openInitialHash();});
 function openCart(){renderCart();document.getElementById('cartOverlay').classList.add('open');}
 function renderCart(){const el=document.getElementById('cartItems');if(!cart.length){el.innerHTML='<div class="empty-cart"><div style="font-size:36px;margin-bottom:8px">🛒</div>尚未加入任何項目</div>';document.getElementById('cartTotalRow').style.display='none';document.getElementById('checkoutBtn').style.display='none';return;}el.innerHTML=cart.map((item,i)=>`<div class="cart-item"><div><div class="ci-name">${item.name}</div><div class="ci-price">${item.price>0?'NT$ '+item.price.toLocaleString()+' × '+item.qty:'洽詢報價'}</div></div><button class="rm-btn" onclick="removeItem(${i})">✕</button></div>`).join('');const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);document.getElementById('cartTotal').textContent=total>0?'NT$ '+total.toLocaleString():'含洽詢項目';document.getElementById('cartTotalRow').style.display='flex';document.getElementById('checkoutBtn').style.display='block';}
 function removeItem(i){cart.splice(i,1);updateCount();renderCart();}
