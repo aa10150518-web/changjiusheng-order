@@ -633,7 +633,7 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
   <div class="tab tab-with-menu" onclick="location.href='courses.html'">📚 課程專區 <button class="tab-arrow-btn" type="button" aria-label="展開課程選單" onclick="toggleTopMenu('courses',event)">▾</button></div>
   <div class="tab tab-with-menu" onclick="goPageTab('products')">🌸 作品訂製 <button class="tab-arrow-btn" type="button" aria-label="展開作品選單" onclick="toggleTopMenu('products',event)">▾</button></div>
   <div class="tab" onclick="location.href='about.html'">關於我們</div>
-  <div class="tab" onclick="goPageTab('cert')">📜 國際認證</div>
+  <div class="tab tab-with-menu" onclick="goPageTab('cert')">📜 國際認證 <button class="tab-arrow-btn" type="button" aria-label="展開國際認證選單" onclick="toggleTopMenu('cert',event)">▾</button></div>
   <div class="tab" onclick="goPageTab('comp')">🏆 國際競賽</div>
 </div>
 <div class="top-menu-panel" id="topMenu-courses">
@@ -691,7 +691,18 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
     </div>
   </div>
 </div>
-<div class="hero">
+<div class="top-menu-panel" id="topMenu-cert">
+  <div class="top-menu-inner">
+    <div class="top-menu-group">
+      <div class="top-menu-title">JYCP 國際認證</div>
+      <div class="top-menu-list">
+        <button class="top-menu-item" type="button" onclick="goPageTab('cert')">認證總覽 <span>考核</span></button>
+        <button class="top-menu-item" type="button" onclick="location.href='jycp-international-instructor.html'">JYCP國際講師培訓 <span>講師</span></button>
+        <button class="top-menu-item" type="button" onclick="location.href='jycp-certification.html'">JYCP認證與競賽 <span>介紹</span></button>
+      </div>
+    </div>
+  </div>
+</div><div class="hero">
   <div class="hero-media">
     <div class="hero-slide hero-slide-1" style="background-image:url('images/home-hero-new-01.jpg')"></div>
     <div class="hero-slide hero-slide-2" style="background-image:url('images/work-hero-01.jpg')"></div>
