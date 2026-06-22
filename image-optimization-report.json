@@ -1,0 +1,548 @@
+﻿[
+    {
+        "Ref":  "images/home-hero-new-01.jpg",
+        "Webp":  "images/home-hero-new-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  525711,
+        "WebpBytes":  266766
+    },
+    {
+        "Ref":  "images/work-hero-01.jpg",
+        "Webp":  "images/work-hero-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  408323,
+        "WebpBytes":  175722
+    },
+    {
+        "Ref":  "images/work-hero-02.jpg",
+        "Webp":  "images/work-hero-02.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  596776,
+        "WebpBytes":  324138
+    },
+    {
+        "Ref":  "images/product-yongsi-01.jpg",
+        "Webp":  "images/product-yongsi-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  507063,
+        "WebpBytes":  263830
+    },
+    {
+        "Ref":  "images/work-hero-04.jpg",
+        "Webp":  "images/work-hero-04.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  560016,
+        "WebpBytes":  279118
+    },
+    {
+        "Ref":  "images/founder-linyunrou.jpg",
+        "Webp":  "images/founder-linyunrou.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  162209,
+        "WebpBytes":  31180
+    },
+    {
+        "Ref":  "images/classroom-wide-new.jpg",
+        "Webp":  "images/classroom-wide-new.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  277678,
+        "WebpBytes":  103222
+    },
+    {
+        "Ref":  "images/classroom-main.jpg",
+        "Webp":  "images/classroom-main.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  268521,
+        "WebpBytes":  110848
+    },
+    {
+        "Ref":  "images/classroom-detail.jpg",
+        "Webp":  "images/classroom-detail.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  219454,
+        "WebpBytes":  76878
+    },
+    {
+        "Ref":  "images/student-class-202606-01.jpg",
+        "Webp":  "images/student-class-202606-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  268051,
+        "WebpBytes":  82392
+    },
+    {
+        "Ref":  "images/student-class-202606-02.jpg",
+        "Webp":  "images/student-class-202606-02.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  279813,
+        "WebpBytes":  92770
+    },
+    {
+        "Ref":  "images/student-class-new-01.jpg",
+        "Webp":  "images/student-class-new-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  301663,
+        "WebpBytes":  123576
+    },
+    {
+        "Ref":  "images/student-class-new-02.jpg",
+        "Webp":  "images/student-class-new-02.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  267529,
+        "WebpBytes":  105422
+    },
+    {
+        "Ref":  "images/student-class-new-03.jpg",
+        "Webp":  "images/student-class-new-03.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  302176,
+        "WebpBytes":  124496
+    },
+    {
+        "Ref":  "images/student-class-new-04.jpg",
+        "Webp":  "images/student-class-new-04.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  339333,
+        "WebpBytes":  143052
+    },
+    {
+        "Ref":  "images/student-class-new-05.jpg",
+        "Webp":  "images/student-class-new-05.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  232286,
+        "WebpBytes":  84702
+    },
+    {
+        "Ref":  "images/student-class-01.jpg",
+        "Webp":  "images/student-class-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  447780,
+        "WebpBytes":  191582
+    },
+    {
+        "Ref":  "images/student-class-02.jpg",
+        "Webp":  "images/student-class-02.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  239587,
+        "WebpBytes":  85200
+    },
+    {
+        "Ref":  "images/student-class-03.jpg",
+        "Webp":  "images/student-class-03.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  230539,
+        "WebpBytes":  77948
+    },
+    {
+        "Ref":  "images/student-class-04.jpg",
+        "Webp":  "images/student-class-04.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  258169,
+        "WebpBytes":  93732
+    },
+    {
+        "Ref":  "images/student-class-05.jpg",
+        "Webp":  "images/student-class-05.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  240315,
+        "WebpBytes":  83156
+    },
+    {
+        "Ref":  "images/course-bouquet-01.jpg",
+        "Webp":  "images/course-bouquet-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  306944,
+        "WebpBytes":  119644
+    },
+    {
+        "Ref":  "images/course-bouquet-02.jpg",
+        "Webp":  "images/course-bouquet-02.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  505271,
+        "WebpBytes":  259254
+    },
+    {
+        "Ref":  "images/course-haoshen-intro.jpg",
+        "Webp":  "images/course-haoshen-intro.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  493184,
+        "WebpBytes":  265322
+    },
+    {
+        "Ref":  "images/course-haoshen-advanced.jpg",
+        "Webp":  "images/course-haoshen-advanced.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  294623,
+        "WebpBytes":  115320
+    },
+    {
+        "Ref":  "images/course-yongsi.jpg",
+        "Webp":  "images/course-yongsi.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  553708,
+        "WebpBytes":  290050
+    },
+    {
+        "Ref":  "images/course-realistic-flower-01.jpg",
+        "Webp":  "images/course-realistic-flower-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  297652,
+        "WebpBytes":  122906
+    },
+    {
+        "Ref":  "images/course-realistic-flower-02.jpg",
+        "Webp":  "images/course-realistic-flower-02.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  400072,
+        "WebpBytes":  189266
+    },
+    {
+        "Ref":  "images/course-ai-marketing-new-01.jpg",
+        "Webp":  "images/course-ai-marketing-new-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  484640,
+        "WebpBytes":  221340
+    },
+    {
+        "Ref":  "images/course-ai-marketing-new-02.jpg",
+        "Webp":  "images/course-ai-marketing-new-02.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  359929,
+        "WebpBytes":  142336
+    },
+    {
+        "Ref":  "images/course-ai-brand-advanced.jpg",
+        "Webp":  "images/course-ai-brand-advanced.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  468645,
+        "WebpBytes":  206598
+    },
+    {
+        "Ref":  "images/course-website-zero.jpg",
+        "Webp":  "images/course-website-zero.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  571811,
+        "WebpBytes":  271074
+    },
+    {
+        "Ref":  "images/haoshen-offer-shennong-2026.jpg",
+        "Webp":  "images/haoshen-offer-shennong-2026.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  1324614,
+        "WebpBytes":  241424
+    },
+    {
+        "Ref":  "images/product-yongsi-02.jpg",
+        "Webp":  "images/product-yongsi-02.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  326186,
+        "WebpBytes":  130794
+    },
+    {
+        "Ref":  "images/product-memorial-bucket-01.jpg",
+        "Webp":  "images/product-memorial-bucket-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  522266,
+        "WebpBytes":  274944
+    },
+    {
+        "Ref":  "images/product-fachuan-01.jpg",
+        "Webp":  "images/product-fachuan-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  264887,
+        "WebpBytes":  118082
+    },
+    {
+        "Ref":  "images/product-haoshen-01.jpg",
+        "Webp":  "images/product-haoshen-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  372280,
+        "WebpBytes":  153414
+    },
+    {
+        "Ref":  "images/product-jiaoqian-01.jpg",
+        "Webp":  "images/product-jiaoqian-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  359013,
+        "WebpBytes":  155912
+    },
+    {
+        "Ref":  "images/product-bouquet-01.jpg",
+        "Webp":  "images/product-bouquet-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  332142,
+        "WebpBytes":  127086
+    },
+    {
+        "Ref":  "images/product-bouquet-02.jpg",
+        "Webp":  "images/product-bouquet-02.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  312731,
+        "WebpBytes":  123952
+    },
+    {
+        "Ref":  "images/product-birthday-cake-01.jpg",
+        "Webp":  "images/product-birthday-cake-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  400159,
+        "WebpBytes":  186822
+    },
+    {
+        "Ref":  "images/product-pineapple-01.jpg",
+        "Webp":  "images/product-pineapple-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  332744,
+        "WebpBytes":  139250
+    },
+    {
+        "Ref":  "images/product-small-dragon-boat-01.jpg",
+        "Webp":  "images/product-small-dragon-boat-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  272247,
+        "WebpBytes":  103422
+    },
+    {
+        "Ref":  "images/product-yitongjin-01.jpg",
+        "Webp":  "images/product-yitongjin-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  235607,
+        "WebpBytes":  112294
+    },
+    {
+        "Ref":  "images/product-fortune-throne-01.jpg",
+        "Webp":  "images/product-fortune-throne-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  567181,
+        "WebpBytes":  302250
+    },
+    {
+        "Ref":  "images/cert-exam-01.jpg",
+        "Webp":  "images/cert-exam-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  473278,
+        "WebpBytes":  232066
+    },
+    {
+        "Ref":  "images/cert-exam-02.jpg",
+        "Webp":  "images/cert-exam-02.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  440153,
+        "WebpBytes":  208416
+    },
+    {
+        "Ref":  "images/cert-exam-03.jpg",
+        "Webp":  "images/cert-exam-03.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  469338,
+        "WebpBytes":  231940
+    },
+    {
+        "Ref":  "images/cert-exam-04.jpg",
+        "Webp":  "images/cert-exam-04.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  541667,
+        "WebpBytes":  284714
+    },
+    {
+        "Ref":  "images/cert-exam-05.jpg",
+        "Webp":  "images/cert-exam-05.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  411038,
+        "WebpBytes":  185510
+    },
+    {
+        "Ref":  "images/cert-exam-06.jpg",
+        "Webp":  "images/cert-exam-06.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  469597,
+        "WebpBytes":  232900
+    },
+    {
+        "Ref":  "images/cert-exam-07.jpg",
+        "Webp":  "images/cert-exam-07.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  413789,
+        "WebpBytes":  181924
+    },
+    {
+        "Ref":  "images/cert-exam-08.jpg",
+        "Webp":  "images/cert-exam-08.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  501325,
+        "WebpBytes":  244144
+    },
+    {
+        "Ref":  "images/cert-exam-09.jpg",
+        "Webp":  "images/cert-exam-09.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  394558,
+        "WebpBytes":  177292
+    },
+    {
+        "Ref":  "images/cert-exam-10.jpg",
+        "Webp":  "images/cert-exam-10.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  365148,
+        "WebpBytes":  157206
+    },
+    {
+        "Ref":  "images/cert-exam-11.jpg",
+        "Webp":  "images/cert-exam-11.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  378175,
+        "WebpBytes":  164778
+    },
+    {
+        "Ref":  "images/cert-exam-12.jpg",
+        "Webp":  "images/cert-exam-12.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  420696,
+        "WebpBytes":  196646
+    },
+    {
+        "Ref":  "images/cert-scene-01.jpg",
+        "Webp":  "images/cert-scene-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  472089,
+        "WebpBytes":  227086
+    },
+    {
+        "Ref":  "images/cert-scene-02.jpg",
+        "Webp":  "images/cert-scene-02.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  454555,
+        "WebpBytes":  217074
+    },
+    {
+        "Ref":  "images/competition-static-2026-11.jpg",
+        "Webp":  "images/competition-static-2026-11.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  527007,
+        "WebpBytes":  264038
+    },
+    {
+        "Ref":  "images/competition-team-2026-11.jpg",
+        "Webp":  "images/competition-team-2026-11.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  789009,
+        "WebpBytes":  438820
+    },
+    {
+        "Ref":  "images/competition-zhengba-2026-11.jpg",
+        "Webp":  "images/competition-zhengba-2026-11.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  756182,
+        "WebpBytes":  405084
+    },
+    {
+        "Ref":  "images/competition-scene-2026.jpg",
+        "Webp":  "images/competition-scene-2026.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  222289,
+        "WebpBytes":  81198
+    },
+    {
+        "Ref":  "images/competition-scene-01.jpg",
+        "Webp":  "images/competition-scene-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  500639,
+        "WebpBytes":  246292
+    },
+    {
+        "Ref":  "images/student-result-202606-01.jpg",
+        "Webp":  "images/student-result-202606-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  249112,
+        "WebpBytes":  80278
+    },
+    {
+        "Ref":  "images/student-result-new-01.jpg",
+        "Webp":  "images/student-result-new-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  506332,
+        "WebpBytes":  262076
+    },
+    {
+        "Ref":  "images/student-result-01.jpg",
+        "Webp":  "images/student-result-01.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  296817,
+        "WebpBytes":  93830
+    },
+    {
+        "Ref":  "images/student-result-02.jpg",
+        "Webp":  "images/student-result-02.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  321611,
+        "WebpBytes":  165874
+    },
+    {
+        "Ref":  "images/student-result-03.jpg",
+        "Webp":  "images/student-result-03.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  408801,
+        "WebpBytes":  187038
+    },
+    {
+        "Ref":  "images/student-result-04.jpg",
+        "Webp":  "images/student-result-04.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  421919,
+        "WebpBytes":  181872
+    },
+    {
+        "Ref":  "images/student-result-05.jpg",
+        "Webp":  "images/student-result-05.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  242120,
+        "WebpBytes":  74774
+    },
+    {
+        "Ref":  "images/student-result-06.jpg",
+        "Webp":  "images/student-result-06.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  364396,
+        "WebpBytes":  149858
+    },
+    {
+        "Ref":  "images/student-result-07.jpg",
+        "Webp":  "images/student-result-07.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  467446,
+        "WebpBytes":  208132
+    },
+    {
+        "Ref":  "images/student-result-08.jpg",
+        "Webp":  "images/student-result-08.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  435739,
+        "WebpBytes":  199456
+    },
+    {
+        "Ref":  "images/student-result-09.jpg",
+        "Webp":  "images/student-result-09.webp",
+        "Source":  "copied-existing-webp",
+        "OriginalBytes":  406606,
+        "WebpBytes":  176408
+    },
+    {
+        "Ref":  "images/course-fuyuan-bucket-01.png",
+        "Webp":  "images/course-fuyuan-bucket-01.webp",
+        "Source":  "converted-from-png-q80",
+        "OriginalBytes":  2437167,
+        "WebpBytes":  214008
+    },
+    {
+        "Ref":  "images/course-fuyuan-bucket-02.png",
+        "Webp":  "images/course-fuyuan-bucket-02.webp",
+        "Source":  "converted-from-png-q80",
+        "OriginalBytes":  2410752,
+        "WebpBytes":  156718
+    },
+    {
+        "Ref":  "images/product-memorial-bucket-table-01.png",
+        "Webp":  "images/product-memorial-bucket-table-01.webp",
+        "Source":  "converted-from-png-q80",
+        "OriginalBytes":  2880318,
+        "WebpBytes":  281968
+    }
+]
