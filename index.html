@@ -629,12 +629,12 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
   </div>
 </div>
 <div class="tabs">
-  <div class="tab" onclick="location.href='index.html'">首頁</div>
-  <div class="tab tab-with-menu" onclick="location.href='courses.html'">📚 課程專區 <button class="tab-arrow-btn" type="button" aria-label="展開課程選單" onclick="toggleTopMenu('courses',event)">▾</button></div>
-  <div class="tab tab-with-menu" onclick="goPageTab('products')">🌸 作品訂製 <button class="tab-arrow-btn" type="button" aria-label="展開作品選單" onclick="toggleTopMenu('products',event)">▾</button></div>
-  <div class="tab" onclick="location.href='about.html'">關於我們</div>
-  <div class="tab tab-with-menu" onclick="goPageTab('cert')">📜 國際認證 <button class="tab-arrow-btn" type="button" aria-label="展開國際認證選單" onclick="toggleTopMenu('cert',event)">▾</button></div>
-  <div class="tab" onclick="goPageTab('comp')">🏆 國際競賽</div>
+  <a class="tab" href="index.html">首頁</a>
+  <a class="tab tab-with-menu" href="courses.html">📚 課程專區 <span class="tab-arrow-btn" role="button" aria-label="展開課程選單" onclick="toggleTopMenu('courses',event)">▾</span></a>
+  <a class="tab tab-with-menu" href="index.html#tab-products" onclick="goPageTab('products');return false;">🌸 作品訂製 <span class="tab-arrow-btn" role="button" aria-label="展開作品選單" onclick="toggleTopMenu('products',event)">▾</span></a>
+  <a class="tab" href="about.html">關於我們</a>
+  <a class="tab tab-with-menu" href="index.html#tab-cert" onclick="goPageTab('cert');return false;">📜 國際認證 <span class="tab-arrow-btn" role="button" aria-label="展開國際認證選單" onclick="toggleTopMenu('cert',event)">▾</span></a>
+  <a class="tab" href="index.html#tab-comp" onclick="goPageTab('comp');return false;">🏆 國際競賽</a>
 </div>
 <div class="top-menu-panel" id="topMenu-courses">
   <div class="top-menu-inner">
@@ -697,8 +697,8 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
       <div class="top-menu-title">JYCP 國際認證</div>
       <div class="top-menu-list">
         <button class="top-menu-item" type="button" onclick="goPageTab('cert')">認證總覽 <span>考核</span></button>
-        <button class="top-menu-item" type="button" onclick="location.href='jycp-international-instructor.html'">JYCP國際講師培訓 <span>講師</span></button>
-        <button class="top-menu-item" type="button" onclick="location.href='jycp-certification.html'">JYCP認證與競賽 <span>介紹</span></button>
+        <a class="top-menu-item" href="jycp-international-instructor.html">JYCP國際講師培訓 <span>講師</span></a>
+        <a class="top-menu-item" href="jycp-certification.html">JYCP認證與競賽 <span>介紹</span></a>
       </div>
     </div>
   </div>
@@ -735,8 +735,8 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
     </div>
   </div>
   <div class="official-links">
-    <button class="official-link reveal" type="button" onclick="location.href='about.html'">關於昌久貹</button>
-    <button class="official-link reveal" type="button" onclick="location.href='courses.html'">課程內容</button>
+    <a class="official-link reveal" href="about.html">關於昌久貹</a>
+    <a class="official-link reveal" href="courses.html">課程內容</a>
     <button class="official-link reveal" type="button" onclick="goPageTab('products')">作品訂製</button>
     <button class="official-link reveal" type="button" onclick="goPageTab('cert')">認證與競賽</button>
   </div>
@@ -1986,9 +1986,9 @@ let cart=[],pickerItem=null,selectedSession=null;
 function currentPageName(){return window.CJS_PAGE||'home';}
 function enterCatalogMode(id){document.body.classList.remove('page-home','page-about');if(!(currentPageName()==='courses'&&id==='courses'))document.body.classList.remove('page-courses');}
 function switchTab(el,id,autoScroll=true){closeTopMenus();closeCourseMenus();enterCatalogMode(id);document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');document.body.classList.toggle('is-tab-view',id!=='courses');['courses','products','cert','comp'].forEach(k=>{const panel=document.getElementById('tab-'+k);if(panel)panel.style.display=k===id?'block':'none';});if(autoScroll)setTimeout(()=>scrollToTabStart(id),60);}
-function showHomeSection(sectionId){if(sectionId==='about-founder'&&currentPageName()!=='about'){location.href='about.html';return;}const targetTab=[...document.querySelectorAll('.tab')].find(t=>(t.getAttribute('onclick')||'').includes("'courses'"));if(targetTab)switchTab(targetTab,'courses',false);setTimeout(()=>{const target=document.getElementById(sectionId);if(target)scrollToTarget(target,10);},50);}
+function showHomeSection(sectionId){if(sectionId==='about-founder'&&currentPageName()!=='about'){location.href='about.html';return;}const targetTab=topTabFor('courses');if(targetTab)switchTab(targetTab,'courses',false);setTimeout(()=>{const target=document.getElementById(sectionId);if(target)scrollToTarget(target,10);},50);}
 function closeTopMenus(){document.querySelectorAll('.top-menu-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-with-menu').forEach(t=>t.classList.remove('menu-open'));}
-function toggleTopMenu(type,event){if(event)event.stopPropagation();const panel=document.getElementById('topMenu-'+type);const tab=event?.target?.closest('.tab-with-menu');const willOpen=panel&&!panel.classList.contains('active');closeTopMenus();closeCourseMenus();if(panel&&willOpen){panel.classList.add('active');tab?.classList.add('menu-open');}}
+function toggleTopMenu(type,event){if(event){event.preventDefault();event.stopPropagation();}const panel=document.getElementById('topMenu-'+type);const tab=event?.target?.closest('.tab-with-menu');const willOpen=panel&&!panel.classList.contains('active');closeTopMenus();closeCourseMenus();if(panel&&willOpen){panel.classList.add('active');tab?.classList.add('menu-open');}}
 function topTabFor(id){return [...document.querySelectorAll('.tab')].find(t=>{const text=t.textContent||'';return id==='courses'&&text.includes('課程專區')||id==='products'&&text.includes('作品訂製')||id==='cert'&&text.includes('國際認證')||id==='comp'&&text.includes('國際競賽');});}
 function scrollToTarget(target,extra=18){if(!target)return;const header=document.querySelector('.header')?.offsetHeight||0;const tabs=document.querySelector('.tabs')?.offsetHeight||0;const top=target.getBoundingClientRect().top+window.pageYOffset-header-tabs-extra;window.scrollTo({top:Math.max(top,0),behavior:'smooth'});}
 function scrollToTabStart(id){const target=document.getElementById('tab-'+id);if(target)scrollToTarget(target,10);}
