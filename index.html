@@ -1432,6 +1432,18 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
         <div><label>LINE ID <span class="req">*</span></label><input type="text" id="f-line" placeholder="請輸入 LINE ID"></div>
       </div>
       <div class="fg"><label>Email <span class="req">*</span></label><input type="email" id="f-email" placeholder="example@email.com" required></div>
+      <div class="fg" id="deliveryMethodField" style="display:none">
+        <label>配送方式 <span class="req">*</span></label>
+        <select id="f-delivery-method">
+          <option value="">請選擇</option>
+          <option value="pickup">自取</option>
+          <option value="convenience_store">店到店</option>
+          <option value="home_delivery">宅配</option>
+          <option value="post_office">郵寄</option>
+          <option value="hand_delivery">親送</option>
+        </select>
+        <div class="team-help" id="deliveryMethodHelp">請先選擇配送方式，下方會顯示對應需填的資料。</div>
+      </div>
       <div class="form-row" style="margin-bottom:14px;">
         <div id="cityFieldWrap">
           <label id="cityLabel">居住縣市</label>
@@ -1473,9 +1485,9 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
         </div>
       </div>
       <div class="fg" id="shippingAddressField" style="display:none">
-        <label>收件地址 <span class="req">*</span></label>
-        <textarea id="f-address" placeholder="請填寫完整收件地址；若要自取請填「自取」"></textarea>
-        <div class="team-help">自取地點：台中市東區。寄送請填完整收件地址；自取請填「自取」。</div>
+        <label id="shippingAddressLabel">收件地址 <span class="req">*</span></label>
+        <textarea id="f-address" placeholder="請填寫完整收件地址"></textarea>
+        <div class="team-help" id="shippingAddressHelp">請依配送方式填寫對應資料。</div>
       </div>
       <div class="fg" id="requestedShipDateField" style="display:none">
         <label>希望收到日期</label>
@@ -2125,8 +2137,10 @@ function updateZipFromDistrict(){
   if(zip)zip.value=district?.selectedOptions?.[0]?.dataset?.zip||'';
 }
 function applyPickupAddressIfNeeded(){
+  const method=document.getElementById('f-delivery-method')?.value||'';
   const address=document.getElementById('f-address');
-  if(!address||!/^自取$/.test(address.value.trim()))return;
+  if(method==='pickup'&&address)address.value='自取';
+  if(!address||!/^自取/.test(address.value.trim()))return;
   const city=document.getElementById('f-city');
   const district=document.getElementById('f-district');
   const zip=document.getElementById('f-zip');
@@ -2137,6 +2151,70 @@ function applyPickupAddressIfNeeded(){
 document.getElementById('f-city')?.addEventListener('change',updateDistrictOptions);
 document.getElementById('f-district')?.addEventListener('change',updateZipFromDistrict);
 document.getElementById('f-address')?.addEventListener('input',applyPickupAddressIfNeeded);
+document.getElementById('f-delivery-method')?.addEventListener('change',updateDeliveryMethodFields);
+function deliveryMethodLabel(value){
+  const labels={pickup:'自取',convenience_store:'店到店',home_delivery:'宅配',post_office:'郵寄',hand_delivery:'親送'};
+  return labels[value]||value||'未選擇';
+}
+function deliveryNeedsRegion(method){return method==='home_delivery'||method==='post_office'||method==='hand_delivery';}
+function updateDeliveryMethodFields(){
+  const type=currentOrderType();
+  const isProduct=type==='product';
+  const method=document.getElementById('f-delivery-method')?.value||'';
+  const deliveryField=document.getElementById('deliveryMethodField');
+  if(deliveryField)deliveryField.style.display=isProduct?'block':'none';
+  const cityWrap=document.getElementById('cityFieldWrap');
+  const districtWrap=document.getElementById('districtFieldWrap');
+  const zipWrap=document.getElementById('zipFieldWrap');
+  const addressField=document.getElementById('shippingAddressField');
+  const address=document.getElementById('f-address');
+  const label=document.getElementById('shippingAddressLabel');
+  const help=document.getElementById('shippingAddressHelp');
+  const deliveryHelp=document.getElementById('deliveryMethodHelp');
+  const needsRegion=isProduct&&deliveryNeedsRegion(method);
+  if(cityWrap)cityWrap.style.display=(!isProduct||needsRegion)?'block':'none';
+  if(districtWrap)districtWrap.style.display=needsRegion?'block':'none';
+  if(zipWrap)zipWrap.style.display=needsRegion?'block':'none';
+  if(addressField)addressField.style.display=(isProduct&&method)?'block':'none';
+  if(!isProduct)return;
+  if(address)address.readOnly=false;
+  if(method==='pickup'){
+    if(address){address.value='自取';address.readOnly=true;}
+    if(label)label.innerHTML='自取地點';
+    if(help)help.textContent='自取地點：台中市東區東光園路115號。';
+    if(deliveryHelp)deliveryHelp.textContent='選擇自取，作品完成後會再用 LINE 確認取件時間。';
+  }else if(method==='convenience_store'){
+    if(address&&address.value==='自取')address.value='';
+    if(label)label.innerHTML='超商取貨資料 <span class="req">*</span>';
+    if(address)address.placeholder='請填寫 7-11 或全家、門市名/店號、取件人姓名與電話';
+    if(help)help.textContent='店到店請提供：7-11 或全家、門市名或店號、取件人姓名與電話。';
+    if(deliveryHelp)deliveryHelp.textContent='選擇店到店，不需填縣市地址，請直接填超商資料。';
+  }else if(method==='home_delivery'){
+    if(address&&address.value==='自取')address.value='';
+    if(label)label.innerHTML='宅配收件地址 <span class="req">*</span>';
+    if(address)address.placeholder='請填寫完整宅配地址，包含街道門牌與樓層';
+    if(help)help.textContent='宅配請選擇縣市、區域，並填完整收件地址。';
+    if(deliveryHelp)deliveryHelp.textContent='選擇宅配，請提供收件人可收件的完整地址。';
+  }else if(method==='post_office'){
+    if(address&&address.value==='自取')address.value='';
+    if(label)label.innerHTML='郵寄收件地址 <span class="req">*</span>';
+    if(address)address.placeholder='請填寫完整郵寄地址，包含郵遞區號與收件人資料';
+    if(help)help.textContent='郵寄請選擇縣市、區域，並填完整收件地址。';
+    if(deliveryHelp)deliveryHelp.textContent='選擇郵寄，請確認地址可正常投遞。';
+  }else if(method==='hand_delivery'){
+    if(address&&address.value==='自取')address.value='';
+    if(label)label.innerHTML='親送地址與時間 <span class="req">*</span>';
+    if(address)address.placeholder='請填寫親送地址、希望時段，實際是否可親送會再由 LINE 確認';
+    if(help)help.textContent='親送會依地點與時間安排確認，請先填寫地址與可收件時段。';
+    if(deliveryHelp)deliveryHelp.textContent='選擇親送，我們會再用 LINE 與您確認是否可安排。';
+  }else{
+    if(label)label.innerHTML='收件地址 <span class="req">*</span>';
+    if(address)address.placeholder='請先選擇配送方式';
+    if(help)help.textContent='請先選擇配送方式。';
+    if(deliveryHelp)deliveryHelp.textContent='請先選擇配送方式，下方會顯示對應需填的資料。';
+  }
+}
+
 function updateCheckoutUI(){
   const type=currentOrderType();
   const isProduct=type==='product';
@@ -2155,9 +2233,7 @@ function updateCheckoutUI(){
   document.getElementById('checkoutContext').textContent='訂單類型：'+orderTypeLabel(type);
   document.getElementById('cityLabel').innerHTML=isProduct?'收件縣市 <span class="req">*</span>':'居住縣市';
   document.getElementById('classCityFieldWrap').style.display=isProduct?'none':'block';
-  document.getElementById('districtFieldWrap').style.display=isProduct?'block':'none';
-  document.getElementById('zipFieldWrap').style.display=isProduct?'block':'none';
-  document.getElementById('shippingAddressField').style.display=isProduct?'block':'none';
+  updateDeliveryMethodFields();
   const requestedShipDateField=document.getElementById('requestedShipDateField');
   if(requestedShipDateField)requestedShipDateField.style.display=isProduct?'block':'none';
   const paymentNotice=document.getElementById('paymentCompletionNotice');
@@ -2187,6 +2263,8 @@ let isSubmittingOrder=false;async function submitOrder(){
   const district=(document.getElementById('f-district')?.value||'').trim();
   const zip=(document.getElementById('f-zip')?.value||'').trim();
   const classCity=document.getElementById('f-class-city').value;
+  const deliveryMethod=(document.getElementById('f-delivery-method')?.value||'').trim();
+  updateDeliveryMethodFields();
   const address=(document.getElementById('f-address')?.value||'').trim();
   const requestedShipDate=(document.getElementById('f-requested-ship-date')?.value||'').trim();
   const note=document.getElementById('f-note').value.trim();
@@ -2196,25 +2274,28 @@ let isSubmittingOrder=false;async function submitOrder(){
   if(!n||!p||!l){alert('請填寫姓名、電話及 LINE ID');return;}
   if(!e){alert('請填寫 Email，系統才寄得出報名成功與課前通知。');document.getElementById('f-email')?.focus();return;}
   if(!isValidEmail(e)){alert('請填寫正確的 Email 格式。');document.getElementById('f-email')?.focus();return;}
+  if(isProduct&&!deliveryMethod){alert('請選擇配送方式。');document.getElementById('f-delivery-method')?.focus();return;}
   if(isProduct)applyPickupAddressIfNeeded();
-  if(isProduct&&!address){alert('請填寫收件地址；若要自取，請填「自取」。');document.getElementById('f-address')?.focus();return;}
-  const pickup=/^自取$/.test(address);
-  const finalCity=pickup?'臺中市':city;
-  const finalDistrict=pickup?'東區':district;
-  const finalZip=pickup?'401':zip;
-  if(isProduct&&!finalCity){alert('請選擇收件縣市。');document.getElementById('f-city')?.focus();return;}
-  if(isProduct&&!finalDistrict){alert('請選擇收件區域，系統會自動帶入郵遞區號。');document.getElementById('f-district')?.focus();return;}
-  const displayShippingCity=pickup?'台中市':finalCity;
-  const shippingAddress=isProduct?(pickup?`${finalZip} ${displayShippingCity}${finalDistrict} 自取`:`${finalZip} ${displayShippingCity}${finalDistrict} ${address}`.trim()):'';
+  const pickup=deliveryMethod==='pickup';
+  const cstore=deliveryMethod==='convenience_store';
+  const needsRegion=isProduct&&deliveryNeedsRegion(deliveryMethod);
+  if(isProduct&&!pickup&&!address){alert(cstore?'請填寫 7-11 或全家的店到店資料。':'請填寫收件地址或配送資料。');document.getElementById('f-address')?.focus();return;}
+  const finalCity=pickup?'臺中市':(needsRegion?city:'');
+  const finalDistrict=pickup?'東區':(needsRegion?district:'');
+  const finalZip=pickup?'401':(needsRegion?zip:'');
+  if(needsRegion&&!finalCity){alert('請選擇收件縣市。');document.getElementById('f-city')?.focus();return;}
+  if(needsRegion&&!finalDistrict){alert('請選擇收件區域，系統會自動帶入郵遞區號。');document.getElementById('f-district')?.focus();return;}
+  const displayShippingCity=pickup?'台中市':(cstore?'店到店':(needsRegion?finalCity:deliveryMethodLabel(deliveryMethod)));
+  const shippingAddress=isProduct?(pickup?`${finalZip} ${displayShippingCity}${finalDistrict} 東光園路115號 自取`:(cstore?`店到店：${address}`:`${finalZip} ${displayShippingCity}${finalDistrict} ${address}`.trim())):'';
   if(isSubmittingOrder)return;
   isSubmittingOrder=true;
   let orderNo='CJS-'+Date.now().toString().slice(-8);
   const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);
   const items=cart.map(i=>`• ${i.name}${i.price>0?' NT$'+i.price.toLocaleString():' (洽詢)'}`).join('\n');
-  const combinedNote=[`訂單類型：${orderTypeLabel(type)}`,isProduct?`收件地址：${shippingAddress}`:'',isProduct&&requestedShipDate?`希望收到日期：${requestedShipDate}`:'',note].filter(Boolean).join('\n');
-  const msg=`🛒 昌久貹｜新訂單通知\n━━━━━━━━━━━━\n📌 訂單類型：${orderTypeLabel(type)}\n📋 訂單編號：${orderNo}\n👤 姓名：${n}\n📞 電話：${p}\n💬 LINE：${l}\n${e?'📧 Email：'+e+'\n':''}📍 ${isProduct?'收件縣市':'居住縣市'}：${isProduct?(displayShippingCity||'未填'):(city||'未填')}\n${isProduct?`📦 收件地址：${shippingAddress||'未填'}\n${requestedShipDate?`🗓️ 希望收到日期：${requestedShipDate}\n`:''}`:`📍 上課縣市：${classCity||'未填'}\n`}━━━━━━━━━━━━\n📦 項目：\n${items}\n━━━━━━━━━━━━\n💰 合計：${total>0?'NT$ '+total.toLocaleString():'含洽詢項目'}\n💳 付款：${paymentForRecord}\n${combinedNote?'📝 備註：'+combinedNote+'\n':''}⏰ ${new Date().toLocaleString('zh-TW')}`;
+  const combinedNote=[`訂單類型：${orderTypeLabel(type)}`,isProduct?`配送方式：${deliveryMethodLabel(deliveryMethod)}`:'',isProduct?`收件/取貨資料：${shippingAddress}`:'',isProduct&&requestedShipDate?`希望收到日期：${requestedShipDate}`:'',note].filter(Boolean).join('\n');
+  const msg=`🛒 昌久貹｜新訂單通知\n━━━━━━━━━━━━\n📌 訂單類型：${orderTypeLabel(type)}\n📋 訂單編號：${orderNo}\n👤 姓名：${n}\n📞 電話：${p}\n💬 LINE：${l}\n${e?'📧 Email：'+e+'\n':''}📍 ${isProduct?'收件縣市':'居住縣市'}：${isProduct?(displayShippingCity||'未填'):(city||'未填')}\n${isProduct?`🚚 配送方式：${deliveryMethodLabel(deliveryMethod)}\n📦 收件/取貨資料：${shippingAddress||'未填'}\n${requestedShipDate?`🗓️ 希望收到日期：${requestedShipDate}\n`:''}`:`📍 上課縣市：${classCity||'未填'}\n`}━━━━━━━━━━━━\n📦 項目：\n${items}\n━━━━━━━━━━━━\n💰 合計：${total>0?'NT$ '+total.toLocaleString():'含洽詢項目'}\n💳 付款：${paymentForRecord}\n${combinedNote?'📝 備註：'+combinedNote+'\n':''}⏰ ${new Date().toLocaleString('zh-TW')}`;
   try{
-    const notifyRes=await fetch('https://chang-jiu-sheng-order-backend.vercel.app/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,orderType:type,orderCategoryLabel:orderTypeLabel(type),studentEmail:e,studentName:n,phone:p,lineId:l,city:isProduct?displayShippingCity:city,classCity:isProduct?'':classCity,shippingZip:finalZip,shippingDistrict:finalDistrict,shippingAddress,requestedShipDate,latestShipDate:requestedShipDate,orderNo,items,cartItems:cart,total,payment:paymentForRecord,paymentBank:paymentAccount.label,paymentBankName:paymentAccount.bank,paymentAccount:paymentAccount.account,note:combinedNote})});
+    const notifyRes=await fetch('https://chang-jiu-sheng-order-backend.vercel.app/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,orderType:type,orderCategoryLabel:orderTypeLabel(type),studentEmail:e,studentName:n,phone:p,lineId:l,city:isProduct?displayShippingCity:city,classCity:isProduct?'':classCity,shippingZip:finalZip,shippingDistrict:finalDistrict,shippingAddress,shippingMethod:deliveryMethod,requestedShipDate,latestShipDate:requestedShipDate,orderNo,items,cartItems:cart,total,payment:paymentForRecord,paymentBank:paymentAccount.label,paymentBankName:paymentAccount.bank,paymentAccount:paymentAccount.account,note:combinedNote})});
     const notifyData=await notifyRes.json().catch(()=>null);
     if(notifyData&&notifyData.order&&notifyData.order.order_no)orderNo=notifyData.order.order_no;
   }catch(err){console.log('通知失敗',err);}
@@ -2233,7 +2314,7 @@ const submitOrderHandler=submitOrder;
 submitOrder=async function(){if(hasMixedOrderTypes()){alert('課程、作品、認證、競賽請分開下單，後台才不會混在一起。');return;}const permissionPromise=Promise.resolve('page');const needsTeam=hasTeamCompetitionCart();const teamEl=document.getElementById('f-team-members');const teamMembers=teamEl?.value.trim()||'';if(needsTeam&&!teamMembers){alert('團體賽需要填寫 3 位參賽者姓名與身分證字號，方便送交大會與領獎金核對。');teamEl?.focus();return;}const noteEl=document.getElementById('f-note');const originalNote=noteEl?.value||'';const orderType=currentOrderType();const orderValue=cartValue();const orderItems=analyticsItems();if(needsTeam&&noteEl){const teamBlock=`團體賽組員名單：\n${teamMembers}`;noteEl.value=[originalNote.trim(),teamBlock].filter(Boolean).join('\n\n');}try{await submitOrderHandler.apply(this,arguments);}finally{if(needsTeam&&noteEl)noteEl.value=originalNote;}const orderNo=document.getElementById('orderNo')?.textContent?.trim();if(orderNo&&document.getElementById('successScreen')?.classList.contains('show')){trackEvent('purchase',{transaction_id:orderNo,currency:analyticsCurrency,value:orderValue,order_type:orderType,items:orderItems});trackEvent('submit_order',{order_type:orderType,value:orderValue});await notifyStudentAfterOrder(orderNo,permissionPromise);}};
 function handleOverlayClick(e,id){if(e.target===document.getElementById(id))closeOverlay(id);}
 function closeOverlay(id){document.getElementById(id).classList.remove('open');}
-function resetAll(){isSubmittingOrder=false;cart=[];updateCount();closeOverlay('modalOverlay');document.getElementById('modalBody').classList.remove('hide');document.getElementById('successScreen').classList.remove('show');['f-name','f-phone','f-line','f-email','f-note','f-team-members','paymentLast5','f-address','f-requested-ship-date','f-zip'].forEach(id=>{const el=document.getElementById(id);if(el){el.value='';el.disabled=false;}});const status=document.getElementById('paymentCodeStatus');if(status){status.style.display='none';status.style.color='#2E7D52';status.textContent='已補上匯款後五碼，官方會依同一筆訂單核對。';}const paymentBtn=document.querySelector('#paymentCodeBox button');if(paymentBtn){paymentBtn.disabled=false;paymentBtn.textContent='送出後五碼';}document.getElementById('f-city').value='';document.getElementById('f-class-city').value='';updateDistrictOptions();updateCheckoutUI();updateCompetitionTeamFields();}
+function resetAll(){isSubmittingOrder=false;cart=[];updateCount();closeOverlay('modalOverlay');document.getElementById('modalBody').classList.remove('hide');document.getElementById('successScreen').classList.remove('show');['f-name','f-phone','f-line','f-email','f-note','f-team-members','paymentLast5','f-address','f-requested-ship-date','f-zip','f-delivery-method'].forEach(id=>{const el=document.getElementById(id);if(el){el.value='';el.disabled=false;}});const status=document.getElementById('paymentCodeStatus');if(status){status.style.display='none';status.style.color='#2E7D52';status.textContent='已補上匯款後五碼，官方會依同一筆訂單核對。';}const paymentBtn=document.querySelector('#paymentCodeBox button');if(paymentBtn){paymentBtn.disabled=false;paymentBtn.textContent='送出後五碼';}document.getElementById('f-city').value='';document.getElementById('f-class-city').value='';updateDistrictOptions();updateCheckoutUI();updateCompetitionTeamFields();}
 </script>
 
 
