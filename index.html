@@ -1489,6 +1489,11 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
         <textarea id="f-address" placeholder="請填寫完整收件地址"></textarea>
         <div class="team-help" id="shippingAddressHelp">請依配送方式填寫對應資料。</div>
       </div>
+      <div class="fg" id="pickupAddressDisplay" style="display:none">
+        <label>自取地點</label>
+        <div style="border:1px solid rgba(201,168,76,.35);border-radius:6px;padding:14px 16px;background:rgba(255,253,248,.72);font-size:16px;line-height:1.8;color:var(--ink);">台中市東區東光園路115號</div>
+        <div class="team-help">作品完成後會再用 LINE 確認取件時間。</div>
+      </div>
       <div class="fg" id="requestedShipDateField" style="display:none">
         <label>希望收到日期</label>
         <input type="date" id="f-requested-ship-date">
@@ -2167,6 +2172,7 @@ function updateDeliveryMethodFields(){
   const districtWrap=document.getElementById('districtFieldWrap');
   const zipWrap=document.getElementById('zipFieldWrap');
   const addressField=document.getElementById('shippingAddressField');
+  const pickupDisplay=document.getElementById('pickupAddressDisplay');
   const address=document.getElementById('f-address');
   const label=document.getElementById('shippingAddressLabel');
   const help=document.getElementById('shippingAddressHelp');
@@ -2175,7 +2181,8 @@ function updateDeliveryMethodFields(){
   if(cityWrap)cityWrap.style.display=(!isProduct||needsRegion)?'block':'none';
   if(districtWrap)districtWrap.style.display=needsRegion?'block':'none';
   if(zipWrap)zipWrap.style.display=needsRegion?'block':'none';
-  if(addressField)addressField.style.display=(isProduct&&method)?'block':'none';
+  if(addressField)addressField.style.display=(isProduct&&method&&method!=='pickup')?'block':'none';
+  if(pickupDisplay)pickupDisplay.style.display=(isProduct&&method==='pickup')?'block':'none';
   if(!isProduct)return;
   if(address)address.readOnly=false;
   if(method==='pickup'){
