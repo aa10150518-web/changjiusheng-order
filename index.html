@@ -1477,6 +1477,11 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
         <textarea id="f-address" placeholder="請填寫完整收件地址；若要自取請填「自取」"></textarea>
         <div class="team-help">自取地點：台中市東區。寄送請填完整收件地址；自取請填「自取」。</div>
       </div>
+      <div class="fg" id="requestedShipDateField" style="display:none">
+        <label>希望收到日期</label>
+        <input type="date" id="f-requested-ship-date">
+        <div class="team-help">若有指定最晚到貨日請填寫；實際出貨會依製作與物流安排確認。</div>
+      </div>
       <div class="fg"><label>備註 / 特殊需求</label><textarea id="f-note" placeholder="可填寫特殊需求、同行者、商品客製內容；若已匯款也可先填後五碼。"></textarea></div>
       <div class="competition-team-field" id="competitionTeamField">
         <label>團體賽組員名單 <span class="req">*</span></label>
@@ -2153,6 +2158,8 @@ function updateCheckoutUI(){
   document.getElementById('districtFieldWrap').style.display=isProduct?'block':'none';
   document.getElementById('zipFieldWrap').style.display=isProduct?'block':'none';
   document.getElementById('shippingAddressField').style.display=isProduct?'block':'none';
+  const requestedShipDateField=document.getElementById('requestedShipDateField');
+  if(requestedShipDateField)requestedShipDateField.style.display=isProduct?'block':'none';
   const paymentNotice=document.getElementById('paymentCompletionNotice');
   if(paymentNotice)paymentNotice.textContent=isProduct?'⚠️ 匯款完成才算訂購完成；若忘記填後五碼，可在送出訂單後補填':'⚠️ 匯款完成才算報名成功；若忘記填後五碼，可在送出訂單後補填';
   document.getElementById('checkoutNoticeTitle').textContent=isProduct?'📋 訂購注意事項':'📋 報名注意事項';
@@ -2181,6 +2188,7 @@ let isSubmittingOrder=false;async function submitOrder(){
   const zip=(document.getElementById('f-zip')?.value||'').trim();
   const classCity=document.getElementById('f-class-city').value;
   const address=(document.getElementById('f-address')?.value||'').trim();
+  const requestedShipDate=(document.getElementById('f-requested-ship-date')?.value||'').trim();
   const note=document.getElementById('f-note').value.trim();
   const pay=document.querySelector('.pay-opt.selected')?.textContent?.trim()||'未選擇';
   const paymentForRecord=paymentTextForRecord(pay,type);
@@ -2203,10 +2211,10 @@ let isSubmittingOrder=false;async function submitOrder(){
   let orderNo='CJS-'+Date.now().toString().slice(-8);
   const total=cart.reduce((s,i)=>s+(i.price||0)*i.qty,0);
   const items=cart.map(i=>`• ${i.name}${i.price>0?' NT$'+i.price.toLocaleString():' (洽詢)'}`).join('\n');
-  const combinedNote=[`訂單類型：${orderTypeLabel(type)}`,isProduct?`收件地址：${shippingAddress}`:'',note].filter(Boolean).join('\n');
-  const msg=`🛒 昌久貹｜新訂單通知\n━━━━━━━━━━━━\n📌 訂單類型：${orderTypeLabel(type)}\n📋 訂單編號：${orderNo}\n👤 姓名：${n}\n📞 電話：${p}\n💬 LINE：${l}\n${e?'📧 Email：'+e+'\n':''}📍 ${isProduct?'收件縣市':'居住縣市'}：${isProduct?(displayShippingCity||'未填'):(city||'未填')}\n${isProduct?`📦 收件地址：${shippingAddress||'未填'}\n`:`📍 上課縣市：${classCity||'未填'}\n`}━━━━━━━━━━━━\n📦 項目：\n${items}\n━━━━━━━━━━━━\n💰 合計：${total>0?'NT$ '+total.toLocaleString():'含洽詢項目'}\n💳 付款：${paymentForRecord}\n${combinedNote?'📝 備註：'+combinedNote+'\n':''}⏰ ${new Date().toLocaleString('zh-TW')}`;
+  const combinedNote=[`訂單類型：${orderTypeLabel(type)}`,isProduct?`收件地址：${shippingAddress}`:'',isProduct&&requestedShipDate?`希望收到日期：${requestedShipDate}`:'',note].filter(Boolean).join('\n');
+  const msg=`🛒 昌久貹｜新訂單通知\n━━━━━━━━━━━━\n📌 訂單類型：${orderTypeLabel(type)}\n📋 訂單編號：${orderNo}\n👤 姓名：${n}\n📞 電話：${p}\n💬 LINE：${l}\n${e?'📧 Email：'+e+'\n':''}📍 ${isProduct?'收件縣市':'居住縣市'}：${isProduct?(displayShippingCity||'未填'):(city||'未填')}\n${isProduct?`📦 收件地址：${shippingAddress||'未填'}\n${requestedShipDate?`🗓️ 希望收到日期：${requestedShipDate}\n`:''}`:`📍 上課縣市：${classCity||'未填'}\n`}━━━━━━━━━━━━\n📦 項目：\n${items}\n━━━━━━━━━━━━\n💰 合計：${total>0?'NT$ '+total.toLocaleString():'含洽詢項目'}\n💳 付款：${paymentForRecord}\n${combinedNote?'📝 備註：'+combinedNote+'\n':''}⏰ ${new Date().toLocaleString('zh-TW')}`;
   try{
-    const notifyRes=await fetch('https://chang-jiu-sheng-order-backend.vercel.app/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,orderType:type,orderCategoryLabel:orderTypeLabel(type),studentEmail:e,studentName:n,phone:p,lineId:l,city:isProduct?displayShippingCity:city,classCity:isProduct?'':classCity,shippingZip:finalZip,shippingDistrict:finalDistrict,shippingAddress,orderNo,items,cartItems:cart,total,payment:paymentForRecord,paymentBank:paymentAccount.label,paymentBankName:paymentAccount.bank,paymentAccount:paymentAccount.account,note:combinedNote})});
+    const notifyRes=await fetch('https://chang-jiu-sheng-order-backend.vercel.app/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,orderType:type,orderCategoryLabel:orderTypeLabel(type),studentEmail:e,studentName:n,phone:p,lineId:l,city:isProduct?displayShippingCity:city,classCity:isProduct?'':classCity,shippingZip:finalZip,shippingDistrict:finalDistrict,shippingAddress,requestedShipDate,latestShipDate:requestedShipDate,orderNo,items,cartItems:cart,total,payment:paymentForRecord,paymentBank:paymentAccount.label,paymentBankName:paymentAccount.bank,paymentAccount:paymentAccount.account,note:combinedNote})});
     const notifyData=await notifyRes.json().catch(()=>null);
     if(notifyData&&notifyData.order&&notifyData.order.order_no)orderNo=notifyData.order.order_no;
   }catch(err){console.log('通知失敗',err);}
@@ -2225,7 +2233,7 @@ const submitOrderHandler=submitOrder;
 submitOrder=async function(){if(hasMixedOrderTypes()){alert('課程、作品、認證、競賽請分開下單，後台才不會混在一起。');return;}const permissionPromise=Promise.resolve('page');const needsTeam=hasTeamCompetitionCart();const teamEl=document.getElementById('f-team-members');const teamMembers=teamEl?.value.trim()||'';if(needsTeam&&!teamMembers){alert('團體賽需要填寫 3 位參賽者姓名與身分證字號，方便送交大會與領獎金核對。');teamEl?.focus();return;}const noteEl=document.getElementById('f-note');const originalNote=noteEl?.value||'';const orderType=currentOrderType();const orderValue=cartValue();const orderItems=analyticsItems();if(needsTeam&&noteEl){const teamBlock=`團體賽組員名單：\n${teamMembers}`;noteEl.value=[originalNote.trim(),teamBlock].filter(Boolean).join('\n\n');}try{await submitOrderHandler.apply(this,arguments);}finally{if(needsTeam&&noteEl)noteEl.value=originalNote;}const orderNo=document.getElementById('orderNo')?.textContent?.trim();if(orderNo&&document.getElementById('successScreen')?.classList.contains('show')){trackEvent('purchase',{transaction_id:orderNo,currency:analyticsCurrency,value:orderValue,order_type:orderType,items:orderItems});trackEvent('submit_order',{order_type:orderType,value:orderValue});await notifyStudentAfterOrder(orderNo,permissionPromise);}};
 function handleOverlayClick(e,id){if(e.target===document.getElementById(id))closeOverlay(id);}
 function closeOverlay(id){document.getElementById(id).classList.remove('open');}
-function resetAll(){isSubmittingOrder=false;cart=[];updateCount();closeOverlay('modalOverlay');document.getElementById('modalBody').classList.remove('hide');document.getElementById('successScreen').classList.remove('show');['f-name','f-phone','f-line','f-email','f-note','f-team-members','paymentLast5','f-address','f-zip'].forEach(id=>{const el=document.getElementById(id);if(el){el.value='';el.disabled=false;}});const status=document.getElementById('paymentCodeStatus');if(status){status.style.display='none';status.style.color='#2E7D52';status.textContent='已補上匯款後五碼，官方會依同一筆訂單核對。';}const paymentBtn=document.querySelector('#paymentCodeBox button');if(paymentBtn){paymentBtn.disabled=false;paymentBtn.textContent='送出後五碼';}document.getElementById('f-city').value='';document.getElementById('f-class-city').value='';updateDistrictOptions();updateCheckoutUI();updateCompetitionTeamFields();}
+function resetAll(){isSubmittingOrder=false;cart=[];updateCount();closeOverlay('modalOverlay');document.getElementById('modalBody').classList.remove('hide');document.getElementById('successScreen').classList.remove('show');['f-name','f-phone','f-line','f-email','f-note','f-team-members','paymentLast5','f-address','f-requested-ship-date','f-zip'].forEach(id=>{const el=document.getElementById(id);if(el){el.value='';el.disabled=false;}});const status=document.getElementById('paymentCodeStatus');if(status){status.style.display='none';status.style.color='#2E7D52';status.textContent='已補上匯款後五碼，官方會依同一筆訂單核對。';}const paymentBtn=document.querySelector('#paymentCodeBox button');if(paymentBtn){paymentBtn.disabled=false;paymentBtn.textContent='送出後五碼';}document.getElementById('f-city').value='';document.getElementById('f-class-city').value='';updateDistrictOptions();updateCheckoutUI();updateCompetitionTeamFields();}
 </script>
 
 
