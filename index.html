@@ -384,6 +384,8 @@ body.page-home .brand-intro{padding-bottom:34px;}
 #tab-products[data-product-category="memorial"] .product-memorial.mini-grid{display:grid!important;}
 #tab-products[data-product-category="blessing"] .product-blessing.mini-full,
 #tab-products[data-product-category="memorial"] .product-memorial.mini-full{display:flex!important;}
+#tab-products[data-product-category="blessing"] .product-blessing.offer-item,
+#tab-products[data-product-category="memorial"] .product-memorial.offer-item{display:block!important;}
 #tab-products[data-product-category="blessing"] .product-blessing.product-category-note,
 #tab-products[data-product-category="memorial"] .product-memorial.product-category-note{display:block!important;}
 @media (max-width:760px){.product-highlight{grid-template-columns:1fr}.festival-item{grid-template-columns:1fr}.festival-date{text-align:left;white-space:normal}.offer-item{align-items:flex-start;flex-direction:column}.offer-actions,.offer-actions.three{grid-template-columns:1fr}.offer-btn{width:100%;}.product-category-switch{grid-template-columns:1fr 1fr;gap:8px}.product-category-btn{padding:12px 9px}.product-category-btn span{font-size:13px;letter-spacing:0;}.product-category-btn small{font-size:10px;letter-spacing:0;line-height:1.45;}}
@@ -1149,7 +1151,7 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
       <div class="highlight-kicker">優惠款式</div>
       <div class="highlight-title">近期主打</div>
       <div class="offer-list">
-        <div class="offer-item feature">
+        <div class="offer-item feature product-category-item product-blessing">
           <div class="offer-thumb"><img src="images/haoshen-offer-huye-2026.webp" alt="虎爺好神花優惠款式"></div>
           <div class="offer-copy">
             <div class="offer-name">好神花優惠款式</div>
@@ -1161,7 +1163,18 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
             </div>
           </div>
         </div>
-        <div class="offer-item feature">
+        <div class="offer-item feature product-category-item product-memorial">
+          <div class="offer-thumb"><img src="images/yongsi-offer-2026.webp" alt="永思花弔念祭祖優惠款式"></div>
+          <div class="offer-copy">
+            <div class="offer-name">永思花弔念祭祖優惠款</div>
+            <div class="offer-sub">誠心敬獻・思念綿延｜優惠至 2026/08/27 止</div>
+            <div class="offer-price">NT$499／束　NT$988／對</div>
+            <div class="offer-actions">
+              <a class="line-offer-btn" href="https://line.me/ti/p/~lovebaby15" target="_blank">LINE 詢問</a>
+              <button class="offer-btn" onclick="openOfferOrderPicker('永思花弔念祭祖優惠款',[{date:'一束',priceLabel:'NT$499',price:499,itemName:'永思花弔念祭祖優惠款（一束）'},{date:'一對',priceLabel:'NT$988',price:988,itemName:'永思花弔念祭祖優惠款（一對）'}])">加入購物車</button>
+            </div>
+          </div>
+        </div>        <div class="offer-item feature product-category-item product-blessing">
           <div class="offer-thumb"><img src="images/home-hero-new-01.webp" alt="金紙小花束優惠價格"></div>
           <div class="offer-copy">
             <div class="offer-name">福願花束優惠價格</div>
@@ -2345,6 +2358,10 @@ function resetAll(){isSubmittingOrder=false;cart=[];updateCount();closeOverlay('
 
 
 </body></html>
+
+
+
+
 
 
 
