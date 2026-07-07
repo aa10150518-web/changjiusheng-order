@@ -496,6 +496,12 @@ body.page-home .brand-intro{padding-bottom:34px;}
 .product-gallery-dot{width:7px;height:7px;border:0;border-radius:999px;background:rgba(139,107,26,.28);padding:0;cursor:pointer;}
 .product-gallery-dot.active{width:18px;background:var(--gold3);}
 @media (max-width:760px){.product-gallery{height:225px}.product-gallery-btn{width:28px;height:28px;font-size:18px}.product-gallery-label{font-size:11px}}
+.product-lightbox{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;background:rgba(24,18,10,.78);padding:18px;}
+.product-lightbox.open{display:flex;}
+.product-lightbox img{max-width:min(94vw,980px);max-height:88vh;object-fit:contain;background:#fffdf8;box-shadow:0 18px 48px rgba(0,0,0,.36);}
+.product-lightbox-close{position:fixed;right:18px;top:18px;width:42px;height:42px;border:1px solid rgba(226,192,106,.62);border-radius:999px;background:rgba(255,253,248,.96);color:var(--ink);font-size:28px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.18);}
+.product-gallery-slide img,.mini-photo img,.product-card-photos img{cursor:zoom-in;}
+@media (max-width:760px){.product-lightbox{padding:10px}.product-lightbox img{max-width:96vw;max-height:82vh}.product-lightbox-close{right:12px;top:12px;width:38px;height:38px;font-size:24px}}
 .mini-card-copy{padding:10px;text-align:center;display:flex;flex-direction:column;flex:1;}
 .mini-desc.long-copy{text-align:left;line-height:1.65;}
 .mini-desc.long-copy p{margin:0 0 6px;}
@@ -2399,12 +2405,49 @@ function initProductGalleries(){
     },{passive:true});
   });
 }
+function openProductLightbox(src,alt){
+  var box=document.getElementById('productLightbox');
+  var img=document.getElementById('productLightboxImg');
+  if(!box||!img||!src)return;
+  img.src=src;
+  img.alt=alt||'';
+  box.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeProductLightbox(event){
+  if(event){
+    var box=document.getElementById('productLightbox');
+    if(event.target!==box && !event.target.classList.contains('product-lightbox-close')) return;
+    event.stopPropagation();
+  }
+  var lightbox=document.getElementById('productLightbox');
+  var img=document.getElementById('productLightboxImg');
+  if(lightbox)lightbox.classList.remove('open');
+  if(img)img.src='';
+  document.body.style.overflow='';
+}
+function initProductLightbox(){
+  document.querySelectorAll('.product-gallery-slide img,.mini-photo img,.product-card-photos img').forEach(function(img){
+    if(img.dataset.lightboxReady==='1')return;
+    img.dataset.lightboxReady='1';
+    img.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      openProductLightbox(img.currentSrc||img.src,img.alt||'');
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded',initProductLightbox);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeProductLightbox();});
+setTimeout(initProductLightbox,300);
 document.addEventListener('DOMContentLoaded',initProductGalleries);
 setTimeout(initProductGalleries,300);
 </script>
 
 
+<div class="product-lightbox" id="productLightbox" onclick="closeProductLightbox(event)"><button class="product-lightbox-close" type="button" aria-label="關閉圖片" onclick="closeProductLightbox(event)">×</button><img id="productLightboxImg" src="" alt=""></div>
 </body></html>
+
 
 
 
