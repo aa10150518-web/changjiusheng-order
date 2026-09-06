@@ -1487,7 +1487,7 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
       </div>
       <label style="margin-bottom:10px;display:block">付款方式 <span class="req">*</span></label>
       <div class="pay-opts">
-        <div class="pay-opt selected" onclick="selPay(this)"><span class="pay-icon">🔒</span>付款方式另行通知</div>
+        <div class="pay-opt selected" onclick="selPay(this)"><span class="pay-icon">🔒</span>付款方式另行通知<span class="pay-note">送單後請加 LINE 聯繫</span></div>
         <div class="pay-opt" onclick="selPay(this)"><span class="pay-icon">💳</span>零卡分期</div>
         <div class="pay-opt" onclick="selPay(this)"><span class="pay-icon">💵</span>現場繳費<span class="pay-note">需先付訂金</span></div>
       </div>
@@ -1530,8 +1530,10 @@ src="https://www.facebook.com/tr?id=967670906241325&amp;ev=PageView&amp;noscript
     <div class="success-screen" id="successScreen">
       <div style="font-size:56px;margin-bottom:14px">🎉</div>
       <div id="successTitle" style="font-family:'Noto Serif TC',serif;font-size:20px;color:var(--ink);letter-spacing:2px;margin-bottom:8px">報名資料已送出</div>
-      <div id="successDesc" style="font-size:12px;color:var(--ink3);line-height:1.9;margin-bottom:16px">我們已收到您的報名資料<br>請依照匯款資訊完成轉帳<br>待確認款項後，會寄出付款確認通知</div>
+      <div id="successDesc" style="font-size:12px;color:var(--ink3);line-height:1.9;margin-bottom:16px">我們已收到您的報名資料<br>請點下方按鈕加入 LINE 官方帳號<br>核對訂單後會個別通知付款資訊</div>
       <div class="order-no"><div class="on-label" style="font-size:13px;letter-spacing:3px;font-weight:700;">訂單編號</div><div class="on-val" id="orderNo"></div></div>
+      <button type="button" class="submit-btn" style="margin:0 0 10px;background:#06C755;" onclick="openLineForPayment(this)">💬 複製訂單資料並加入 LINE</button>
+      <div style="font-size:12px;color:var(--ink3);line-height:1.8;margin-bottom:16px;">系統會先複製訂單編號；開啟 LINE 後請貼上並傳送，我們核對後會私訊付款方式。</div>
       <div style="background:linear-gradient(160deg,#FFF5F5,#FFE8E8,#FFF5F5);border:1px solid rgba(180,30,30,0.2);border-radius:6px;padding:14px;margin-bottom:16px;text-align:left;">
         <div id="successReminderTitle" style="font-size:12px;letter-spacing:2px;color:#9B2B1A;font-weight:700;margin-bottom:10px;">📋 溫馨提醒</div>
         <div id="successReminderBody" style="font-size:13px;color:var(--ink2);line-height:2.2;">
@@ -2143,10 +2145,10 @@ function updateCheckoutUI(){
   const titleMap={course:'填寫課程報名資料',product:'填寫作品訂購資料',certification:'填寫認證報名資料',competition:'填寫競賽報名資料'};
   const successTitleMap={course:'報名資料已送出',product:'訂購資料已送出',certification:'認證報名已送出',competition:'競賽報名已送出'};
   const successDescMap={
-    course:'我們已收到您的報名資料<br>請依照匯款資訊完成轉帳<br>待確認款項後，會寄出付款確認通知',
-    product:'我們已收到您的訂購資料<br>請依照匯款資訊完成轉帳<br>如需寄送請留意 Email 或 LINE 後續通知',
-    certification:'我們已收到您的認證報名資料<br>請依照匯款資訊完成轉帳<br>待確認款項後，會寄出付款確認通知',
-    competition:'我們已收到您的競賽報名資料<br>請依照匯款資訊完成轉帳<br>待確認款項後，會寄出付款確認通知'
+    course:'我們已收到您的報名資料<br>請加入 LINE 官方帳號並傳送訂單編號<br>核對後會個別通知付款資訊',
+    product:'我們已收到您的訂購資料<br>請加入 LINE 官方帳號並傳送訂單編號<br>核對後會個別通知付款資訊',
+    certification:'我們已收到您的認證報名資料<br>請加入 LINE 官方帳號並傳送訂單編號<br>核對後會個別通知付款資訊',
+    competition:'我們已收到您的競賽報名資料<br>請加入 LINE 官方帳號並傳送訂單編號<br>核對後會個別通知付款資訊'
   };
   const productReminder='<div>・作品皆為手作或訂製，送出訂單後請先完成付款</div><div>・如需修改收件資料，請盡快透過 LINE 聯繫</div><div>・寄送時間會依製作排程與物流狀況另行通知</div><div style="margin-top:6px;">・有疑問請 <a href="https://line.me/ti/p/~lovebaby15" target="_blank" style="color:var(--pink-dark);font-weight:700;text-decoration:none;">加入 LINE 洽詢 →</a></div>';
   const signupReminder='<div>・課程一旦付費，無法退費，保留課程半年</div><div>・認證考生僅限考試月份應考，無法延期</div><div>・競賽報名一旦繳費，無法退款</div><div>・如遇颱風或停班停課，另行通知補課</div><div style="margin-top:6px;">・有疑問請 <a href="https://line.me/ti/p/~lovebaby15" target="_blank" style="color:var(--pink-dark);font-weight:700;text-decoration:none;">加入 LINE 洽詢 →</a></div>';
@@ -2218,6 +2220,25 @@ let isSubmittingOrder=false;async function submitOrder(){
   document.getElementById('bankInfo').style.display='none';
   document.getElementById('modalBody').classList.add('hide');
   document.getElementById('successScreen').classList.add('show');
+}
+function openLineForPayment(btn){
+  const orderNo=document.getElementById('orderNo')?.textContent?.trim()||'';
+  const message=`您好，我要詢問付款資訊，訂單編號：${orderNo}`;
+  if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(message).catch(()=>{});
+  }else{
+    const temp=document.createElement('textarea');
+    temp.value=message;
+    temp.setAttribute('readonly','');
+    temp.style.position='fixed';
+    temp.style.left='-9999px';
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand('copy');
+    document.body.removeChild(temp);
+  }
+  if(btn){const old=btn.textContent;btn.textContent='✓ 已複製，正在開啟 LINE';setTimeout(()=>btn.textContent=old,2200);}
+  window.open('https://line.me/R/ti/p/@929rrwer','_blank','noopener');
 }
 function hasRequiredOrderFields(){return ['f-name','f-phone','f-line','f-email'].every(id=>document.getElementById(id)?.value.trim())&&isValidEmail(document.getElementById('f-email')?.value.trim()||'');}
 async function requestStudentNotificationPermission(){if(!('Notification' in window))return 'unsupported';if(Notification.permission==='default'){try{return await Notification.requestPermission();}catch(err){return Notification.permission||'default';}}return Notification.permission;}
